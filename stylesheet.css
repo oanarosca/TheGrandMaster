@@ -12,10 +12,12 @@ h1 {
   text-align: center;
   font-family: 'Source Sans Pro', Helvetica, sans-serif;
   font-size: 50px;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .new {
-  margin-top: -30px;
+  margin-top: 20px;
   margin: 0 auto;
   font-family: 'Roboto', Helvetica, sans-serif;
   text-align: center;
@@ -40,15 +42,49 @@ h1 {
   border: 2px solid #bdc3c7;
 }
 
+.bilute {
+  display: table;
+  margin: 0 auto;
+  margin-top: -10px;
+}
+
 .bilute ul {
   list-style-type: none;
+  margin-top: 20px;
+  margin-left: -40px;
 }
 
 .bilute li {
-  display: inline;
-  margin: 10px;
-  width: 50px;
+  cursor: pointer;
+  margin: 8px;
+  width: 30px;
   height: 30px;
-  border: 2px solid white;
-  border-radius: 30px;
+  border-radius: 20px;
+  display: inline-block;
+  padding: 1px;
+}
+
+#red {
+  background-color: #c0392b;
+}
+#blue {
+  background-color: #2980b9;
+}
+#yellow {
+  background-color: #f1c40f;
+}
+#purple {
+  background-color: #9b59b6;
+}
+#green {
+  background-color: #27ae60;
+}
+#pink {
+  background-color: #db0a5b;
+}
+#turqoise {
+  background-color: #1abc9c;
+}
+#silver {
+  background-color: #bdc3c7;
 }
