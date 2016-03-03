@@ -42,6 +42,7 @@ h1 {
   border: 2px solid #bdc3c7;
 }
 
+
 .bilute {
   display: table;
   margin: 0 auto;
@@ -55,12 +56,15 @@ h1 {
 }
 
 .bilute li {
+  display: inline-block;
+}
+
+#red, #blue, #yellow, #purple, #green, #pink, #turqoise, #silver {
   cursor: pointer;
   margin: 8px;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 20px;
-  display: inline-block;
   padding: 1px;
 }
 
@@ -88,3 +92,26 @@ h1 {
 #silver {
   background-color: #bdc3c7;
 }
+
+ol {
+  margin: 0 auto;
+  list-style: none;
+}
+
+ol li {
+  display: inline;
+}
+
+table {
+  margin: 0 auto;
+  margin-top: -10px;
+  width: 64px;
+  table-layout: fixed;
+}
+
+td, table {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+
+td {  padding: 14px; width: 16px; height: 16px;}
