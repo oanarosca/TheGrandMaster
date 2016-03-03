@@ -59,7 +59,7 @@ h1 {
   display: inline-block;
 }
 
-#red, #blue, #yellow, #purple, #green, #pink, #turqoise, #silver {
+#red0, #blue1, #yellow2, #purple3, #green4, #pink5, #turqoise6, #silver7 {
   cursor: pointer;
   margin: 8px;
   width: 25px;
@@ -68,38 +68,29 @@ h1 {
   padding: 1px;
 }
 
-#red {
+#red0 {
   background-color: #c0392b;
 }
-#blue {
+#blue1 {
   background-color: #2980b9;
 }
-#yellow {
+#yellow2 {
   background-color: #f1c40f;
 }
-#purple {
+#purple3 {
   background-color: #9b59b6;
 }
-#green {
+#green4 {
   background-color: #27ae60;
 }
-#pink {
+#pink5 {
   background-color: #db0a5b;
 }
-#turqoise {
+#turqoise6 {
   background-color: #1abc9c;
 }
-#silver {
+#silver7 {
   background-color: #bdc3c7;
-}
-
-ol {
-  margin: 0 auto;
-  list-style: none;
-}
-
-ol li {
-  display: inline;
 }
 
 table {
@@ -114,4 +105,6 @@ td, table {
   border-collapse: collapse;
 }
 
-td {  padding: 14px; width: 16px; height: 16px;}
+.cDefault {
+  cursor: default;
+}
