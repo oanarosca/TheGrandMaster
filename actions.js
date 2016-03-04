@@ -51,7 +51,7 @@ function generare () {
     sol = Math.floor(Math.random() * 7000 + 1000);
   } while (altul(sol));
   var i = 0;
-  alert(sol);
+  //alert(sol);
   while (sol > 9) {
     s[++i] = Math.floor(sol % 10);
     sol /= 10;
