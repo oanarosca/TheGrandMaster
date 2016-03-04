@@ -93,18 +93,23 @@ h1 {
   background-color: #bdc3c7;
 }
 
-table {
+.tabele {
+  width: 25%;
   margin: 0 auto;
-  margin-top: -10px;
-  width: 64px;
+  margin-top: -15px;
+}
+
+.mare {
+  float: left;
   table-layout: fixed;
 }
 
-td, table {
+td, .mare, .mic {
   border: 1px solid white;
   border-collapse: collapse;
 }
 
-.cDefault {
-  cursor: default;
+.mic {
+  float: right;
+  table-layout: fixed;
 }

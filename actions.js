@@ -1,11 +1,11 @@
 $(document).ready(function() {
   $('.bilute').hide();
-  $('table').hide();
+  $('.tabele').hide();
 });
 
 function show () {
   $('.bilute').fadeIn();
-  $('table').delay(450).fadeIn();
+  $('.tabele').delay(450).fadeIn();
 }
 
 function stop () {
@@ -18,9 +18,13 @@ var lineIndex, colIndex;
 
 function reset () {
   $('td').empty();
-  $('td').css("padding", "14px");
-  $('td').css("width", "16px");
-  $('td').css("height", "16px");
+  $('td').css("background-color", "black");
+  $('.mare td').css("padding", "14px");
+  $('.mare td').css("width", "16px");
+  $('.mare td').css("height", "16px");
+  $('.mic td').css("padding", "7.4px");
+  $('.mic td').css("width", "7.9px");
+  $('.mic td').css("height", "7.9px");
   var x = document.getElementsByClassName('b');
   for (var i = 0; i <= 7; i++)
     $(x[i]).css('cursor', 'pointer');
@@ -60,34 +64,48 @@ function newGame () {
 }
 
 function plasare (corecte, aproapeCorecte) {
-  var i;
+  var l, c, ls;
+  ls = (lineIndex-1)*2;
+  for (l = ls; l <= ls+1; l++) {
+    for (c = 0; c <= 1; c++) {
+      bg = '';
+      if (corecte) {
+        corecte--; bg = '#c0392b';
+      }
+      else if (aproapeCorecte) {
+        aproapeCorecte--; bg = '#bdc3c7';
+      }
+      //alert (corecte, aproapeCorecte);
+      $(".mic tr:eq("+ l +") td:eq("+ c +")").css('background-color', bg);
+    }
+  }
 }
 
 function eval () {
-  var i, j, corecte = 0, aproapeCorecte = 0;
+  var i, j, corecte = 0, aproapeCorecte = 0, m = [0, 0, 0, 0, 0];
   for (i = 1; i <= 4; i++)
     if (s[i] == u[i])
-      corecte++;
+      corecte++, m[i] = 1;
     else {
       for (j = 1; j <= 4; j++)
-        if (s[i] == u[j])
-          aproapeCorecte++;
+        if (s[i] == u[j] && m[j] == 0) {
+          aproapeCorecte++; m[j] = 1; break;
+        }
     }
+  plasare(corecte, aproapeCorecte);
   if (lineIndex == 10 && corecte != 4) {
     alert("You lost!"); stop();
   }
   else if (corecte == 4) {
     alert("You won!"); stop();
   }
-  else
-    plasare(corecte, aproapeCorecte);
 }
 
 function clicked (id) { // click facut pe biluta
   if ($('#'+id).css('cursor') != "default") {
-    $("table tr:eq("+lineIndex+") td:eq("+colIndex+")").append("<div id='"+id+"'></div>");
-    $("table tr:eq("+lineIndex+") td:eq("+colIndex+")").css("padding", "0px");
-    $("table tr:eq("+lineIndex+") td:eq("+colIndex+")").css("padding-right", "28px");
+    $(".mare tr:eq("+lineIndex+") td:eq("+colIndex+")").append("<div id='"+id+"'></div>");
+    $(".mare tr:eq("+lineIndex+") td:eq("+colIndex+")").css("padding", "0px");
+    $(".mare tr:eq("+lineIndex+") td:eq("+colIndex+")").css("padding-right", "0px");
     colIndex++;
     u[4-colIndex+1] = Number(id[id.length-1]);
     if (colIndex == 4) {
