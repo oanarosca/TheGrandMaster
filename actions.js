@@ -57,6 +57,7 @@ function generare () {
     sol /= 10;
   }
   s[++i] = Math.floor(sol % 10);
+  //s = [0, 1, 2, 1, 2];
 }
 
 function newGame () {
@@ -82,19 +83,21 @@ function plasare (corecte, aproapeCorecte) {
 }
 
 function eval () {
-  var i, j, corecte = 0, aproapeCorecte = 0, m = [0, 0, 0, 0, 0];
+  var i, j, corecte = 0, aproapeCorecte = 0;
+  var ms = [0, 0, 0, 0, 0], mu = [0, 0, 0, 0, 0];
   for (i = 1; i <= 4; i++)
     if (s[i] == u[i])
-      corecte++, m[i] = 1;
-    else {
-      for (j = 1; j <= 4; j++)
-        if (s[i] == u[j] && m[j] == 0) {
-          aproapeCorecte++; m[j] = 1; break;
-        }
-    }
+      corecte++, mu[i] = ms[i] = 1;
+  //alert(m);
+  for (i = 1; i <= 4; i++)
+    for (j = 1; j <= 4; j++)
+      if (s[i] == u[j] && mu[j] == 0 && ms[i] == 0) {
+        aproapeCorecte++; ms[j] = mu[j] = 1; //alert(m);
+        break;
+      }
   plasare(corecte, aproapeCorecte);
   if (lineIndex == 10 && corecte != 4) {
-    alert("You lost!"); stop();
+    alert("You lost! ("+s+")"); stop();
   }
   else if (corecte == 4) {
     alert("You won!"); stop();
