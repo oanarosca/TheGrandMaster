@@ -9,7 +9,9 @@ function show () {
 }
 
 function stop () {
-
+  var x = document.getElementsByClassName('b');
+  for (var i = 0; i <= 7; i++)
+    $(x[i]).css('cursor', 'default');
 }
 
 var lineIndex, colIndex;
@@ -19,6 +21,9 @@ function reset () {
   $('td').css("padding", "14px");
   $('td').css("width", "16px");
   $('td').css("height", "16px");
+  var x = document.getElementsByClassName('b');
+  for (var i = 0; i <= 7; i++)
+    $(x[i]).css('cursor', 'pointer');
   s = [0, 0, 0, 0, 0]; u = [0, 0, 0, 0, 0];
   // cifrele solutiei si cifrele utilizatorului
   lineIndex = colIndex = 0;
@@ -79,6 +84,7 @@ function eval () {
 }
 
 function clicked (id) { // click facut pe biluta
+  if ($('#'+id).css('cursor') != "default") {
     $("table tr:eq("+lineIndex+") td:eq("+colIndex+")").append("<div id='"+id+"'></div>");
     $("table tr:eq("+lineIndex+") td:eq("+colIndex+")").css("padding", "0px");
     $("table tr:eq("+lineIndex+") td:eq("+colIndex+")").css("padding-right", "28px");
@@ -88,4 +94,5 @@ function clicked (id) { // click facut pe biluta
       lineIndex++; colIndex = 0;
       eval();
     }
+  }
 };
