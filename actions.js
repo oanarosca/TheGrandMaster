@@ -1,4 +1,12 @@
+function drawTables () {
+  for (var i = 1; i <= 10; i++)
+    $('.mare tbody').append('<tr><td></td><td></td><td></td><td></td></tr>');
+  for (var i = 1; i <= 20; i++)
+    $('.mic tbody').append('<tr><td></td><td></td></tr>');
+}
+
 $(document).ready(function() {
+  drawTables();
   $('.bilute').hide();
   $('.tabele').hide();
 });
