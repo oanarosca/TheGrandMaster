@@ -28,6 +28,7 @@ function reset () {
   $('td').empty();
   $('td').css("background-color", "black");
   $('.mare td').css("padding", "14px");
+  $('.mare td').css("padding-bottom", "13px");
   $('.mare td').css("width", "16px");
   $('.mare td').css("height", "16px");
   $('.mic td').css("padding", "7.4px");
@@ -65,7 +66,7 @@ function generare () {
     sol /= 10;
   }
   s[++i] = Math.floor(sol % 10);
-  //s = [0, 1, 2, 1, 2];
+  s = [0, 2, 6, 3, 1];
 }
 
 function newGame () {
@@ -100,7 +101,8 @@ function eval () {
   for (i = 1; i <= 4; i++)
     for (j = 1; j <= 4; j++)
       if (s[i] == u[j] && mu[j] == 0 && ms[i] == 0) {
-        aproapeCorecte++; ms[j] = mu[j] = 1; //alert(m);
+        aproapeCorecte++; ms[i] = mu[j] = 1; //alert("ms"+ms+"i"+i);
+        //alert("mu"+mu+"j"+j);
         break;
       }
   plasare(corecte, aproapeCorecte);
