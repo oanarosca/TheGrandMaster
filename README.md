@@ -8,3 +8,4 @@ A mastermind game written in JavaScript. Play [here](https://oanarosca.github.io
 - [ ] place on page to display "You won!/You lost!"
 - [ ] make the tables have the same height (maybe use canvas)
 - [x] change the color of the green ball
+- [ ] create an "Undo" button
