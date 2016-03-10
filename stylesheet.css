@@ -3,7 +3,7 @@ body {
 }
 
 .container {
-  width: 80%;
+  width: 40%;
   margin: 0 auto;
   color: white;
 }
@@ -16,8 +16,16 @@ h1 {
   margin-bottom: 10px;
 }
 
-.new {
-  margin-top: 20px;
+.bContainer {
+  float: left;
+  /*border: 1px solid white;*/
+  height: 62px;
+  width: 320px;
+}
+
+.new, .undo {
+  display: inline;
+  /*margin-top: 20px;*/
   margin: 0 auto;
   font-family: 'Roboto', Helvetica, sans-serif;
   text-align: center;
@@ -37,11 +45,18 @@ h1 {
   transition: border 0.4s, background-color 0.4s;
 }
 
-.new:hover {
+.new:hover, .undo:hover {
   background-color: #bdc3c7;
   border: 2px solid #bdc3c7;
 }
 
+.new {
+  float: right;
+}
+
+.undo {
+  float: left;
+}
 
 .bilute {
   display: table;
@@ -51,7 +66,7 @@ h1 {
 
 .bilute ul {
   list-style-type: none;
-  margin-top: 20px;
+  /*margin-top: 20px;*/
   margin-left: -40px;
 }
 
@@ -94,7 +109,7 @@ h1 {
 }
 
 .tabele {
-  width: 25%;
+  width: 50%;
   margin: 0 auto;
   margin-top: -15px;
 }

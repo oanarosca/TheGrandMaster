@@ -9,10 +9,12 @@ $(document).ready(function() {
   drawTables();
   $('.bilute').hide();
   $('.tabele').hide();
+  $('.undo').hide();
 });
 
 function show () {
   $('.bilute').fadeIn();
+  $('.undo').fadeIn();
   $('.tabele').delay(450).fadeIn();
 }
 
