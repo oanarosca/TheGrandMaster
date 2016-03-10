@@ -129,3 +129,10 @@ function clicked (id) { // click facut pe biluta
     }
   }
 };
+
+function undoMove () {
+  $(".mare tr:eq("+lineIndex+") td:eq("+colIndex+")").empty();
+  u[4-colIndex+1] = 0;
+  if (colIndex)
+    colIndex--;
+}

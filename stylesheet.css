@@ -45,7 +45,7 @@ h1 {
   transition: border 0.4s, background-color 0.4s;
 }
 
-.new:hover, .undo:hover {
+.new:hover {
   background-color: #bdc3c7;
   border: 2px solid #bdc3c7;
 }
@@ -56,6 +56,16 @@ h1 {
 
 .undo {
   float: left;
+  -webkit-transition: border 0.4s, background-color 0.4s;
+  -moz-transition: border 0.4s, background-color 0.4s;
+  -ms-transition: border 0.4s, background-color 0.4s;
+  -o-transition: border 0.4s, background-color 0.4s;
+  transition: border 0.4s, background-color 0.4s;
+}
+
+.undo:hover {
+  background-color: #c0392b;
+  border: 2px solid #c0392b;
 }
 
 .bilute {
