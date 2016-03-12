@@ -10,11 +10,13 @@ $(document).ready(function() {
   $('.bilute').hide();
   $('.tabele').hide();
   $('.undo').hide();
+  $('.instr').hide();
 });
 
 function show () {
   $('.bilute').fadeIn();
   $('.undo').fadeIn();
+  $('.instr').fadeIn();
   $('.tabele').delay(450).fadeIn();
 }
 
