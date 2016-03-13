@@ -70,14 +70,14 @@ function generare () {
     sol /= 10;
   }
   s[++i] = Math.floor(sol % 10);
-  s = [0, 2, 6, 3, 1];
+  //s = [0, 2, 6, 3, 1];
 }
 
 function newGame () {
   reset(); show(); generare();
 }
 
-function plasare (corecte, aproapeCorecte) {
+function feedback (corecte, aproapeCorecte) {
   var l, c, ls;
   ls = (lineIndex-1)*2;
   for (l = ls; l <= ls+1; l++) {
@@ -109,7 +109,7 @@ function eval () {
         //alert("mu"+mu+"j"+j);
         break;
       }
-  plasare(corecte, aproapeCorecte);
+  feedback(corecte, aproapeCorecte);
   if (lineIndex == 10 && corecte != 4) {
     alert("You lost! ("+s+")"); stop();
   }
