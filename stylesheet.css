@@ -1,5 +1,7 @@
 body {
   background-color: black;
+  color: black;
+  font-family: 'Roboto', Helvetica, sans-serif;
 }
 
 .container {
@@ -19,14 +21,12 @@ h1 {
 .bContainer {
   display: inline;
   float: left;
-  /*border: 1px solid white;*/
   height: 62px;
   width: 320px;
 }
 
-.new, .undo, .instr {
+.new, .undo, #instr {
   display: inline;
-  /*margin-top: 20px;*/
   margin: 0 auto;
   font-family: 'Roboto', Helvetica, sans-serif;
   text-align: center;
@@ -50,17 +50,17 @@ h1 {
   float: left;
 }
 
-.instr {
+.new {
+  float: right;
+}
+
+#instr {
   display: inline;
   float: left;
   margin-left: 12px;
 }
 
-.new {
-  float: right;
-}
-
-.new:hover, .instr:hover {
+.new:hover, #instr:hover {
   background-color: #bdc3c7;
   border: 2px solid #bdc3c7;
 }
@@ -78,7 +78,6 @@ h1 {
 
 .bilute ul {
   list-style-type: none;
-  /*margin-top: 20px;*/
   margin-left: -40px;
 }
 
@@ -139,4 +138,53 @@ td, .mare, .mic {
 .mic {
   float: right;
   table-layout: fixed;
+}
+
+#instructions {
+  width: 400px;
+  height: 300px;
+}
+
+#instructions, #won, #lost {
+  background-color: #bdc3c7;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  padding: 20px;
+  border-radius: 30px;
+  margin-top: -40px;
+}
+
+#instructions p {
+  padding: 0px 25px 0px 10px;
+}
+
+#won, #lost {
+  width: 200px;
+  height: 70px;
+}
+
+p {
+  text-align: justify;
+  font-size: 22px;
+  position: absolute;
+  z-index: 10;
+}
+
+#won p {
+  text-align: center;
+  padding: 0 15px 0 8px;
+}
+
+#lost p {
+  text-align: center;
+  padding: 0 15px 0 27px;
+}
+
+.blur {
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -ms-filter: blur(3px);
+  -o-filter: blur(3px);
+  filter: blur(3px);
 }

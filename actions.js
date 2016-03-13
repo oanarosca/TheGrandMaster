@@ -10,13 +10,16 @@ $(document).ready(function() {
   $('.bilute').hide();
   $('.tabele').hide();
   $('.undo').hide();
-  $('.instr').hide();
+  $('#instr').hide();
+  $('#instructions').hide();
+  $('#won').hide();
+  $('#lost').hide();
 });
 
 function show () {
   $('.bilute').fadeIn();
   $('.undo').fadeIn();
-  $('.instr').fadeIn();
+  $('#instr').fadeIn();
   $('.tabele').delay(450).fadeIn();
 }
 
@@ -26,7 +29,7 @@ function stop () {
     $(x[i]).css('cursor', 'default');
 }
 
-var lineIndex, colIndex;
+var lineIndex, colIndex, divId = "";
 
 function reset () {
   $('td').empty();
@@ -111,10 +114,10 @@ function eval () {
       }
   feedback(corecte, aproapeCorecte);
   if (lineIndex == 10 && corecte != 4) {
-    alert("You lost! ("+s+")"); stop();
+    prompt('lost'); stop();
   }
   else if (corecte == 4) {
-    alert("You won!"); stop();
+    prompt('won'); stop();
   }
 }
 
@@ -138,3 +141,19 @@ function undoMove () {
   if (colIndex)
     colIndex--;
 }
+
+function prompt (event) {
+  divId = '#' + event;
+  $('.container').addClass('blur');
+  $(divId).fadeIn();
+};
+
+$(document).mouseup(function (e) {
+  var container = $(divId);
+
+  if (!container.is(e.target) && container.has(e.target).length == 0) {
+    container.fadeOut();
+    $('*').removeClass("blur");
+  }
+  divId = "";
+});

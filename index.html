@@ -13,7 +13,7 @@
         <div class="undo" onclick="undoMove()">Undo</div>
         <div class="new" onclick="newGame()">New Game</div>
       </div>
-      <div class="instr" onclick="instr()">Instructions</div>
+      <div id="instr" onclick="prompt('instructions')">Instructions</div>
       <div class="bilute">
         <ul>
           <li><div id="red0" onclick="clicked(this.id)" class="b"></div></li>
@@ -35,6 +35,11 @@
       </table>
     </div>
     </div>
+    <div id="instructions"><p>Your goal is to guess the pattern in maximum 10 tries. Each time you will
+be given feedback as it follows: a white square indicates the existence of a correct ball placed in the
+wrong position, and a red square is placed for a ball in the guess which is correct in both color and position.</br></br>Good luck!</p></div>
+    <div id="won"><p>Congrats! You won!</p></div>
+    <div id="lost"><p>Uh oh! You lost!</p></div>
     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
     <script type='text/javascript' src='actions.js'></script>
   </body>
