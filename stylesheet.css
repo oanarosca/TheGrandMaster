@@ -17,10 +17,11 @@ h1 {
 }
 
 .bContainer {
-  /*float: left;*/
-  border: 1px solid white;
+  display: inline;
+  float: left;
+  /*border: 1px solid white;*/
   height: 62px;
-  width: 510px;
+  width: 320px;
 }
 
 .new, .undo, .instr {
@@ -46,21 +47,17 @@ h1 {
 }
 
 .undo {
-  margin-right: 20px;
-  margin-left: 0px;
-  -webkit-transition: border 0.4s, background-color 0.4s;
-  -moz-transition: border 0.4s, background-color 0.4s;
-  -ms-transition: border 0.4s, background-color 0.4s;
-  -o-transition: border 0.4s, background-color 0.4s;
-  transition: border 0.4s, background-color 0.4s;
-}
-
-.new {
-  margin-right: 20px;
+  float: left;
 }
 
 .instr {
-  margin-right: 0px;
+  display: inline;
+  float: left;
+  margin-left: 12px;
+}
+
+.new {
+  float: right;
 }
 
 .new:hover, .instr:hover {
