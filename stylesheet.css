@@ -6,6 +6,7 @@ body {
 
 .container {
   width: 40%;
+  height: 100vh;
   margin: 0 auto;
   color: white;
 }
@@ -73,12 +74,12 @@ h1 {
 .bilute {
   display: table;
   margin: 0 auto;
-  margin-top: -10px;
 }
 
 .bilute ul {
   list-style-type: none;
   margin-left: -40px;
+  margin-top: 5px;
 }
 
 .bilute li {
@@ -187,4 +188,28 @@ p {
   -ms-filter: blur(3px);
   -o-filter: blur(3px);
   filter: blur(3px);
+}
+
+.footer {
+  height: 45px;
+  width: 39%;
+  bottom: 0;
+  position: absolute;
+}
+
+h6 {
+  margin-top: 35px;
+  text-align: center;
+  color: white;
+  font-size: 15px;
+}
+
+a {
+  text-decoration: none;
+  color: #f4b742;
+  border-bottom: 0.5px dashed #f4b742;
+}
+
+i {
+  color: #c0392b;
 }
