@@ -1,18 +1,17 @@
 body {
   background-color: black;
-  color: black;
   font-family: 'Roboto', Helvetica, sans-serif;
 }
 
 .container {
   width: 40%;
   /*height: 100vh;*/
+  text-align: center;
   margin: 0 auto;
   color: white;
 }
 
 h1 {
-  text-align: center;
   font-family: 'Source Sans Pro', Helvetica, sans-serif;
   font-size: 50px;
   margin-top: 0;
@@ -28,13 +27,9 @@ h1 {
 
 .new, .undo, #instr {
   display: inline;
-  margin: 0 auto;
   font-family: 'Roboto', Helvetica, sans-serif;
-  text-align: center;
   font-size: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 18px;
+  padding: 18px 10px 0 10px;
   border: 2px solid white;
   border-radius: 20px;
   width: 130px;
@@ -173,12 +168,10 @@ p {
 }
 
 #won p {
-  text-align: center;
   padding: 0 15px 0 8px;
 }
 
 #lost p {
-  text-align: center;
   padding: 0 15px 0 27px;
 }
 
@@ -199,8 +192,6 @@ p {
 
 h6 {
   margin-top: 35px;
-  text-align: center;
-  color: white;
   font-size: 15px;
 }
 
