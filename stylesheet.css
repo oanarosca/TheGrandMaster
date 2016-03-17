@@ -1,12 +1,12 @@
 body {
   background-color: black;
+  text-align: center;
   font-family: 'Roboto', Helvetica, sans-serif;
 }
 
 .container {
   width: 40%;
   /*height: 100vh;*/
-  text-align: center;
   margin: 0 auto;
   color: white;
 }
@@ -25,7 +25,7 @@ h1 {
   width: 320px;
 }
 
-.new, .undo, #instr {
+.new, .undo, #instr, .btn {
   display: inline;
   font-family: 'Roboto', Helvetica, sans-serif;
   font-size: 20px;
@@ -42,11 +42,11 @@ h1 {
   transition: border 0.4s, background-color 0.4s;
 }
 
-.undo {
+.undo, .yes {
   float: left;
 }
 
-.new {
+.new, .no {
   float: right;
 }
 
@@ -61,7 +61,7 @@ h1 {
   border: 2px solid #bdc3c7;
 }
 
-.undo:hover {
+.undo:hover, .btn:hover {
   background-color: #c0392b;
   border: 2px solid #c0392b;
 }
@@ -136,12 +136,7 @@ td, .mare, .mic {
   table-layout: fixed;
 }
 
-#instructions {
-  width: 400px;
-  height: 300px;
-}
-
-#instructions, #won, #lost {
+#instructions, #won, #lost, #new {
   background-color: #bdc3c7;
   margin: 0 auto;
   position: relative;
@@ -151,13 +146,27 @@ td, .mare, .mic {
   margin-top: -40px;
 }
 
-#instructions p {
-  padding: 0px 25px 0px 10px;
+#instructions {
+  width: 450px;
+  height: 300px;
 }
 
 #won, #lost {
   width: 200px;
   height: 70px;
+}
+
+#new {
+  width: 350px;
+  height: 200px;
+}
+
+.btns {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 60px;
+  height: 62px;
+  width: 90%;
 }
 
 p {
@@ -167,12 +176,20 @@ p {
   z-index: 10;
 }
 
+#instructions p {
+  padding: 0 25px 0px 10px;
+}
+
 #won p {
   padding: 0 15px 0 8px;
 }
 
 #lost p {
   padding: 0 15px 0 27px;
+}
+
+#new p {
+  padding: 0 13px 0 0;
 }
 
 .blur {

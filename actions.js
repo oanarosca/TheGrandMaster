@@ -14,6 +14,7 @@ $(document).ready(function() {
   $('#instructions').hide();
   $('#won').hide();
   $('#lost').hide();
+  $('#new').hide();
 });
 
 function show () {
@@ -77,8 +78,25 @@ function generare () {
 }
 
 function newGame () {
-  reset(); show(); generare();
+  if ($('.bilute').is(':visible')) {
+    $('.container').addClass('blur');
+    $('#new').fadeIn();
+  }
+  else {
+    reset(); show(); generare();
+  }
 }
+
+$('.yes').click(function () {
+  $('.container').removeClass('blur');
+  $('#new').fadeOut();
+  reset(); show(); generare();
+});
+
+$('.no').click(function () {
+  $('.container').removeClass('blur');
+  $('#new').fadeOut();
+});
 
 function feedback (corecte, aproapeCorecte) {
   var l, c, ls;
@@ -153,7 +171,7 @@ $(document).mouseup(function (e) {
 
   if (!container.is(e.target) && container.has(e.target).length == 0) {
     container.fadeOut();
-    $('*').removeClass("blur");
+    $('.container').removeClass("blur");
   }
   divId = "";
 });
