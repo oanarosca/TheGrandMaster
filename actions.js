@@ -81,6 +81,7 @@ function newGame () {
   if ($('.bilute').is(':visible')) {
     $('.container').addClass('blur');
     $('#new').fadeIn();
+    divId = "#new";
   }
   else {
     reset(); show(); generare();
@@ -168,10 +169,11 @@ function prompt (event) {
 
 $(document).mouseup(function (e) {
   var container = $(divId);
-
-  if (!container.is(e.target) && container.has(e.target).length == 0) {
-    container.fadeOut();
-    $('.container').removeClass("blur");
+  if (divId != "#new") {
+    if (!container.is(e.target) && container.has(e.target).length == 0) {
+      container.fadeOut();
+      $('.container').removeClass("blur");
+    }
+    divId = "";
   }
-  divId = "";
 });
