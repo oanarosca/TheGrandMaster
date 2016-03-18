@@ -15,4 +15,4 @@ Each ball represents a digit from 0 to 7. A function returns a random 4-digit nu
 - [x] create an "Instructions" button
 - [x] prompt when clicking New Game
 - [ ] disable background when a prompt appears
-- [ ] fix minor bugs
+- [ ] fix minor bugs (e.g. when double clicking inside a prompt)
