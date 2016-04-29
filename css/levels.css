@@ -41,6 +41,11 @@
   border: none;
 }
 
+.nivel {
+  border: 2px solid #ffffff;
+  border-radius: 15px;
+}
+
 @media (max-width: 768px) {
   .navbar, .navbar-header {
     background: #000000;
