@@ -1,7 +1,7 @@
 body {
   background: #000000;
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
-  color: #ffffff;
+  color: #d4d0d0;
   text-align: center;
 }
 
@@ -23,7 +23,7 @@ i {
 }
 
 a, a:hover {
-  color: #ffffff;
+  color: #d4d0d0;
   text-decoration: none;
 }
 
