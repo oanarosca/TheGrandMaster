@@ -1,58 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang-"en-us">
   <head>
     <meta charset="utf-8">
     <title>TheGrandMaster</title>
-    <link type="text/css" rel="stylesheet" href="stylesheet.css">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="common.css">
+    <link type="text/css" rel="stylesheet" href="index.css">
   </head>
   <body>
     <div class="container">
-      <h1>TheGrandMaster v1.1</h1>
-      <div class="bContainer">
-        <div class="undo" onclick="undoMove()">Undo</div>
-        <div class="new" onclick="newGame()">New Game</div>
-      </div>
-      <div id="instr" onclick="prompt('instructions')">Instructions</div>
-      <div class="bilute">
-        <ul>
-          <li><div id="red0" onclick="clicked(this.id)" class="b"></div></li>
-          <li><div id="blue1" onclick="clicked(this.id)" class="b"></div></li>
-          <li><div id="yellow2" onclick="clicked(this.id)" class="b"></div></li>
-          <li><div id="purple3" onclick="clicked(this.id)" class="b"></div></li>
-          <li><div id="green4" onclick="clicked(this.id)" class="b"></div></li>
-          <li><div id="pink5" onclick="clicked(this.id)" class="b"></div></li>
-          <li><div id="turqoise6" onclick="clicked(this.id)" class="b"></div></li>
-          <li><div id="silver7" onclick="clicked(this.id)" class="b"></div></li>
-        </ul>
-      </div>
-      <div class="tabele">
-        <table class="mare">
-          <tbody></tbody>
-        </table>
-        <table class="mic">
-            <tbody></tbody>
-          </table>
-      </div>
-      <div class="footer">
-        <h6 class="made">Made with <i class="fa fa-heart"></i> by Oana &amp; Carina</h6>
+      <h1>TheGrandMaster v2.0</h1>
+      <div class="login">
+        <p>Log in to play</p>
       </div>
     </div>
-    <div id="instructions"><p>Your goal is to guess the pattern in maximum 10 tries. Each time you will
-be given feedback as it follows: a white square indicates the existence of a correct ball placed in the
-wrong position, and a red square is placed for a ball in the guess which is correct in both color and position.<br><br>Good luck!</p></div>
-    <div id="won"><p>Congrats! You won!</p></div>
-    <div id="lost"><p>Uh oh! You lost!</p></div>
-    <div id="new">
-      <p>Are you sure you want to start a new game?</p>
-      <div class="btns">
-        <div class="btn yes">Yes</div>
-        <div class="btn no">No</div>
-      </div>
+    <div class="container footer">
+      <p>Made with <i class="fa fa-heart"></i> by Oana</p>
     </div>
-    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
-    <script type='text/javascript' src='actions.js'></script>
   </body>
 </html>
