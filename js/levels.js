@@ -5,6 +5,6 @@ $(document).ready(function () {
   for (var j = 1; j <= 3; j++) {
     $(".levels").append("<div class='row'></div>");
     for (var i = 1; i <= 6; i++)
-      $(".levels").append("<div class='col-md-2 nivel'>"+(++index)+"</div>");
+      $(".levels").append("<div class='col-md-2 col-sm-2 col-xs-2 nivel'>"+(++index)+"</div>");
   }
 });
