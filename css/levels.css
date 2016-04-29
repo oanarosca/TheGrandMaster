@@ -44,22 +44,19 @@
 .levels {
   margin: 0 auto;
   display: block;
-  height: 500px;
+}
+
+.row {
+  margin: 0 auto;
 }
 
 .col-md-2 {
-  margin-right: 1vw;
-  margin-top: 1vw;
+  margin-top: 20px;
 }
 
-.col-md-2:last-child {
-  margin-right: 0;
-}
-
-.nivel {
-  width: 150px;
-  height: 150px;
-  border: 2px solid #ffffff;
+.level {
+  padding: 30px;
+  border: 3px solid #ffffff;
   border-radius: 15px;
   font-family: Helvetica;
   font-weight: bold;

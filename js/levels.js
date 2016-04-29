@@ -3,8 +3,9 @@
 $(document).ready(function () {
   var index = 0;
   for (var j = 1; j <= 3; j++) {
-    $(".levels").append("<div class='row'></div>");
+    $(".levels").append("<div class='row'>");
     for (var i = 1; i <= 6; i++)
-      $(".levels").append("<div class='col-md-2 col-sm-2 col-xs-2 nivel'>"+(++index)+"</div>");
+      $(".levels").append("<div class='col-md-2 col-sm-4 col-xs-6'><div class='level'>"+(++index)+"</div></div>");
+    $(".levels").append("</div>");
   }
 });
