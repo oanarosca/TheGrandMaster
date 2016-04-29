@@ -1,0 +1,223 @@
+body {
+  background-color: black;
+  text-align: center;
+  font-family: 'Roboto', Helvetica, sans-serif;
+}
+
+.container {
+  width: 40%;
+  /*height: 100vh;*/
+  margin: 0 auto;
+  color: white;
+}
+
+h1 {
+  font-family: 'Source Sans Pro', Helvetica, sans-serif;
+  font-size: 50px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.bContainer {
+  display: inline;
+  float: left;
+  height: 62px;
+  width: 320px;
+}
+
+.new, .undo, #instr, .btn {
+  display: inline;
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-size: 20px;
+  padding: 18px 10px 0 10px;
+  border: 2px solid white;
+  border-radius: 20px;
+  width: 130px;
+  height: 40px;
+  cursor: pointer;
+  -webkit-transition: border 0.4s, background-color 0.4s;
+  -moz-transition: border 0.4s, background-color 0.4s;
+  -ms-transition: border 0.4s, background-color 0.4s;
+  -o-transition: border 0.4s, background-color 0.4s;
+  transition: border 0.4s, background-color 0.4s;
+}
+
+.undo, .yes {
+  float: left;
+}
+
+.new, .no {
+  float: right;
+}
+
+#instr {
+  display: inline;
+  float: left;
+  margin-left: 12px;
+}
+
+.new:hover, #instr:hover {
+  background-color: #bdc3c7;
+  border: 2px solid #bdc3c7;
+}
+
+.undo:hover, .btn:hover {
+  background-color: #c0392b;
+  border: 2px solid #c0392b;
+}
+
+.bilute {
+  display: table;
+  margin: 0 auto;
+}
+
+.bilute ul {
+  list-style-type: none;
+  margin-left: -40px;
+  margin-top: 5px;
+}
+
+.bilute li {
+  display: inline-block;
+}
+
+#red0, #blue1, #yellow2, #purple3, #green4, #pink5, #turqoise6, #silver7 {
+  cursor: pointer;
+  margin: 8px;
+  width: 25px;
+  height: 25px;
+  border-radius: 20px;
+  padding: 1px;
+}
+
+#red0 {
+  background-color: #c0392b;
+}
+#blue1 {
+  background-color: #2980b9;
+}
+#yellow2 {
+  background-color: #f1c40f;
+}
+#purple3 {
+  background-color: #9b59b6;
+}
+#green4 {
+  background-color: #1e824c;
+}
+#pink5 {
+  background-color: #db0a5b;
+}
+#turqoise6 {
+  background-color: #1abc9c;
+}
+#silver7 {
+  background-color: #bdc3c7;
+}
+
+.tabele {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: -15px;
+}
+
+.mare {
+  float: left;
+  table-layout: fixed;
+}
+
+td, .mare, .mic {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+
+.mic {
+  float: right;
+  table-layout: fixed;
+}
+
+#instructions, #won, #lost, #new {
+  background-color: #bdc3c7;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  padding: 20px;
+  border-radius: 30px;
+  margin-top: -40px;
+}
+
+#instructions {
+  width: 450px;
+  height: 300px;
+}
+
+#won, #lost {
+  width: 200px;
+  height: 70px;
+}
+
+#new {
+  width: 350px;
+  height: 200px;
+}
+
+.btns {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 60px;
+  height: 62px;
+  width: 90%;
+}
+
+p {
+  text-align: justify;
+  font-size: 22px;
+  position: absolute;
+  z-index: 10;
+}
+
+#instructions p {
+  padding: 0 25px 0px 10px;
+}
+
+#won p {
+  padding: 0 15px 0 8px;
+}
+
+#lost p {
+  padding: 0 15px 0 27px;
+}
+
+#new p {
+  padding: 0 13px 0 0;
+}
+
+.blur {
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -ms-filter: blur(3px);
+  -o-filter: blur(3px);
+  filter: blur(3px);
+}
+
+.footer {
+  height: 45px;
+  width: 39%;
+  bottom: 0;
+  position: absolute;
+}
+
+h6 {
+  margin-top: 35px;
+  font-size: 15px;
+}
+
+a {
+  text-decoration: none;
+  color: #f4b742;
+  border-bottom: 0.5px dashed #f4b742;
+}
+
+i {
+  color: #c0392b;
+}
