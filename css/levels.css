@@ -20,6 +20,7 @@
   font-size: 40px;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .level:hover .hover {
