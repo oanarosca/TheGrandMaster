@@ -75,16 +75,3 @@
   width: 80%;
   z-index: 2;
 }
-
-@media (max-width: 768px) {
-  .navbar, .navbar-header {
-    background: #000000;
-    border: none;
-  }
-}
-
-@media (min-width: 768px) {
-  .nav.navbar-nav li {
-    margin-top: 6vw;
-  }
-}

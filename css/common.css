@@ -75,3 +75,17 @@ a, a:hover {
   background: none;
   border: none;
 }
+
+
+@media (max-width: 768px) {
+  .navbar, .navbar-header {
+    background: #000000;
+    border: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav.navbar-nav li {
+    margin-top: 6vw;
+  }
+}
