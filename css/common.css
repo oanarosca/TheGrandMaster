@@ -82,6 +82,16 @@ a, a:hover {
     background: #000000;
     border: none;
   }
+  .navbar li {
+    border: none;
+    text-align: left;
+  }
+  .navbar .img img {
+    height: 40px;
+  }
+  .navbar-nav.navbar-left {
+    margin-bottom: -5px;
+  }
 }
 
 @media (min-width: 768px) {
