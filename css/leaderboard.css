@@ -1,0 +1,40 @@
+.leaderboard {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 40px;
+  display: block;
+  text-align: center;
+}
+
+h1 {
+  font-size: 44px;
+}
+
+table {
+  margin: 0 auto;
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+th {
+  padding: 20px;
+}
+
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+
+select {
+  margin: 20px;
+  padding: 12px;
+  border-radius: 15px;
+  background: #000000;
+  color: #d4d4d4;
+}
+
+@media (min-width: 768px) {
+  select {
+    display: none;
+  }
+}
