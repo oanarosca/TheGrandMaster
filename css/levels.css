@@ -20,10 +20,10 @@
   font-size: 40px;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
 }
 
 .level:hover .hover {
+  z-index: 2;
   -webkit-transform: translateY(-100%);
   -moz-transform: translateY(-100%);
   -ms-transform: translateY(-100%);
@@ -32,6 +32,7 @@
 }
 
 .hover, .locked {
+  z-index: -1;
   top: 103%;
   left: 0;
   height: 123px;
@@ -67,6 +68,11 @@
   width: 100%;
   height: 100%;
   border-radius: 15px;
+}
+
+.lock {
+  width: 80%;
+  z-index: 2;
 }
 
 @media (max-width: 768px) {
