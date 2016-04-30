@@ -18,6 +18,32 @@
   font-family: Helvetica;
   font-weight: bold;
   font-size: 40px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.level:hover .hover {
+  border-radius: 15px;
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+.hover {
+  top: 103%;
+  left: 0;
+  height: 123px;
+  width: 100%;
+  position: absolute;
+  opacity: 0.7;
+  background: #616161;
+  border-top: 3px solid #d4d4d4;
+  border-bottom: 3px solid #d4d4d4;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
 }
 
 @media (max-width: 768px) {
