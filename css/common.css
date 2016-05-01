@@ -87,6 +87,7 @@ a, a:hover {
 }
 
 #popup {
+  background: url("../img/background.png");
   z-index: 1000;
   width: 600px;
   height: 375px;
