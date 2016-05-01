@@ -76,6 +76,38 @@ a, a:hover {
   border: none;
 }
 
+.front {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: none;
+  top: 0;
+  position: absolute;
+}
+
+#popup {
+  z-index: 1000;
+  width: 600px;
+  height: 375px;
+  margin: 0 auto;
+  margin-top: 10%;
+  color: #000000;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+#popup i {
+  float: right;
+  font-size: 30px;
+}
+
+#popup div {
+  margin: 25px 10px;
+  font-size: 22px;
+  text-align: justify;
+}
 
 @media (max-width: 768px) {
   .navbar, .navbar-header {
@@ -91,6 +123,14 @@ a, a:hover {
   }
   .navbar-nav.navbar-left {
     margin-bottom: -5px;
+  }
+  #popup {
+    width: 100%;
+    border-radius: 0;
+    left: 0;
+    top: 0;
+    margin-left: 0;
+    margin-top: 0;
   }
 }
 
