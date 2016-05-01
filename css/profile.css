@@ -1,0 +1,29 @@
+.profile {
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.pic img {
+  width: 300px;
+  height: 300px;
+  border: 1px solid red;
+}
+
+.info {
+  text-align: left;
+  margin-top: -10px;
+}
+
+.info h1, .info h2 {
+  margin-right: 15px;
+  display: inline;
+}
+
+.fa-plus {
+  color: #1e824c;
+}
+
+.fa-plus, .fa-minus {
+  cursor: pointer;
+}
