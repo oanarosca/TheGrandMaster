@@ -36,30 +36,71 @@ h1 {
   background: url("../img/background.png");
   z-index: 1000;
   width: 350px;
-  height: 170px;
+  height: 140px;
   margin: 0 auto;
   color: #3c3c3c;
   background-color: #ffffff;
-  padding: 5px 25px;
+  padding-top: 5px;
+  padding-bottom: 1px;
   border-radius: 15px;
   text-align: left;
 }
 
 #login h3 {
   font-weight: 500;
+  margin-left: 25px;
 }
 
 #login p {
   margin-top: -5px;
+  margin-left: 25px;
   font-weight: 300;
   font-size: 16px;
   cursor: pointer;
 }
 
+.input {
+  width: 100%;
+  height: 39%;
+  border-top: 1px solid #9a9a9a;
+}
+
+input {
+  outline: none;
+  border: none;
+  background: none;
+  width: 85%;
+  height: 100%;
+  display: inline;
+  font-size: 22px;
+  font-weight: 300;
+  padding: 0 10px 0 25px;
+}
+
+.button {
+  display: inline;
+  width: 15%;
+  height: 100%;
+  padding: 0px 10px;
+  font-size: 36px;
+  float: right;
+  border-left: 1px solid #9a9a9a;
+  background: #d1d1d1;
+  border-bottom-right-radius: 15px;
+}
+
+.button i {
+  color: #ffffff;
+}
+
+.enabled {
+  cursor: pointer;
+  background: #15bf11;
+}
+
 @media (max-width: 360px) {
   #login {
     width: 100%;
-    height: auto;
     border-radius: 0;
     margin-top: 40%;
   }

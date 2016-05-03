@@ -8,3 +8,10 @@ $(document).ready(function () {
 $(".login").on("click", function () {
   $(".front").fadeIn(500);
 });
+
+$("input").on("input", function() {
+  if ($(this).val())
+    $(".button").addClass("enabled");
+  else
+    $(".button").removeClass("enabled");
+});
