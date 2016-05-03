@@ -29,9 +29,11 @@
 .remove i {
   font-size: 30px;
   float: right;
+  cursor: pointer;
 }
 
 .change {
+  cursor: pointer;
   -webkit-transition: all 0.4s;
   -moz-transition: all 0.4s;
   -ms-transition: all 0.4s;
