@@ -4,11 +4,66 @@
   margin-top: 40px;
 }
 
-.pic img {
+/* left half */
+
+.pic {
   width: 295px;
   height: 295px;
-  border-radius: 10px;
+  margin: 0 auto;
+  overflow: hidden;
 }
+
+.remove {
+  z-index: 1;
+  width: 100%;
+  height: 40px;
+  margin-top: -40px;
+  padding: 10px;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.remove i {
+  font-size: 30px;
+  float: right;
+}
+
+.change {
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.pic:hover .remove {
+  -webkit-transform: translateY(40px);
+  -moz-transform: translateY(40px);
+  -ms-transform: translateY(40px);
+  -o-transform: translateY(40px);
+  transform: translateY(40px);
+}
+
+.pic:hover .change {
+  -webkit-transform: translateY(-40px);
+  -moz-transform: translateY(40px);
+  -ms-transform: translateY(40px);
+  -o-transform: translateY(40px);
+  transform: translateY(-40px);
+}
+
+.pic img {
+  z-index: -1;
+  width: 100%;
+  height: 295px;
+  border-radius: 10px;
+  border: 1px solid #d4d4d4;
+}
+
+/* right half */
 
 .info {
   text-align: left;
