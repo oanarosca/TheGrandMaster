@@ -22,7 +22,7 @@ i {
   color: #c0392b;
 }
 
-a, a:hover {
+a, a:hover, a:active, a:focus {
   color: #d4d0d0;
   text-decoration: none;
 }

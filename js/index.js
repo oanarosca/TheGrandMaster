@@ -4,3 +4,7 @@ $(document).ready(function () {
   $("h1").delay(500).fadeIn("slow");
   $(".login").delay(1000).fadeIn("slow");
 });
+
+$(".login").on("click", function () {
+  $(".front").fadeIn(500);
+});
