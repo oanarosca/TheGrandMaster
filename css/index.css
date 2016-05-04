@@ -38,7 +38,6 @@ h1 {
   position: absolute;
   width: 350px;
   height: 140px;
-  margin: 0 auto;
   color: #3c3c3c;
   background-color: #ffffff;
   padding-top: 5px;
@@ -46,6 +45,15 @@ h1 {
   border-radius: 15px;
   text-align: left;
   overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 #login h3, #register h3 {
@@ -82,7 +90,6 @@ input {
   outline: none;
   border: none;
   background: url("../img/background.png");
-  /*width: 297px;*/
   width: 85%;
   height: 51px;
   display: inline;
@@ -95,7 +102,6 @@ input {
 .button {
   display: inline;
   position: absolute;
-  /*width: 53px;*/
   width: 15%;
   height: 51px;
   padding: 0px 10px;
@@ -119,7 +125,6 @@ input {
   #login, #register {
     width: 100%;
     border-radius: 0;
-    margin-top: 40%;
   }
   .button {
     border-radius: 0;
