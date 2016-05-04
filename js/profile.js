@@ -17,3 +17,16 @@ function friend () {
     $("#friend").addClass("fa-plus");
   }
 }
+
+$("#userData").on("click", "p", function () {
+  var contents = $(this).html();
+  var value = "<input type='text' value='"+contents+"' onkeydown='check(this)'/>";
+  $("#userData").html(value);
+});
+
+function check (elem) {
+  if(event.keyCode == 13) {
+    var value = "<p>"+elem.value+"</p>";
+    $("#userData").html(value);
+  }
+};
