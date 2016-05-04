@@ -24,14 +24,16 @@ $("input").on("input", function() {
     $(".button").removeClass("enabled");
 });
 
-$(".button").click(function () {
+function next () {
   $(id+"input:eq("+index+")").slideUp();
-  $(".button").removeClass("enabled");
-});
+  $(id+".button").removeClass("enabled");
+  if (!index) {
+    $(id+".button").slideUp();
+    $(".input a, .input p").fadeIn("slow");
+  }
+}
 
 document.onkeydown = function (e) {
-	if (e.keyCode == 13) {
-    $(id+"input:eq("+index+")").slideUp();
-    $(".button").removeClass("enabled");
-	}
+	if (e.keyCode == 13)
+    next();
 }
