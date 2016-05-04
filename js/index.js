@@ -9,11 +9,13 @@ $(document).ready(function () {
 
 $(".login").on("click", function () {
   $(".front").fadeIn(500);
+  $("#register").hide();
 });
 
 $("#login header p").click(function () {
   id = "#register ";
   $("#login").fadeOut();
+  $("#register").fadeIn();
 });
 
 $("input").on("input", function() {
