@@ -1,5 +1,7 @@
 "use strict";
 
+var level;
+
 $(document).ready(function () {
   var index = 0, appendedClass, currentLevel = 1;
   var stats = "<p>Attempts: x</br>Wins: x</br>Points: x</br>Time: x</br></p>";
@@ -10,7 +12,8 @@ $(document).ready(function () {
     $(".levels").append("<div class='row'>");
     for (var i = 1; i <= 6; i++) {
       if (currentLevel >= ++index)
-        $(".levels").append("<div class='col-md-2 col-sm-4 col-xs-6'><div class='level'>"
+        $(".levels").append("<div class='col-md-2 col-sm-4 col-xs-6'>"+
+        "<div class='level' id='"+index+"' onclick='start(this.id)'>"
         +index+"<div class='hover'><img src='img/hover.png'/>"+stats
         +"</div></div>"+"</div>");
       else
@@ -21,3 +24,9 @@ $(document).ready(function () {
     $(".levels").append("</div>");
   }
 });
+
+
+function start (id) {
+  document.location.href = "level.html";
+  level = id;
+}
