@@ -35,6 +35,7 @@ h1 {
 #login {
   background: url("../img/background.png");
   z-index: 1000;
+  position: absolute;
   width: 350px;
   height: 140px;
   margin: 0 auto;
@@ -68,22 +69,25 @@ h1 {
 input {
   outline: none;
   border: none;
-  background: none;
-  width: 85%;
-  height: 100%;
+  background: url("../img/background.png");
+  width: 297px;
+  height: 51px;
   display: inline;
   font-size: 22px;
   font-weight: 300;
   padding: 0 10px 0 25px;
+  position: absolute;
+  border-bottom-left-radius: 15px;
 }
 
 .button {
   display: inline;
-  width: 15%;
-  height: 100%;
+  position: absolute;
+  width: 53px;
+  height: 51px;
   padding: 0px 10px;
   font-size: 36px;
-  float: right;
+  right: 0;
   border-left: 1px solid #9a9a9a;
   background: #d1d1d1;
   border-bottom-right-radius: 15px;
@@ -103,5 +107,8 @@ input {
     width: 100%;
     border-radius: 0;
     margin-top: 40%;
+  }
+  .button {
+    border-radius: 0;
   }
 }
