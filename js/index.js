@@ -1,6 +1,6 @@
 "use strict";
 
-var index;
+var index, id = "#login ";
 
 $(document).ready(function () {
   $("h1").delay(500).fadeIn("slow");
@@ -9,6 +9,11 @@ $(document).ready(function () {
 
 $(".login").on("click", function () {
   $(".front").fadeIn(500);
+});
+
+$("#login header p").click(function () {
+  id = "#register ";
+  $("#login").fadeOut();
 });
 
 $("input").on("input", function() {
@@ -20,13 +25,13 @@ $("input").on("input", function() {
 });
 
 $(".button").click(function () {
-  $("input:eq("+index+")").slideUp();
+  $(id+"input:eq("+index+")").slideUp();
   $(".button").removeClass("enabled");
 });
 
 document.onkeydown = function (e) {
 	if (e.keyCode == 13) {
-    $("input:eq("+index+")").slideUp();
+    $(id+"input:eq("+index+")").slideUp();
     $(".button").removeClass("enabled");
 	}
 }
