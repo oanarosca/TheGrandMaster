@@ -20,7 +20,7 @@ function friend () {
 
 $("#userData").on("click", "p", function () {
   var contents = $(this).html();
-  var value = "<input type='text' value='"+contents+"' onkeydown='check(this)'/>";
+  var value = "<input type='text' value='"+contents+"' onkeydown='check(this)' maxlength='100'/>";
   $("#userData").html(value);
 });
 
