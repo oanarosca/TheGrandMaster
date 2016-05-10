@@ -33,17 +33,26 @@
           <p>Fill the fields below</p>
         </header>
         <div class="input">
-          <form>
-          <input type="password" placeholder="Repeat password"/>
-          <input type="password" placeholder="Password"/>
-          <input type="text" placeholder="Username"/>
-          <input type="text" placeholder="E-mail"/>
-          <!--<div class="button" onclick="next()">-->
-          <button type="submit" class="button">
-            <i class='fa fa-arrow-right'></i> <!--</div>-->
-          </button>
-          <a href="levels.html"><p>PLAY NOW</p></a>
+          <form action=".php" method="post">
+            <input type="password" placeholder="Repeat password"/>
           </form>
+          <form action=".php" method="post">
+            <input type="password" placeholder="Password"/>
+          </form>
+          <form action=".php" method="post">
+            <input type="text" placeholder="Username"/>
+          </form>
+          <form action="php/addEmail.php" method="post">
+            <input type="text" name="email" placeholder="E-mail"/>
+            <button type="submit" class="button">
+              <i class='fa fa-arrow-right'></i>
+            </button>
+          </form>
+          <!--<div class="button" onclick="next()">-->
+          <!--<button type="submit" class="button">
+            <i class='fa fa-arrow-right'></i>
+          </button>-->
+          <a href="levels.html"><p>PLAY NOW</p></a>
         </div>
       </div>
       <div id="login">
