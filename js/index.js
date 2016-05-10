@@ -1,6 +1,6 @@
 "use strict";
 
-var index, id = "#login ";
+var index = 1, id = "#login ";
 
 $(document).ready(function () {
   $("h1").delay(500).fadeIn("slow");
@@ -13,13 +13,14 @@ $(".login").on("click", function () {
 });
 
 $("#login header p").click(function () {
-  id = "#register ";
+  id = "#register ", index = 3;
   $("#login").fadeOut();
   $("#register").fadeIn();
 });
 
 $("input").on("input", function() {
-  index = $(this).index();
+  //index = $(this).index();
+  //alert(index);
   if ($(this).val())
     $(".button").addClass("enabled");
   else
@@ -27,15 +28,9 @@ $("input").on("input", function() {
 });
 
 function next () {
-  $(id+"input:eq("+index+")").slideUp();
-  $(id+".button").removeClass("enabled");
-  if (!index) {
-    $(id+".button").slideUp();
+  $(id+"form:eq("+index+")").slideUp();
+  $(id+"button").removeClass("enabled");
+  if (!index)
     $(".input a, .input p").fadeIn("slow");
-  }
-}
-
-document.onkeydown = function (e) {
-	if (e.keyCode == 13)
-    next();
+  index--;
 }
