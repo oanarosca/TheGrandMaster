@@ -1,6 +1,6 @@
 "use strict";
 
-var index = 1, id = "#login ";
+var index = 1, id = "#login ", pass = "";
 
 $(document).ready(function () {
   $("h1").delay(500).fadeIn("slow");
@@ -13,24 +13,77 @@ $(".login").on("click", function () {
 });
 
 $("#login header p").click(function () {
-  id = "#register ", index = 3;
-  $("#login").fadeOut();
-  $("#register").fadeIn();
+  if ($(this).html() == "Don't have an account yet? Click here.") {
+    id = "#register ", index = 2;
+    $("#login").fadeOut();
+    $("#register").fadeIn();
+  }
 });
 
 $("input").on("input", function() {
-  //index = $(this).index();
-  //alert(index);
   if ($(this).val())
     $(".button").addClass("enabled");
   else
     $(".button").removeClass("enabled");
 });
 
+$("form").on("keyup keypress", function(e) {
+  var keyCode = e.keyCode || e.which;
+  if (keyCode === 13) {
+    e.preventDefault();
+    return false;
+  }
+});
+
+function change () {
+  if ($(id+".button").hasClass("enabled")) {
+    $(id+"input:eq("+index+")").slideUp();
+    $(id+".button:eq("+index+")").slideUp();
+    $(id+".button").removeClass("enabled");
+    if (!index)
+      $(".input a, .input p").fadeIn("slow");
+    index--;
+  }
+  $("header p").html("Fill the fields below");
+}
+
+function phpValidate (dir, data, type) {
+  $.ajax ({
+    url: dir,
+    data: { data, type },
+    success: function (response) {
+      if (response)
+        change();
+    },
+    error:
+      function () {
+        alert("Something wrong");
+      }
+  });
+}
+
 function next () {
-  $(id+"form:eq("+index+")").slideUp();
-  $(id+"button").removeClass("enabled");
-  if (!index)
-    $(".input a, .input p").fadeIn("slow");
-  index--;
+  var input = id+"input:eq("+index+")"; var str = $(input).val();
+  if ($(input).attr("name") === "username")
+    if (username(str))
+      if (id === "#register ")
+        phpValidate("php/validateR.php", str, "username");
+      else phpValidate("php/validateL.php", str, "username");
+    else
+      $("header p").html("Username must be between 4 and 20 characters long.");
+  else
+    if (password(str))
+      if (id === "#register ") {
+        if ($(input).attr("name") === "password") {
+          pass = str; change();
+        }
+        else
+          if (pass !== str) // passwords don't match
+            document.getElementById("rMessage").innerHTML = "Passwords don't match.";
+          else
+            change();
+      }
+      else phpValidate("php/validateL.php", str, "password")
+    else
+      $("header p").html("Password must be between 6 and 50 characters long.");
 }

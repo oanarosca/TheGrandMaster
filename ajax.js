@@ -5,7 +5,7 @@ $("form").submit(function () {
     data: $(this).serialize(),
     success:
       function (data) {
-        next();
+        change();
       },
     error:
       function () {
