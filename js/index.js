@@ -45,7 +45,7 @@ function change () {
     index--;
   }
   $("header p").html("Fill the fields below");
-}
+};
 
 function phpValidate (dir, data, type) {
   $.post (dir, 'val=' + data, function (response) {
@@ -59,7 +59,7 @@ function phpValidate (dir, data, type) {
      $(id+".button").removeClass("enabled");
    }
  });
-}
+};
 
 function next () {
   var input = id+"input:eq("+index+")"; var str = $(input).val();
@@ -83,4 +83,19 @@ function next () {
             change();
     else
       $("header p").html("Password must be between 6 and 50 characters long.");
-}
+};
+
+function session () {
+  $.ajax ({
+    url: "php/sstart.php",
+    type: "post",
+    success:
+      function () {
+        //alert(response);
+      },
+    error:
+      function () {
+        alert("Something wrong");
+      }
+  });
+};
