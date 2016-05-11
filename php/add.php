@@ -6,4 +6,6 @@
   $query = "INSERT INTO utilizatori (username, parola) " .
            "VALUES ('$username', '$password')";
   mysqli_query($conn, $query);
+  session_start();
+  $_SESSION['ok'] = $username;
 ?>
