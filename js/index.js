@@ -84,18 +84,3 @@ function next () {
     else
       $("header p").html("Password must be between 6 and 50 characters long.");
 };
-/*
-function session () {
-  $.ajax ({
-    url: "php/sstart.php",
-    type: "post",
-    success:
-      function (response) {
-        alert(response);
-      },
-    error:
-      function () {
-        alert("Something wrong");
-      }
-  });
-};*/

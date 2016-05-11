@@ -30,7 +30,7 @@
             </div> <!-- header -->
             <div class="collapse navbar-collapse" id="meniu">
               <ul class="nav navbar-nav navbar-left">
-                <li class="red"><a href="index.html">Log out</a></li>
+                <li class="red" onclick="dsession()"><a href="index.html">Log out</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="levels.html">Levels</a></li>
