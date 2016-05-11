@@ -1,7 +1,6 @@
 .container {
   width: 90%;
   margin: 0 auto;
-  border: 1px solid white;
 }
 
 @media (max-width: 768px) {
@@ -25,7 +24,7 @@
   display: inline-block;
 }
 
-.undo, #red0, #blue1, #yellow2, #purple3, #green4, #pink5, #turqoise6, #silver7 {
+#red0, #blue1, #yellow2, #purple3, #green4, #pink5, #turqoise6, #silver7 {
   cursor: pointer;
   margin: 8px;
   width: 25px;
@@ -42,9 +41,6 @@
   display: table;
 }
 
-#chestie {
-  background: #c60f2c;
-}
 #red0 {
   background-color: #c0392b;
 }
