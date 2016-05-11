@@ -27,6 +27,5 @@ $(document).ready(function () {
 
 
 function start (id) {
-  document.location.href = "level.html";
-  level = id;
+  document.location.href = "level.php?id="+id;
 }

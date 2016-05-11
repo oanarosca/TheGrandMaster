@@ -261,4 +261,72 @@
     </html>
     <?php
   }
+
+  function level ($level) {
+    ?>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#000000">
+        <link rel="icon" sizes="192x192" href="img/favicon.png">
+        <title>Level <?php echo $level; ?> | TheGrandMaster</title>
+        <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="css/common.css">
+        <!--<link type="text/css" rel="stylesheet" href="css/level.css">-->
+      </head>
+      <body>
+        <div class="container">
+          <h1>Level <?php echo $level; ?></h1>
+          <div class="bContainer">
+            <div class="undo" onclick="undoMove()">Undo</div>
+            <div class="new" onclick="newGame()">New Game</div>
+          </div>
+          <div id="instr" onclick="prompt('instructions')">Instructions</div>
+          <div class="bilute">
+            <ul>
+              <li><div id="red0" onclick="clicked(this.id)" class="b"></div></li>
+              <li><div id="blue1" onclick="clicked(this.id)" class="b"></div></li>
+              <li><div id="yellow2" onclick="clicked(this.id)" class="b"></div></li>
+              <li><div id="purple3" onclick="clicked(this.id)" class="b"></div></li>
+              <li><div id="green4" onclick="clicked(this.id)" class="b"></div></li>
+              <li><div id="pink5" onclick="clicked(this.id)" class="b"></div></li>
+              <li><div id="turqoise6" onclick="clicked(this.id)" class="b"></div></li>
+              <li><div id="silver7" onclick="clicked(this.id)" class="b"></div></li>
+            </ul>
+          </div>
+          <div class="tabele">
+            <table class="mare">
+              <tbody></tbody>
+            </table>
+            <table class="mic">
+                <tbody></tbody>
+              </table>
+          </div>
+          <div class="footer">
+            <p>Made with <i class="fa fa-heart"></i> by Oana</p>
+          </div>
+        </div>
+        <div id="won"><p>Congrats! You won!</p></div>
+        <div id="lost"><p>Uh oh! You lost!</p></div>
+        <div id="new">
+          <p>Are you sure you want to start a new game?</p>
+          <div class="btns">
+            <div class="btn yes">Yes</div>
+            <div class="btn no">No</div>
+          </div>
+        </div>
+        <script src="js/jquery-1.12.3.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/actions.js"></script>
+      </body>
+    </html>
+    <?php
+  }
 ?>
