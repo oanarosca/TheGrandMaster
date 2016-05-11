@@ -30,17 +30,3 @@ function start (id) {
   document.location.href = "level.html";
   level = id;
 }
-
-function dsession () {
-  $.ajax ({
-    url: "php/dsession.php",
-    success:
-      function (response) {
-        alert(response);
-      },
-    error:
-      function () {
-        alert("Something wrong");
-      }
-  });
-}

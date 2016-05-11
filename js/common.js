@@ -19,3 +19,17 @@ $("#instructions").on("click", function () {
 $(".fa-times").on("click", function () {
   $(".front").fadeOut(400);
 });
+
+function dsession () {
+  $.ajax ({
+    url: "php/dsession.php",
+    success:
+      function () {
+        //alert(response);
+      },
+    error:
+      function () {
+        alert("Something wrong");
+      }
+  });
+}
