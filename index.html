@@ -56,10 +56,15 @@
           <p id="lMessage">Don't have an account yet? Click here.</p>
         </header>
         <div class="input">
+          <form action="php/login.php" method="post">
           <input type="password" placeholder="Password"/>
           <input type="text" placeholder="Username"/>
-          <div class="button" onclick="next()"><i class="fa fa-arrow-right"></i></div>
+          <!--<div class="button" onclick="next()"><i class="fa fa-arrow-right"></i></div>-->
+          <button type="submit" class="button">
+            <i class='fa fa-arrow-right'></i>
+          </button>    
           <a href="levels.html"><p>PLAY NOW</p></a>
+        </form>
         </div>
       </div>
     </div>

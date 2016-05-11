@@ -4,8 +4,9 @@ $("form").submit(function () {
     type: $(this).attr("method"),
     data: $(this).serialize(),
     success:
-      function (data) {
+      function () {
         change();
+        $(id+"form").slideUp();
       },
     error:
       function () {
