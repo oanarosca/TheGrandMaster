@@ -52,7 +52,10 @@ function phpValidate (dir, data, type) {
    if (response == 1)
      change();
    else {
-     document.getElementById("rMessage").innerHTML = "Username is already taken.";
+     if (id === "#register ")
+       document.getElementById("rMessage").innerHTML = "Username is already taken.";
+     else if (type === "username")
+       document.getElementById("lMessage").innerHTML = "Incorrect username";
      $(id+".button").removeClass("enabled");
    }
  });
@@ -64,12 +67,12 @@ function next () {
     if (username(str))
       if (id === "#register ")
         phpValidate("php/validateR.php", str, "username");
-      else phpValidate("php/validateL.php", str, "username");
+      else phpValidate("php/validateLu.php", str, "username");
     else
       $("header p").html("Username must be between 4 and 20 characters long.");
   else
     if (password(str))
-      if (id === "#register ") {
+      if (id === "#register ")
         if ($(input).attr("name") === "password") {
           pass = str; change();
         }
@@ -78,8 +81,6 @@ function next () {
             document.getElementById("rMessage").innerHTML = "Passwords don't match.";
           else
             change();
-      }
-      else phpValidate("php/validateL.php", str, "password")
     else
       $("header p").html("Password must be between 6 and 50 characters long.");
 }

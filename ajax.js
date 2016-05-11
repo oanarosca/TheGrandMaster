@@ -4,9 +4,13 @@ $("form").submit(function () {
     type: $(this).attr("method"),
     data: $(this).serialize(),
     success:
-      function () {
-        change();
-        $(id+"form").slideUp();
+      function (response) {
+        if (response == 1) {
+          change();
+          $(id+"form").slideUp();
+        }
+        else if (id === "#login ")
+          document.getElementById("lMessage").innerHTML = "Incorrect password";
       },
     error:
       function () {
