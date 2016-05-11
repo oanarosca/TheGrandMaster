@@ -48,18 +48,14 @@ function change () {
 }
 
 function phpValidate (dir, data, type) {
-  $.ajax ({
-    url: dir,
-    data: { data, type },
-    success: function (response) {
-      if (response)
-        change();
-    },
-    error:
-      function () {
-        alert("Something wrong");
-      }
-  });
+  $.post (dir, 'val=' + data, function (response) {
+   if (response == 1)
+     change();
+   else {
+     document.getElementById("rMessage").innerHTML = "Username is already taken.";
+     $(id+".button").removeClass("enabled");
+   }
+ });
 }
 
 function next () {
