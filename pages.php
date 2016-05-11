@@ -58,7 +58,6 @@
     </html>
     <?php
   }
-
   function profile () {
     ?>
     <!DOCTYPE html>
@@ -149,7 +148,6 @@
     </html>
     <?php
   }
-
   function leaderboard () {
     ?>
     <!DOCTYPE html>
@@ -231,7 +229,6 @@
     </html>
     <?php
   }
-
   function error () {
     ?>
     <!DOCTYPE html>
@@ -278,18 +275,14 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
         <link type="text/css" rel="stylesheet" href="css/common.css">
-        <!--<link type="text/css" rel="stylesheet" href="css/level.css">-->
+        <link type="text/css" rel="stylesheet" href="css/level.css">
       </head>
       <body>
         <div class="container">
           <h1>Level <?php echo $level; ?></h1>
-          <div class="bContainer">
-            <div class="undo" onclick="undoMove()">Undo</div>
-            <div class="new" onclick="newGame()">New Game</div>
-          </div>
-          <div id="instr" onclick="prompt('instructions')">Instructions</div>
           <div class="bilute">
             <ul>
+              <li onclick="undoMove()"><i class="fa fa-undo" id="undo"></i></li>
               <li><div id="red0" onclick="clicked(this.id)" class="b"></div></li>
               <li><div id="blue1" onclick="clicked(this.id)" class="b"></div></li>
               <li><div id="yellow2" onclick="clicked(this.id)" class="b"></div></li>
@@ -314,17 +307,10 @@
         </div>
         <div id="won"><p>Congrats! You won!</p></div>
         <div id="lost"><p>Uh oh! You lost!</p></div>
-        <div id="new">
-          <p>Are you sure you want to start a new game?</p>
-          <div class="btns">
-            <div class="btn yes">Yes</div>
-            <div class="btn no">No</div>
-          </div>
-        </div>
         <script src="js/jquery-1.12.3.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
-        <script src="js/actions.js"></script>
+        <!--<script src="js/actions.js"></script>-->
       </body>
     </html>
     <?php
