@@ -1,6 +1,6 @@
 "use strict";
 
-var copieIncercari, colIndex, bilute, incercari, locuri, sol, str;
+var copieIncercari, colIndex, bilute, incercari, locuri, sol, str, col;
 var s = [0, 0, 0, 0, 0, 0, 0]; //cifrele solutiei
 var u = [0, 0, 0, 0, 0, 0, 0]; //cifrele utilizatorului
 function show () {};
@@ -17,7 +17,6 @@ $(document).ready(function() {
 
 function reset () {
   $("table").html("");
-  var col;
   str = "<tr>";
   for (var c = 1; c <= locuri; c++)
     str += "<td></td>";
@@ -75,6 +74,7 @@ function generare () {
     sol /= 10;
   }
   s[++i] = Math.floor(sol % 10);
+  alert(s);
 }
 
 function newGame () {
@@ -82,21 +82,20 @@ function newGame () {
 }
 
 function feedback (corecte, aproapeCorecte) {
-  /*var l, c, ls;
-  ls = (lineIndex-1)*2;
-  for (l = ls; l <= ls+1; l++) {
-    for (c = 0; c <= 1; c++) {
-      bg = '';
+  var l, c, ls;
+  for (l = 0; l <= 1; l++) {
+    for (c = 0; c <= col-1; c++) {
+      var bg = "";
       if (corecte) {
-        corecte--; bg = '#c0392b';
+        corecte--; bg = "#c0392b";
       }
       else if (aproapeCorecte) {
-        aproapeCorecte--; bg = '#bdc3c7';
+        aproapeCorecte--; bg = "#bdc3c7";
       }
-      //alert (corecte, aproapeCorecte);
-      $(".mic tr:eq("+ l +") td:eq("+ c +")").css('background-color', bg);
+      alert (l, c);
+      $(".mic tr:eq("+ l +") td:eq("+ c +")").css("background", bg);
     }
-  }*/
+  }
 };
 
 function evaluare () {
@@ -118,6 +117,8 @@ function evaluare () {
   else if (corecte == locuri) {
     /*prompt('won');*/ stop();
   }
+  else
+    $(str).insertBefore(".mare tr:eq(0)");
 }
 
 function clicked (id) { // click facut pe biluta
@@ -130,8 +131,6 @@ function clicked (id) { // click facut pe biluta
     if (colIndex == locuri) {
       incercari--; colIndex = 0;
       evaluare();
-      if (incercari)
-        $(str).insertBefore(".mare tr:eq(0)");
     }
   }
 };
