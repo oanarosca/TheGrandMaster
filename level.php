@@ -1,9 +1,15 @@
 <?php
   session_start();
-  require_once("pages.php");
+  require_once("php/pages.php");
+  require_once("php/connect.php");
+  $conn = conectare();
   $id = $_GET['id'];
-  if (isset ($_SESSION['ok']))
+  $query = "SELECT * FROM niveluri WHERE nivel = '$id'";
+  if (isset ($_SESSION['ok']) && mysqli_num_rows(mysqli_query($conn, $query)))
     level($id);
-  else
+  else {
+    session_unset();
+    session_destroy();
     error();
+  }
 ?>

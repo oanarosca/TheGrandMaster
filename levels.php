@@ -1,8 +1,11 @@
 <?php
   session_start();
-  require_once("pages.php");
+  require_once("php/pages.php");
   if (isset ($_SESSION['ok']))
     levels();
-  else
+  else {
+    session_unset();
+    session_destroy();
     error();
+  }
 ?>
