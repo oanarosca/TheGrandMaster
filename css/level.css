@@ -100,3 +100,8 @@
 .mare tr:last-child .mic tr:last-child {
   border-bottom: none;
 }
+
+
+#bilute, #incercari, #locuri {
+  display: none;
+}

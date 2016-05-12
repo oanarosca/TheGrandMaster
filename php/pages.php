@@ -327,6 +327,11 @@
         <div class="footer">
           <p>Made with <i class="fa fa-heart"></i> by Oana</p>
         </div>
+        <?php
+          echo "<p id='bilute'>" . $bilute . "</p>";
+          echo "<p id='locuri'>" . $locuri . "</p>";
+          echo "<p id='incercari'>" . $incercari . "</p>";
+        ?>
         <!--<div id="won"><p>Congrats! You won!</p></div>
         <div id="lost"><p>Uh oh! You lost!</p></div>-->
         <script src="js/jquery-1.12.3.min.js"></script>
