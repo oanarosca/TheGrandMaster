@@ -302,11 +302,12 @@
             $query = "SELECT * FROM niveluri WHERE nivel = '$level'";
             $result = mysqli_query($conn, $query);
             while ($row = mysqli_fetch_array($result)) {
+              $bilute = $row['bilute'];
               $incercari =  $row['incercari'];
               $locuri = $row['locuri'];
             }
             echo "<table class='mare'>";
-            for ($l = 1; $l <= $incercari; $l++) {
+            /*for ($l = 1; $l <= $incercari; $l++) {
               echo "<tr>";
               for ($c = 1; $c <= $locuri; $c++)
                 echo "<td></td>";
@@ -320,7 +321,7 @@
               }
               echo "</table></td>";
               echo "</tr>";
-            }
+            }*/
             echo "</table>";
           ?>
         </div>
