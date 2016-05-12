@@ -40,7 +40,9 @@ function reset () {
 function show () {
   $(".bilute").hide();
   $("table").hide();
+  $("#tries").hide();
   $(".bilute").delay(500).fadeIn();
+  $("#tries").delay(725).fadeIn();
   $("table").delay(950).fadeIn();
 };
 
@@ -91,7 +93,6 @@ function feedback (corecte, aproapeCorecte) {
       else if (aproapeCorecte) {
         aproapeCorecte--; bg = "#bdc3c7";
       }
-      alert (l, c);
       $(".mic tr:eq("+ l +") td:eq("+ c +")").css("background", bg);
     }
   }
@@ -116,8 +117,12 @@ function evaluare () {
   else if (corecte == locuri) {
     /*prompt('won');*/ stop();
   }
-  else
+  else {
     $(str).insertBefore(".mare tr:eq(0)");
+    var display = " tries";
+    if (incercari == 1) display = " try";
+    document.getElementById("tries").innerHTML = "You have "+incercari+" more"+display;
+  }
 }
 
 function clicked (id) { // click facut pe biluta

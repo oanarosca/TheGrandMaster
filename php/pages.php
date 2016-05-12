@@ -306,6 +306,9 @@
               $incercari =  $row['incercari'];
               $locuri = $row['locuri'];
             }
+          ?>
+          <h4 id="tries">You have <?php echo $incercari; ?> more tries</h4>
+          <?php
             echo "<table class='mare'>";
             /*for ($l = 1; $l <= $incercari; $l++) {
               echo "<tr>";
