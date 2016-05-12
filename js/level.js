@@ -1,57 +1,40 @@
 "use strict";
 
-alert(level);
-
-function drawTables () {
-  for (var i = 1; i <= 10; i++)
-    $('.mare tbody').append('<tr><td></td><td></td><td></td><td></td></tr>');
-  for (var i = 1; i <= 20; i++)
-    $('.mic tbody').append('<tr><td></td><td></td></tr>');
-}
+var lineIndex, colIndex, divId = "";
+var s = [0, 0, 0, 0, 0, 0, 0]; //cifrele solutiei
+var u = [0, 0, 0, 0, 0, 0, 0]; //cifrele utilizatorului
+function show ();
+function reset ();
 
 $(document).ready(function() {
-  drawTables();
-  $('.bilute').hide();
-  $('.tabele').hide();
-  $('.undo').hide();
-  $('#instr').hide();
-  $('#instructions').hide();
-  $('#won').hide();
-  $('#lost').hide();
-  $('#new').hide();
+  show();
+  $(".bilute").hide();
+  $("table").hide();
+  $(".bilute").delay(1000).fadeIn();
+  $("table").delay(1450).fadeIn();
 });
 
-function show () {
-  $('.bilute').fadeIn();
-  $('.undo').fadeIn();
-  $('#instr').fadeIn();
-  $('.tabele').delay(450).fadeIn();
+function reset () {
+  $("td").empty();
+  var x = document.getElementsByClassName("b");
+  for (var i = 0; i <= 7; i++)
+    $(x[i]).css("cursor", "pointer");
+    for (var i = 0; i <= 6; i++)
+      s[i] = u[i] = 0;
+  lineIndex = colIndex = 0;
 }
+
+function show () {
+  $(".bilute").hide();
+  $("table").hide();
+  $(".bilute").delay(1000).fadeIn();
+  $("table").delay(1450).fadeIn();
+};
 
 function stop () {
   var x = document.getElementsByClassName('b');
   for (var i = 0; i <= 7; i++)
-    $(x[i]).css('cursor', 'default');
-}
-
-var lineIndex, colIndex, divId = "";
-
-function reset () {
-  $('td').empty();
-  $('td').css("background-color", "black");
-  $('.mare td').css("padding", "14px");
-  $('.mare td').css("padding-bottom", "13px");
-  $('.mare td').css("width", "16px");
-  $('.mare td').css("height", "16px");
-  $('.mic td').css("padding", "7.4px");
-  $('.mic td').css("width", "7.9px");
-  $('.mic td').css("height", "7.9px");
-  var x = document.getElementsByClassName('b');
-  for (var i = 0; i <= 7; i++)
-    $(x[i]).css('cursor', 'pointer');
-  s = [0, 0, 0, 0, 0]; u = [0, 0, 0, 0, 0];
-  // cifrele solutiei si cifrele utilizatorului
-  lineIndex = colIndex = 0;
+    $(x[i]).css("cursor", "default");
 }
 
 // numarul generat trebuie sa aiba cifre de la 0 la 7, pentru a corespunde celor 8 bilute
@@ -82,26 +65,8 @@ function generare () {
 }
 
 function newGame () {
-  if ($('.bilute').is(':visible')) {
-    $('.container').addClass('blur');
-    $('#new').fadeIn();
-    divId = "#new";
-  }
-  else {
-    reset(); show(); generare();
-  }
-}
-
-$('.yes').click(function () {
-  $('.container').removeClass('blur');
-  $('#new').fadeOut();
   reset(); show(); generare();
-});
-
-$('.no').click(function () {
-  $('.container').removeClass('blur');
-  $('#new').fadeOut();
-});
+}
 
 function feedback (corecte, aproapeCorecte) {
   var l, c, ls;
@@ -163,21 +128,4 @@ function undoMove () {
     colIndex--;
   $(".mare tr:eq("+lineIndex+") td:eq("+colIndex+")").empty();
   u[4-colIndex] = 0;
-}
-
-function prompt (event) {
-  divId = '#' + event;
-  $('.container').addClass('blur');
-  $(divId).fadeIn();
 };
-
-$(document).mouseup(function (e) {
-  var container = $(divId);
-  if (divId != "#new") {
-    if (!container.is(e.target) && container.has(e.target).length == 0) {
-      container.fadeOut();
-      $('.container').removeClass("blur");
-    }
-    divId = "";
-  }
-});
