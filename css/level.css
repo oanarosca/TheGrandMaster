@@ -1,8 +1,3 @@
-.container {
-  width: 90%;
-  margin: 0 auto;
-}
-
 @media (max-width: 768px) {
   .container {
     width: 100%;
@@ -66,23 +61,42 @@
   background-color: #bdc3c7;
 }
 
-.tabele {
-  width: 50%;
-  margin: 0 auto;
-  margin-top: -15px;
-}
-
 .mare {
-  float: left;
-  table-layout: fixed;
-}
-
-td, .mare, .mic {
+  margin: 0 auto;
   border: 1px solid white;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
-.mic {
-  float: right;
-  table-layout: fixed;
+.mare td {
+  border: 1px solid white;
+  width: 36px;
+  height: 18px;
+}
+
+.mare td:last-child {
+  border: none;
+  width: auto;
+}
+
+.mare .mic td {
+  border: none;
+  border-right: 1px solid white;
+  width: 16px;
+}
+
+.mare .mic {
+  border: none;
+}
+
+.mic tr {
+  border-bottom: 1px solid white;
+}
+
+.mic td:last-child {
+  border: none;
+}
+
+.mare tr:last-child .mic tr:last-child {
+  border-bottom: none;
 }

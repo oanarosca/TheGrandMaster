@@ -260,6 +260,9 @@
   }
 
   function level ($level) {
+    $idbile = ["red0", "blue1", "yellow2", "purple3", "green4", "pink5", "turqoise6", "silver7"];
+    require_once("php/connect.php");
+    $conn = conectare();
     ?>
     <!DOCTYPE html>
     <html>
@@ -282,35 +285,53 @@
           <h1>Level <?php echo $level; ?></h1>
           <div class="bilute">
             <ul>
+              <li></li>
               <li onclick="undoMove()"><i class="fa fa-undo" id="undo"></i></li>
-              <li><div id="red0" onclick="clicked(this.id)" class="b"></div></li>
-              <li><div id="blue1" onclick="clicked(this.id)" class="b"></div></li>
-              <li><div id="yellow2" onclick="clicked(this.id)" class="b"></div></li>
-              <li><div id="purple3" onclick="clicked(this.id)" class="b"></div></li>
-              <li><div id="green4" onclick="clicked(this.id)" class="b"></div></li>
-              <li><div id="pink5" onclick="clicked(this.id)" class="b"></div></li>
-              <li><div id="turqoise6" onclick="clicked(this.id)" class="b"></div></li>
-              <li><div id="silver7" onclick="clicked(this.id)" class="b"></div></li>
+              <?php
+                $query = "SELECT * FROM niveluri WHERE nivel = '$level'";
+                $result = mysqli_query($conn, $query);
+                while ($row = mysqli_fetch_array($result))
+                  $bile = $row['bilute'];
+                for ($i = 0; $i <= $bile-1; $i++)
+                  echo "<li><div id='$idbile[$i]' onclick='clicked(this.id)' class='b'></div></li>";
+              ?>
             </ul>
           </div>
-          <div class="tabele">
-            <table class="mare">
-              <tbody></tbody>
-            </table>
-            <table class="mic">
-                <tbody></tbody>
-              </table>
-          </div>
+          <?php
+            $query = "SELECT * FROM niveluri WHERE nivel = '$level'";
+            $result = mysqli_query($conn, $query);
+            while ($row = mysqli_fetch_array($result)) {
+              $incercari =  $row['incercari'];
+              $locuri = $row['locuri'];
+            }
+            echo "<table class='mare'>";
+            for ($l = 1; $l <= $incercari; $l++) {
+              echo "<tr>";
+              for ($c = 1; $c <= $locuri; $c++)
+                echo "<td></td>";
+              $locuri % 2 == 0 ? $col = $locuri/2 : $col = $locuri/2+1;
+              echo "<td><table class='mic'>";
+              for ($i = 1; $i <= 2; $i++) {
+                echo "<tr>";
+                for ($c = 1; $c <= $col; $c++)
+                  echo "<td></td>";
+                echo "</tr>";
+              }
+              echo "</table></td>";
+              echo "</tr>";
+            }
+            echo "</table>";
+          ?>
           <div class="footer">
             <p>Made with <i class="fa fa-heart"></i> by Oana</p>
           </div>
         </div>
-        <div id="won"><p>Congrats! You won!</p></div>
-        <div id="lost"><p>Uh oh! You lost!</p></div>
+        <!--<div id="won"><p>Congrats! You won!</p></div>
+        <div id="lost"><p>Uh oh! You lost!</p></div>-->
         <script src="js/jquery-1.12.3.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/common.js"></script>
-        <!--<script src="js/actions.js"></script>-->
+        <script src="js/level.js"></script>
       </body>
     </html>
     <?php
