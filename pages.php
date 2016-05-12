@@ -322,9 +322,9 @@
             }
             echo "</table>";
           ?>
-          <div class="footer">
-            <p>Made with <i class="fa fa-heart"></i> by Oana</p>
-          </div>
+        </div>
+        <div class="footer">
+          <p>Made with <i class="fa fa-heart"></i> by Oana</p>
         </div>
         <!--<div id="won"><p>Congrats! You won!</p></div>
         <div id="lost"><p>Uh oh! You lost!</p></div>-->
