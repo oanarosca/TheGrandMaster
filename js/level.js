@@ -13,6 +13,8 @@ var won = "<h1>YOU WON!</h1><div class='levels'><a href='levels.php'>Levels</a><
 var lost = "<h1>YOU LOST!</h1><div class='levels'><a href='levels.php'>Levels</a></div>"+
 "<h3 class='time'></h3><div class='bottom'><i class='fa fa-undo' onclick='reset()'></i>";
 
+var current = document.getElementById("nivel").innerHTML;
+
 $(document).ready(function() {
   bilute = document.getElementById("bilute").innerHTML;
   incercari = document.getElementById("incercari").innerHTML;
@@ -25,9 +27,11 @@ $(document).ready(function() {
 });
 
 function next () {
-  var current = document.getElementById("nivel").innerHTML;
   var next = Number(current)+1;
-  document.location.href = "level.php?id="+next;
+  if (next == 19)
+    document.location.href = "levels.php";
+  else
+    document.location.href = "level.php?id="+next;
 }
 
 function timer () {
@@ -45,6 +49,17 @@ function timer () {
 };
 
 function reset () {
+  $.ajax ({
+    url: "php/attempts.php?level="+current,
+    success:
+      function (response) {
+        //alert(response);
+      },
+    error:
+      function () {
+        alert("Something wrong");
+      }
+  });
   $(".won").fadeOut(500);
   $(".lost").fadeOut(500);
   $("table").html("");
@@ -157,9 +172,10 @@ function evaluare () {
     $("#points").html("Points per minute: ");
     $(".won").fadeIn(500); stop();
     $.ajax ({
-      url: "php/won.php",
+      url: "php/won.php?level="+current,
       success:
-        function () {
+        function (response) {
+          //alert(response);
         },
       error:
         function () {
