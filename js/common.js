@@ -9,7 +9,7 @@ $(document).ready(function () {
   "If there are duplicate colours in the guess, they will not get a coloured square "+
   "unless they correspond to the same number of duplicate colours in the hidden combination.</p></div>";
 
-  $("#popup").append(instructions);
+  $(".front #popup").append(instructions);
 });
 
 $("#instructions").on("click", function () {

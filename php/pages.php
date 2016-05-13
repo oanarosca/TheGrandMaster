@@ -284,6 +284,7 @@
       <body>
         <div class="container">
           <h1>Level <?php echo $level; ?></h1>
+          <div class="time"><h3 id="hours"></h3>:<h3 id="minutes"></h3>:<h3 id="seconds"></h3></div>
           <div class="bilute">
             <ul>
               <li></li>
@@ -307,29 +308,21 @@
               $locuri = $row['locuri'];
             }
           ?>
-          <h4 id="tries">You have <?php echo $incercari; ?> more tries</h4>
+          <h4 id="tries"></h4>
           <?php
-            echo "<table class='mare'>";
-            /*for ($l = 1; $l <= $incercari; $l++) {
-              echo "<tr>";
-              for ($c = 1; $c <= $locuri; $c++)
-                echo "<td></td>";
-              $locuri % 2 == 0 ? $col = $locuri/2 : $col = $locuri/2+1;
-              echo "<td><table class='mic'>";
-              for ($i = 1; $i <= 2; $i++) {
-                echo "<tr>";
-                for ($c = 1; $c <= $col; $c++)
-                  echo "<td></td>";
-                echo "</tr>";
-              }
-              echo "</table></td>";
-              echo "</tr>";
-            }*/
-            echo "</table>";
+            echo "<table class='mare'></table>";
           ?>
         </div>
         <div class="footer">
           <p>Made with <i class="fa fa-heart"></i> by Oana</p>
+        </div>
+        <div class="won">
+          <div id="popup">
+          </div>
+        </div>
+        <div class="lost">
+          <div id="popup">
+          </div>
         </div>
         <?php
           echo "<p id='bilute'>" . $bilute . "</p>";
