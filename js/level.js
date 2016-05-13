@@ -6,12 +6,17 @@ var s = [0, 0, 0, 0, 0, 0, 0]; //cifrele solutiei
 var u = [0, 0, 0, 0, 0, 0, 0]; //cifrele utilizatorului
 function show () {};
 function reset () {};
+function generare () {};
+
+function play () {
+  reset(); show(); generare();
+};
 
 var won = "<h1>YOU WON!</h1><div class='levels'><a href='levels.php'>Levels</a></div>"+
-"<h3 class='time'></h3><h3 id='points'></h3><div class='bottom'><i class='fa fa-undo' onclick='reset()'></i>"+
+"<h3 class='time'></h3><h3 id='points'></h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i>"+
 "<i class='fa fa-arrow-right' onclick='next()'></i>";
 var lost = "<h1>YOU LOST!</h1><div class='levels'><a href='levels.php'>Levels</a></div>"+
-"<h3 class='time'></h3><div class='bottom'><i class='fa fa-undo' onclick='reset()'></i>";
+"<h3 class='time'></h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i>";
 
 var current = document.getElementById("nivel").innerHTML;
 
@@ -22,8 +27,7 @@ $(document).ready(function() {
   copieIncercari = incercari;
   $(".won #popup").append(won);
   $(".lost #popup").append(lost);
-  reset(); show();
-  generare();
+  play();
 });
 
 function next () {
@@ -37,7 +41,7 @@ function next () {
 function timer () {
   sec++;
   if (sec >= 60) {
-    s = 0;
+    sec = 0;
     m++;
     if (m >= 60) {
       m = 0;
@@ -127,7 +131,7 @@ function generare () {
     sol /= 10;
   }
   s[++i] = Math.floor(sol % 10);
-  //alert(s);
+  alert(s);
 }
 
 function newGame () {
