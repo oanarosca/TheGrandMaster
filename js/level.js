@@ -102,7 +102,7 @@ function generare () {
     sol /= 10;
   }
   s[++i] = Math.floor(sol % 10);
-  alert(s);
+  //alert(s);
 }
 
 function newGame () {

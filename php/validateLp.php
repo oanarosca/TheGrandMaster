@@ -6,8 +6,14 @@
   $query = "SELECT * ".
            "FROM utilizatori ".
            "WHERE username = '$username' AND parola = '$parola'";
-  if (mysqli_num_rows (mysqli_query ($conn, $query)))
+  $result = mysqli_query ($conn, $query);
+  if (mysqli_num_rows ($result)) {
     echo 1;
+    session_start();
+    while ($row = mysqli_fetch_array($result))
+      $id = $row['id_user'];
+    $_SESSION['ok'] = $id;
+  }
   else
     echo 0;
 ?>
