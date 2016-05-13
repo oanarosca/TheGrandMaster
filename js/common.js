@@ -33,3 +33,7 @@ function dsession () {
       }
   });
 }
+
+function profile () {
+  alert(1);
+}

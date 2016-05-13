@@ -97,7 +97,7 @@
   border: none;
 }
 
-#bilute, #incercari, #locuri {
+#bilute, #incercari, #locuri, #nivel {
   display: none;
 }
 
@@ -106,7 +106,7 @@
   margin-bottom: 20px;
 }
 
-.time {
+#time {
   margin: 20px 0 20px -4px;
 }
 

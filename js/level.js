@@ -1,6 +1,7 @@
 "use strict";
 
 var copieIncercari, colIndex, bilute, incercari, started, locuri, sol, str, col, time;
+var sec, m, h;
 var s = [0, 0, 0, 0, 0, 0, 0]; //cifrele solutiei
 var u = [0, 0, 0, 0, 0, 0, 0]; //cifrele utilizatorului
 function show () {};
@@ -8,7 +9,7 @@ function reset () {};
 
 var won = "<h1>YOU WON!</h1><div class='levels'><a href='levels.php'>Levels</a></div>"+
 "<h3 class='time'></h3><h3 id='points'></h3><div class='bottom'><i class='fa fa-undo' onclick='reset()'></i>"+
-"<i class='fa fa-arrow-right'></i>";
+"<i class='fa fa-arrow-right' onclick='next()'></i>";
 var lost = "<h1>YOU LOST!</h1><div class='levels'><a href='levels.php'>Levels</a></div>"+
 "<h3 class='time'></h3><div class='bottom'><i class='fa fa-undo' onclick='reset()'></i>";
 
@@ -23,16 +24,24 @@ $(document).ready(function() {
   generare();
 });
 
-function startTimer () {
-  var sec = -1;
-  function pad (val) {
-    return val > 9 ? val : "0" + val;
+function next () {
+  var current = document.getElementById("nivel").innerHTML;
+  var next = Number(current)+1;
+  document.location.href = "level.php?id="+next;
+}
+
+function timer () {
+  sec++;
+  if (sec >= 60) {
+    s = 0;
+    m++;
+    if (m >= 60) {
+      m = 0;
+      h++;
+    }
   }
-  time = setInterval (function () {
-    $("#seconds").html(pad(++sec % 60));
-    $("#minutes").html(pad(parseInt(sec / 60, 10) % 60));
-    $("#hours").html(pad(parseInt(sec / 3600, 10)));
-  }, 1000);
+  $("#time").html((h ? (h > 9 ? h : "0" + h) : "00") + ":" + (m ? (m > 9 ? m : "0" + m) : "00") + ":" + (sec > 9 ? sec : "0" + sec));
+  time = setTimeout(timer, 1000);
 };
 
 function reset () {
@@ -59,7 +68,8 @@ function reset () {
   incercari = copieIncercari; colIndex = 0;
   started = false;
   $("h4").html("You have "+incercari+" more tries");
-  $("#hours, #minutes, #seconds").html("00");
+  $("#time").html("00:00:00");
+  sec = m = h = 0;
 }
 
 function show () {
@@ -72,7 +82,7 @@ function show () {
 };
 
 function stop () {
-  clearInterval(time);
+  clearTimeout(time);
   var x = document.getElementsByClassName("b");
   for (var i = 0; i <= bilute-1; i++)
     $(x[i]).css("cursor", "default");
@@ -139,13 +149,23 @@ function evaluare () {
       }
   feedback(corecte, aproapeCorecte);
   if (!incercari && corecte != locuri) {
-    $("#popup .time").html("Time: "+$(".container .time").html());
+    $("#popup .time").html("Time: "+$("#time").html());
     $(".lost").fadeIn(500); stop();
   }
   else if (corecte == locuri) {
-    $("#popup .time").html("Time: "+$(".container .time").html());
+    $("#popup .time").html("Time: "+$("#time").html());
     $("#points").html("Points per minute: ");
     $(".won").fadeIn(500); stop();
+    $.ajax ({
+      url: "php/won.php",
+      success:
+        function () {
+        },
+      error:
+        function () {
+          alert("Something wrong");
+        }
+    });
   }
   else {
     $(str).insertBefore(".mare tr:eq(0)");
@@ -157,7 +177,7 @@ function evaluare () {
 
 function clicked (id) { // click facut pe biluta
   if ($("#"+id).css("cursor") != "default") {
-    if (!started) startTimer(), started = true;
+    if (!started) timer(), started = true;
     $(".mare tr:eq(0) td:eq("+colIndex+")").append("<div class='tabel' id='"+id+"'></div>");
     //$(".mare tr:eq("+lineIndex+") td:eq("+colIndex+")").css("padding", "0");
     //$(".mare tr:eq("+lineIndex+") td:eq("+colIndex+")").css("padding-right", "0");

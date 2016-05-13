@@ -1,5 +1,11 @@
 <?php
   function levels () {
+    require_once("php/connect.php");
+    $conn = conectare(); $id = $_SESSION['ok'];
+    $query = "SELECT * FROM utilizatori WHERE id_user = '$id'";
+    $result = mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_array($result))
+      $user = $row['username'];
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -35,7 +41,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="levels.php">Levels</a></li>
                 <li><a href="javascript:void(0)" id="instructions">Instructions</a></li>
-                <li class="img" title="Profile"><a href="profile.php"><img src="img/profile.png" alt="Profile"/></a></li>
+                <li class="img" title="Profile"><a href="javascript:void(0)"><img src="img/profile.png" alt="Profile"/></a></li>
                 <li class="img" title="Leaderboard"><a href="leaderboard.php"><img src="img/trophy.png" alt="Leaderboard"/></a></li>
               </ul>
             </div> <!-- collapse -->
@@ -58,7 +64,7 @@
     </html>
     <?php
   }
-  function profile () {
+  function profile ($user) {
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -284,7 +290,7 @@
       <body>
         <div class="container">
           <h1>Level <?php echo $level; ?></h1>
-          <div class="time"><h3 id="hours"></h3>:<h3 id="minutes"></h3>:<h3 id="seconds"></h3></div>
+          <h3 id="time"></h3>
           <div class="bilute">
             <ul>
               <li></li>
@@ -328,6 +334,7 @@
           echo "<p id='bilute'>" . $bilute . "</p>";
           echo "<p id='locuri'>" . $locuri . "</p>";
           echo "<p id='incercari'>" . $incercari . "</p>";
+          echo "<p id='nivel'>" . $level . "</p>";
         ?>
         <!--<div id="won"><p>Congrats! You won!</p></div>
         <div id="lost"><p>Uh oh! You lost!</p></div>-->
