@@ -11,7 +11,7 @@
       $points = $row['2'];
       $time = $row['3'];
     }
-    $stats = '<p>Attempts: '.$attempts.'</br>Wins: '.$wins.'</br>Points: '.$points.'</br>Time: '.$time.'</br></p>';
+    $stats = '<p>Attempts: '.$attempts.'</br>Wins: '.$wins.'</br>Points: '.$points.'</br>Time: '.$time.'s</br></p>';
     return $stats;
   }
 ?>

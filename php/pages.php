@@ -41,7 +41,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="levels.php">Levels</a></li>
                 <li><a href="javascript:void(0)" id="instructions">Instructions</a></li>
-                <li class="img" title="Profile"><a href="javascript:void(0)"><img src="img/profile.png" alt="Profile"/></a></li>
+                <!--<li class="img" title="Profile"><a href="javascript:void(0)"><img src="img/profile.png" alt="Profile"/></a></li>-->
                 <li class="img" title="Leaderboard"><a href="leaderboard.php"><img src="img/trophy.png" alt="Leaderboard"/></a></li>
               </ul>
             </div> <!-- collapse -->
@@ -124,42 +124,22 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="levels.php">Levels</a></li>
                 <li><a href="javascript:void(0)" id="instructions">Instructions</a></li>
-                <li class="img" title="Profile"><a href="profile.php"><img src="img/profile.png" alt="Profile"/></a></li>
+                <!--<li class="img" title="Profile"><a href="profile.php"><img src="img/profile.png" alt="Profile"/></a></li>-->
                 <li class="img" title="Leaderboard"><a href="leaderboard.php"><img src="img/trophy.png" alt="Leaderboard"/></a></li>
               </ul>
             </div> <!-- collapse -->
           </nav>
           <div class="profile">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="pic">
-                  <div class="remove">
-                    <i class="fa fa-times"></i>
-                  </div>
-                  <div class="imag"><img src="img/default.png" alt="Profile picture" id="profile"/></div>
-                  <div class="change">
-                    <h4>Change picture</h4>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 info">
-                <h1>username</h1>
-                <h2><i class="fa fa-plus" id="friend" onclick="friend()"></i></h2>
-                <div id="userData"><p>Name Surname, Place. Click here to edit.</p></div>
-                <div class="row stats">
-                  <div class="col-md-6">
-                    <p id="rank">Rank: </p>
-                    <p id="level">Level: </p>
-                    <p id="attempts">Attempts: </p>
-                    <p id="time">Total time: </p>
-                  </div>
-                  <div class="col-md-6">
-                    <p id="friends">Friends: </p>
-                    <p id="friendof">Friend of: </p>
-                  </div>
-                </div> <!-- row stats -->
-              </div> <!-- info -->
-            </div> <!-- row -->
+            <div class="info">
+              <h1>username</h1>
+              <div id="userData"><p>Name Surname, Place. Click here to edit.</p></div>
+              <div class="stats">
+                <p id="rank">Wins: </p>
+                <p id="level">Level: </p>
+                <p id="attempts">Attempts: </p>
+                <p id="time">Total time: </p>
+              </div> <!-- stats -->
+            </div> <!-- info -->
           </div> <!-- profile -->
         </div> <!-- container -->
         <div class="footer">
@@ -214,7 +194,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="levels.php">Levels</a></li>
                 <li><a href="javascript:void(0)" id="instructions">Instructions</a></li>
-                <li class="img" title="Profile"><a href="profile.php"><img src="img/profile.png" alt="Profile"/></a></li>
+                <!--<li class="img" title="Profile"><a href="javascript:void(0)" onclick="profile()"><img src="img/profile.png" alt="Profile"/></a></li>-->
                 <li class="img" title="Leaderboard"><a href="leaderboard.php"><img src="img/trophy.png" alt="Leaderboard"/></a></li>
               </ul>
             </div> <!-- collapse -->
@@ -230,17 +210,26 @@
               <tr>
                 <th>#</th>
                 <th>Username</th>
-                <th>Points</th>
-                <th>Time played</th>
                 <th>Level</th>
               </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+              <?php
+              require_once("connect.php");
+              $conn = conectare();
+              $query = "SELECT username, MAX(level) AS nm FROM activitate, utilizatori WHERE ".
+                        "activitate.id_user = utilizatori.id_user GROUP BY username ORDER BY nm DESC";
+              $result = mysqli_query($conn, $query);
+              $col = mysqli_num_fields($result); $index = 1;
+              while ($row = mysqli_fetch_row($result)) {
+                echo "<tr><td>".$index++."</td>";
+                for ($c = 0; $c < $col; $c++) {
+                  if ($row[$c] == 19)
+		    echo "<td><i class='fa fa-star' style='color:yellow'</i></td>";
+		  else
+		    echo "<td>".$row[$c]."</td>";
+		}
+                echo "</tr>";
+              }
+              ?>
             </table>
           </div>
         </div> <!-- container -->

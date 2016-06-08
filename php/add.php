@@ -3,8 +3,9 @@
   $conn = conectare();
   $username = filter_input(INPUT_POST, "username");
   $password = filter_input(INPUT_POST, "retype");
+  $pcr = md5($password);
   $query = "INSERT INTO utilizatori (username, parola) " .
-           "VALUES ('$username', '$password')";
+           "VALUES ('$username', '$pcr')";
   mysqli_query($conn, $query);
   echo 1;
   $query = "SELECT * FROM utilizatori WHERE username = '$username'";

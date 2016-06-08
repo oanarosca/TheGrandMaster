@@ -4,6 +4,8 @@ var copieIncercari, colIndex, bilute, incercari, started, locuri, sol, str, col,
 var sec, m, h;
 var s = [0, 0, 0, 0, 0, 0, 0]; //cifrele solutiei
 var u = [0, 0, 0, 0, 0, 0, 0]; //cifrele utilizatorului
+// incercarile utilizatorului perfect pentru stabilirea punctajului
+var up = [0, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 5, 7, 6, 6 , 7, 6, 6, 7];
 function show () {};
 function reset () {};
 function generare () {};
@@ -131,7 +133,7 @@ function generare () {
     sol /= 10;
   }
   s[++i] = Math.floor(sol % 10);
-  alert(s);
+  //alert(s);
 }
 
 function newGame () {
@@ -173,10 +175,12 @@ function evaluare () {
   }
   else if (corecte == locuri) {
     $("#popup .time").html("Time: "+$("#time").html());
-    $("#points").html("Points per minute: ");
+    var secunde = sec+m*60+h*3600;
+    var points = (up[current] / (copieIncercari-incercari) * 100000) / secunde;
+    $("#points").html("Points: "+Math.floor(points));
     $(".won").fadeIn(500); stop();
     $.ajax ({
-      url: "php/won.php?level="+current,
+      url: "php/won.php?level="+current+"&points="+Math.floor(points)+"&time="+secunde,
       success:
         function (response) {
           //alert(response);

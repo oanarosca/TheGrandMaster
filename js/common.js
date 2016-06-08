@@ -34,6 +34,6 @@ function dsession () {
   });
 }
 
-function profile () {
-  alert(1);
+function profile (id) {
+  document.location.href = "profile.php?id="+id;
 }
