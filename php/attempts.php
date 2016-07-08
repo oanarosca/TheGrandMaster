@@ -10,7 +10,7 @@
     while ($row = mysqli_fetch_array($result))
       $attempts = $row['0'];
     $attempts++;
-    $query = "UPDATE activitate SET attempts='$attempts' WHERE id_user = '$iduser' AND level = '$id'";
+    $query = "UPDATE activitate SET attempts = '$attempts' WHERE id_user = '$iduser' AND level = '$id'";
     mysqli_query($conn, $query);
   }
   else {
