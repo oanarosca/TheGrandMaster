@@ -1,3 +1,6 @@
+// Programul face media incercarilor jucatorului perfect pentru 100 de jocuri (numarul de bilute, respectiv de locuri se
+// citeste de la tastatura) si inmulteste rezultatul cu 1.5, pentru a obtine numarul
+// de incercari acordate utilizatorului obisnuit. Este similar programului winner.cpp.
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -5,9 +8,19 @@
 
 using namespace std;
 
-int bile, locuri, incercari, m[270000][7], b[7], sol[7], v, x, p = 1, f[7];
+int bile, locuri, incercari, m[270000][7], b[7], sol[7], v, x, p = 1, f[7], sumi;
 bool marcat[270000];
 int a[101][7], fa[10001][7], k;
+
+void init () {
+  incercari = 0;
+  for (int i = 1; i <= 6; i++) f[i] = 0;
+  for (int i = 1; i <= 269999; i++) marcat[i] = 0;
+  for (int i = 1; i <= 100; i++)
+    for (int j = 1; j <= 6; j++) a[i][j] = 0;
+  for (int i = 1; i <= 10000; i++)
+    for (int j = 1; j <= 6; j++) fa[i][j] = 0;
+}
 
 bool cmp (int a, int b) {
   return a > b;
@@ -37,15 +50,6 @@ bool valid (int x) {
     x /= 10;
   }
   return true;
-}
-
-void afis (int p) {
-  for (int i = 1; i <= locuri; i++)
-    cout << m[p][i] << ' ';
-  cout << ' ';
-  for (int i = 1; i <= locuri; i++)
-    cout << fa[incercari][i] << ' ';
-  cout << '\n';
 }
 
 void feedback (int p, int m[][7], int sol[]) {
@@ -81,24 +85,26 @@ int main () {
     p *= 10;
   bt(1);
   srand(time(NULL));
-  do {
-    x = rand()+p/10;
-  } while (not valid(x));
-  cout << x << '\n';
-  for (int i = 1; i <= v; i++) {
-    if (not marcat[i] and not contrazice(i)) {
-      incercari++;
-      for (int j = 1; j <= locuri; j++) a[incercari][j] = m[i][j];
-      feedback(i, m, sol); int sum = 0;
-      for (int j = 1; j <= k; j++)
-        fa[incercari][j] = f[j], sum += f[j];
-      afis(i);
-      if (sum == locuri*2) {
-        cout << incercari;
-        return 0;
+  for (int cont = 1; cont <= 100; cont++) {
+    do {
+      x = rand()+p/10;
+    } while (not valid(x));
+    for (int i = 1; i <= v; i++) {
+      if (not marcat[i] and not contrazice(i)) {
+        incercari++;
+        for (int j = 1; j <= locuri; j++) a[incercari][j] = m[i][j];
+        feedback(i, m, sol); int sum = 0;
+        for (int j = 1; j <= k; j++)
+          fa[incercari][j] = f[j], sum += f[j];
+        if (sum == locuri*2) {
+          sumi += incercari;
+          init();
+          break;
+        }
       }
+      marcat[i] = true;
     }
-    marcat[i] = true;
   }
+  cout << sumi/100 << ' ' << (double)sumi/100*1.5;
   return 0;
 }

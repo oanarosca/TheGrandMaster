@@ -1,3 +1,5 @@
+// Programului jucatorului perfect, care joaca fara a contrazice vreuna din variantele
+// alese anterior, ajungand astfel la solutie intr-un numar mic de incercari.
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -5,24 +7,15 @@
 
 using namespace std;
 
-int bile, locuri, incercari, m[270000][7], b[7], sol[7], v, x, p = 1, f[7], sumi;
+int bile, locuri, incercari, m[270000][7], b[7], sol[7], v, x, p = 1, f[7];
 bool marcat[270000];
 int a[101][7], fa[10001][7], k;
-
-void init () {
-  incercari = 0;
-  for (int i = 1; i <= 6; i++) f[i] = 0;
-  for (int i = 1; i <= 269999; i++) marcat[i] = 0;
-  for (int i = 1; i <= 100; i++)
-    for (int j = 1; j <= 6; j++) a[i][j] = 0;
-  for (int i = 1; i <= 10000; i++)
-    for (int j = 1; j <= 6; j++) fa[i][j] = 0;
-}
 
 bool cmp (int a, int b) {
   return a > b;
 }
 
+// genereaza toate combinatiile posibile de bilute
 void bt (int p) {
   for (int i = 0; i <= bile-1; i++) {
     b[p] = i;
@@ -36,6 +29,7 @@ void bt (int p) {
   }
 }
 
+// numarul ales trebuie sa aiba cifrele de la 0 la bilute-1
 bool valid (int x) {
   int poz = locuri;
   if (x <= p/10 or p <= x)
@@ -49,6 +43,17 @@ bool valid (int x) {
   return true;
 }
 
+// afiseaza combinatia aleasa, apoi feedback-ul pentru aceasta
+void afis (int p) {
+  for (int i = 1; i <= locuri; i++)
+    cout << m[p][i] << ' ';
+  cout << ' ';
+  for (int i = 1; i <= locuri; i++)
+    cout << fa[incercari][i] << ' ';
+  cout << '\n';
+}
+
+// pune in vectorul de feedback 2 sau 1 (similar functiei de feedback din level.js)
 void feedback (int p, int m[][7], int sol[]) {
   int i, j, mu[7], ms[7];
   k = 0;
@@ -65,6 +70,7 @@ void feedback (int p, int m[][7], int sol[]) {
   sort(f+1, f+k+1, cmp);
 }
 
+// verifica daca o combinatie aleasa contrazice vreuna dintre cele alese anterior
 bool contrazice (int p) {
   int i, j;
   for (i = incercari; i >= 1; i--) {
@@ -82,27 +88,24 @@ int main () {
     p *= 10;
   bt(1);
   srand(time(NULL));
-  for (int cont = 1; cont <= 100; cont++) {
-    do {
-      x = rand()+p/10;
-    } while (not valid(x));
-    for (int i = 1; i <= v; i++) {
-      if (not marcat[i] and not contrazice(i)) {
-        incercari++;
-        for (int j = 1; j <= locuri; j++) a[incercari][j] = m[i][j];
-        feedback(i, m, sol); int sum = 0;
-        for (int j = 1; j <= k; j++)
-          fa[incercari][j] = f[j], sum += f[j];
-        if (sum == locuri*2) {
-          sumi += incercari;
-          init();
-          break;
-        }
+  do {
+    x = rand()+p/10;
+  } while (not valid(x));
+  cout << x << '\n';
+  for (int i = 1; i <= v; i++) { // ia pe rand combinatiile si le analizeaza
+    if (not marcat[i] and not contrazice(i)) {
+      incercari++;
+      for (int j = 1; j <= locuri; j++) a[incercari][j] = m[i][j];
+      feedback(i, m, sol); int sum = 0;
+      for (int j = 1; j <= k; j++)
+        fa[incercari][j] = f[j], sum += f[j];
+      afis(i);
+      if (sum == locuri*2) {
+        cout << incercari;
+        return 0;
       }
-      marcat[i] = true;
     }
+    marcat[i] = true;
   }
-  cout << sumi/100 << ' ' << (double)sumi/100*1.5;
   return 0;
 }
-
