@@ -1,4 +1,5 @@
 <?php
+  // verifica daca un nume de utilizator introdus la inregistrare apartine deja unui alt cont
   $username = filter_input(INPUT_POST, 'val');
   require_once("connect.php");
   $conn = conectare();

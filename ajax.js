@@ -1,3 +1,4 @@
+// valideaza parola
 $("form").submit(function () {
   $.ajax ({
     url: $(this).attr("action"),

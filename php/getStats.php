@@ -1,4 +1,5 @@
 <?php
+  // ia statisticile pentru niveluri
   function getStats ($level) {
     require_once ("connect.php");
     $conn = conectare();

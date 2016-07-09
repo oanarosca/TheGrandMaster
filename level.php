@@ -6,31 +6,21 @@
   $id = $_GET['id'];
   $query = "SELECT * FROM niveluri WHERE nivel = '$id'";
   $iduser = $_SESSION['ok'];
+  // daca este setata variabila de sesiune, se incarca pagina, in caz contrar se
+  // inchide sesiunea si se afiseaza pagina de eroare
   if (isset ($_SESSION['ok']) && mysqli_num_rows(mysqli_query($conn, $query))) {
     $query = "SELECT MAX(level) FROM activitate WHERE id_user = '$iduser'";
     $result = mysqli_query($conn, $query);
-    while ($row = mysqli_fetch_array($result))
-      $level = $row['0'];
+    $row = mysqli_fetch_array($result); $level = $row['0'];
+    // daca nivelul din baza de date este mai mic decat nivelul pe care utilizatorul vrea
+    // sa il acceseze, se va inchide sesiunea si se va afisa pagina de eroare
     if ($level < $id) {
       session_unset();
       session_destroy();
       error();
     }
+    // altfel, se incarca pagina nivelului
     else {
-      /*$query = "SELECT attempts FROM activitate WHERE id_user = '$iduser' AND level = '$id'";
-      $result = mysqli_query($conn, $query);
-      $row = mysqli_fetch_array($result);
-      $attempts = $row['0'];
-      echo $attempts;
-      $attempts++;
-      echo $attempts;
-      $query = "UPDATE activitate SET attempts = '$attempts' WHERE id_user = '$iduser' AND level = '$id'";
-      mysqli_query($conn, $query);
-      $query = "SELECT attempts FROM activitate WHERE id_user = '$iduser' AND level = '$id'";
-      $result = mysqli_query($conn, $query);
-      $row = mysqli_fetch_array($result);
-      $attempt = $row['0'];
-      echo $attempt;*/
       level($id);
     }
   }

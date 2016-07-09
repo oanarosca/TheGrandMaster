@@ -1,4 +1,5 @@
 <?php
+  // functiile care construiesc paginile
   function levels () {
     require_once("php/connect.php");
     $conn = conectare(); $id = $_SESSION['ok'];

@@ -1,4 +1,6 @@
 <?php
+  // introduce datele unui nou utilizator in baza de date, seteaza in tabelul de
+  // activitate nivelul pe 1 si seteaza variabila de sesiune a utilizatorului
   require_once("connect.php");
   $conn = conectare();
   $username = filter_input(INPUT_POST, "username");

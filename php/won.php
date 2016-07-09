@@ -3,6 +3,9 @@
   require_once("connect.php");
   $conn = conectare();
   if (isset ($_SESSION['ok'])) {
+    // cand utilizatorul castiga un nivel, in baza de date se actualizeaza, daca este cazul,
+    // punctajul maxim si timpul in care s-a rezolvat un nivel. Se creste numarul de castiguri
+    // ale nivelului respectiv si se deblocheaza unul nou, daca mai exista.
     $level = $_GET['level'];
     $points = $_GET['points'];
     $id = $_SESSION['ok'];
