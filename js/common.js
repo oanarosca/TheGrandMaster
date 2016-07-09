@@ -1,7 +1,8 @@
 "use strict";
 
+// adauga instructiunile
 $(document).ready(function () {
-  // add instructions to the instructions popup
+
   var instructions = "<div><p>Your goal is to guess the correct combination. "+
   "Colours may repeat. Each time you complete a row, you will be given feedback as it follows: "+
   "a white square indicates the existence of a correct ball placed in the wrong position, "+
@@ -20,6 +21,7 @@ $(".fa-times").on("click", function () {
   $(".front").fadeOut(400);
 });
 
+// inchide sesiunea cand se da click pe "Log out"
 function dsession () {
   $.ajax ({
     url: "php/dsession.php",
@@ -34,6 +36,7 @@ function dsession () {
   });
 }
 
+// deschide pagina de profil a utilizatorului
 function profile (id) {
   document.location.href = "profile.php?id="+id;
 }

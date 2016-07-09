@@ -12,6 +12,7 @@ $(".login").on("click", function () {
   $("#register").hide();
 });
 
+// click pe login
 $("#login header p").click(function () {
   if ($(this).html() == "Don't have an account yet? Click here.") {
     id = "#register ", index = 2;
@@ -20,6 +21,7 @@ $("#login header p").click(function () {
   }
 });
 
+// face butonul de next verde cand inputul nu este gol
 $("input").on("input", function() {
   if ($(this).val())
     $(".button").addClass("enabled");
@@ -35,6 +37,7 @@ $("form").on("keyup keypress", function(e) {
   }
 });
 
+// trece la urmatorul camp al formularului
 function change () {
   if ($(id+".button").hasClass("enabled")) {
     $(id+"input:eq("+index+")").slideUp();
@@ -47,14 +50,15 @@ function change () {
   $("header p").html("Fill the fields below");
 };
 
-function phpValidate (dir, data, type) {
+// functia valideaza numele de utilizator introdus
+function phpValidate (dir, data) {
   $.post (dir, 'val=' + data, function (response) {
    if (response == 1)
      change();
    else {
-     if (id === "#register ")
+     if (id === "#register ") // se completeaza formularul de inregistrare
        document.getElementById("rMessage").innerHTML = "Username is already taken.";
-     else if (type === "username")
+     else // se completeaza formularul de intrare in cont
        document.getElementById("lMessage").innerHTML = "Incorrect username";
      $(id+".button").removeClass("enabled");
    }
@@ -64,20 +68,20 @@ function phpValidate (dir, data, type) {
 function next () {
   var input = id+"input:eq("+index+")"; var str = $(input).val();
   if ($(input).attr("name") === "username")
-    if (username(str))
+    if (username(str)) // daca s-a dat un username valid
       if (id === "#register ")
-        phpValidate("php/validateR.php", str, "username");
-      else phpValidate("php/validateLu.php", str, "username");
+        phpValidate("php/validateR.php", str);
+      else phpValidate("php/validateLu.php", str);
     else
       $("header p").html("Username must be between 4 and 20 characters long.");
   else
-    if (password(str))
+    if (password(str)) // daca s-a dat o parola valida
       if (id === "#register ")
         if ($(input).attr("name") === "password") {
           pass = str; change();
         }
         else
-          if (pass !== str) // passwords don't match
+          if (pass !== str) // cele doua parole date la inregistrare difera
             document.getElementById("rMessage").innerHTML = "Passwords don't match.";
           else
             change();
