@@ -29,14 +29,6 @@ $("input").on("input", function() {
     $(".button").removeClass("enabled");
 });
 
-$("form").on("keyup keypress", function(e) {
-  var keyCode = e.keyCode || e.which;
-  if (keyCode === 13) {
-    e.preventDefault();
-    return false;
-  }
-});
-
 // trece la urmatorul camp al formularului
 function change () {
   if ($(id+".button").hasClass("enabled")) {
@@ -49,6 +41,17 @@ function change () {
   }
   $("header p").html("Fill the fields below");
 };
+
+$("form").on("keyup keypress", function(e) {
+  var keyCode = e.keyCode || e.which;
+  if (keyCode === 13) {
+    if ($(id+"input:eq(1)").is(":visible")) {
+      e.preventDefault();
+      next();
+      return false;
+    }
+  }
+});
 
 // functia valideaza numele de utilizator introdus
 function phpValidate (dir, data) {
@@ -67,13 +70,14 @@ function phpValidate (dir, data) {
 
 function next () {
   var input = id+"input:eq("+index+")"; var str = $(input).val();
-  if ($(input).attr("name") === "username")
+  if ($(input).attr("name") === "username") {
     if (username(str)) // daca s-a dat un username valid
       if (id === "#register ")
         phpValidate("php/validateR.php", str);
       else phpValidate("php/validateLu.php", str);
     else
       $("header p").html("Username must be between 4 and 20 characters long.");
+  }
   else
     if (password(str)) // daca s-a dat o parola valida
       if (id === "#register ")

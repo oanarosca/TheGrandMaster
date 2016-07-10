@@ -10,8 +10,10 @@ $("form").submit(function () {
           change();
           $(id+"form").slideUp();
         }
-        else if (id === "#login ")
+        else if (id === "#login ") {
           document.getElementById("lMessage").innerHTML = "Incorrect password";
+          $(id+".button").removeClass("enabled");
+        }
       },
     error:
       function () {
