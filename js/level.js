@@ -2,6 +2,7 @@
 
 var copieIncercari, colIndex, bilute, incercari, started, locuri, sol, str, col, time;
 var sec, m, h;
+var ramase;
 var s = [0, 0, 0, 0, 0, 0, 0]; // cifrele solutiei
 var u = [0, 0, 0, 0, 0, 0, 0]; // cifrele utilizatorului
 // incercarile utilizatorului perfect pentru stabilirea punctajului
@@ -97,7 +98,7 @@ function reset () {
   for (var i = 0; i <= locuri-1; i++)
     s[i] = u[i] = 0;
   // se reinitializeaza numarul de incercari si indexul pentru coloana in tabel
-  incercari = copieIncercari; colIndex = 0;
+  incercari = copieIncercari; colIndex = 0; ramase = locuri;
   // cronometrul nu este pornit inca
   started = false;
   // se reinitializeaza afisarea numarului de incercari si a timpului scurs
@@ -223,21 +224,53 @@ function evaluare () {
   }
 }
 
+var cellIndex = -1, rowIndex = -1;
+
+// click facut pe un loc in tabel
+$(document).on("click", function(event) {
+  if ($(event.target).closest(".mare tr td").length) {
+    var cell = $(event.target).closest(".mare tr td");
+    cellIndex = $(cell).index();
+    var row = $(cell).closest("tr");
+    rowIndex = $(row).index();
+    if (!rowIndex)
+      $(".mare tr:eq("+rowIndex+") td:eq("+cellIndex+")").css("background", "#bdc3c7");
+  }
+  else {
+    $(".mare tr:eq("+rowIndex+") td:eq("+cellIndex+")").css("background", "#000000");
+    cellIndex = rowIndex = -1;
+  }
+});
+
 // click facut pe biluta
 function clicked (id) {
   // daca se poate adauga biluta (nu este gata jocul)
   if ($("#"+id).css("cursor") != "default") {
     // daca este primul click, se porneste cronometrul
     if (!started) timer(), started = true;
+    // daca este selectata o casuta din tabel, se pune biluta pe locul respectiv
+    if (cellIndex != -1) {
+      $(".mare tr:eq(0) td:eq("+cellIndex+")").append("<div class='tabel' id='"+id+"'></div>");
+      $(".mare tr:eq(0) td:eq("+cellIndex+")").css("background", "#000000");
+      u[locuri-cellIndex+1] = Number(id[id.length-1]);
+      cellIndex = rowIndex = -1;
+
+    }
     // se adauga biluta respectiva in tabel si creste indexul de coloana
-    $(".mare tr:eq(0) td:eq("+colIndex+")").append("<div class='tabel' id='"+id+"'></div>");
-    //$(".mare tr:eq("+lineIndex+") td:eq("+colIndex+")").css("padding", "0");
-    //$(".mare tr:eq("+lineIndex+") td:eq("+colIndex+")").css("padding-right", "0");
-    colIndex++;
-    // se adauga cifra in vectorul cu incercarea utilizatorului
-    u[locuri-colIndex+1] = Number(id[id.length-1]);
+    else {
+      // se cauta prima casuta goala de pe linie
+      colIndex = 0;
+      while ($(".mare tr:eq(0) td:eq("+colIndex+")").html())
+        colIndex++;
+      $(".mare tr:eq(0) td:eq("+colIndex+")").append("<div class='tabel' id='"+id+"'></div>");
+      $(".mare tr:eq(0) td:eq("+colIndex+")").css("background", "#000000");
+      colIndex++;
+      u[locuri-colIndex+1] = Number(id[id.length-1]);
+    }
+    ramase--;
     // daca s-a completat o linie, scade numarul de incercari ramase si se face evaluarea
-    if (colIndex == locuri) {
+    if (!ramase) {
+      ramase = locuri;
       incercari--; colIndex = 0;
       evaluare();
     }
