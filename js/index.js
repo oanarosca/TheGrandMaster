@@ -10,6 +10,7 @@ $(document).ready(function () {
 $(".login").on("click", function () {
   $(".front").fadeIn(500);
   $("#register").hide();
+  $("#login input").focus();
 });
 
 // click pe login
@@ -18,6 +19,7 @@ $("#login header p").click(function () {
     id = "#register ", index = 2;
     $("#login").fadeOut();
     $("#register").fadeIn();
+    $("#register input").focus();
   }
 });
 
@@ -38,6 +40,7 @@ function change () {
     if (!index)
       $(".input a, .input p").fadeIn("slow");
     index--;
+    $(id+"input:eq("+index+")").focus();
   }
   $("header p").html("Fill the fields below");
 };
