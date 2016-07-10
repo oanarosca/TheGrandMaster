@@ -248,8 +248,8 @@ function clicked (id) {
   if ($("#"+id).css("cursor") != "default") {
     // daca este primul click, se porneste cronometrul
     if (!started) timer(), started = true;
-    // daca este selectata o casuta din tabel, se pune biluta pe locul respectiv
-    if (cellIndex != -1) {
+    // daca este selectata o casuta din tabel si este goala, se pune biluta pe locul respectiv
+    if (cellIndex != -1 && !$(".mare tr:eq(0) td:eq("+cellIndex+")").html()) {
       $(".mare tr:eq(0) td:eq("+cellIndex+")").append("<div class='tabel' id='"+id+"'></div>");
       $(".mare tr:eq(0) td:eq("+cellIndex+")").css("background", "#000000");
       u[locuri-cellIndex+1] = Number(id[id.length-1]);
