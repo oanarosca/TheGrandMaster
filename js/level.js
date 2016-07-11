@@ -254,7 +254,6 @@ function clicked (id) {
       $(".mare tr:eq(0) td:eq("+cellIndex+")").css("background", "#000000");
       u[locuri-cellIndex+1] = Number(id[id.length-1]);
       cellIndex = rowIndex = -1;
-
     }
     // se adauga biluta respectiva in tabel si creste indexul de coloana
     else {
@@ -279,8 +278,19 @@ function clicked (id) {
 
 // elimina ultima biluta adaugata, mai putin daca aceasta este ultima de pe linie
 function undoMove () {
-  if (colIndex)
-    colIndex--;
-  $(".mare tr:eq(0) td:eq("+colIndex+")").empty();
-  u[locuri-colIndex] = 0; // se sterge si din vectorul cu cifrele utilizatorului
+  if (cellIndex != -1) {
+    $(".mare tr:eq(0) td:eq("+cellIndex+")").empty();
+    $(".mare tr:eq(0) td:eq("+cellIndex+")").css("background", "#000000");
+    u[locuri-cellIndex+1] = 0;
+    cellIndex = rowIndex = -1;
+  }
+  else {
+    colIndex = locuri-1;
+    while (!$(".mare tr:eq(0) td:eq("+colIndex+")").html())
+      colIndex--;
+    $(".mare tr:eq(0) td:eq("+colIndex+")").empty();
+    $(".mare tr:eq(0) td:eq("+colIndex+")").css("background", "#000000");
+    u[locuri-colIndex+1] = 0; // se sterge si din vectorul cu cifrele utilizatorului
+  }
+  ramase++;
 };
