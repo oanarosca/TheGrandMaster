@@ -249,7 +249,7 @@ function clicked (id) {
     // daca este primul click, se porneste cronometrul
     if (!started) timer(), started = true;
     // daca este selectata o casuta din tabel si este goala, se pune biluta pe locul respectiv
-    if (cellIndex != -1 && !$(".mare tr:eq(0) td:eq("+cellIndex+")").html()) {
+    if (cellIndex != -1 && rowIndex == 0 && !$(".mare tr:eq(0) td:eq("+cellIndex+")").html()) {
       $(".mare tr:eq(0) td:eq("+cellIndex+")").append("<div class='tabel' id='"+id+"'></div>");
       $(".mare tr:eq(0) td:eq("+cellIndex+")").css("background", "#000000");
       u[locuri-cellIndex+1] = Number(id[id.length-1]);
@@ -278,7 +278,7 @@ function clicked (id) {
 
 // elimina ultima biluta adaugata, mai putin daca aceasta este ultima de pe linie
 function undoMove () {
-  if (cellIndex != -1) {
+  if (cellIndex != -1 && rowIndex == 0) {
     $(".mare tr:eq(0) td:eq("+cellIndex+")").empty();
     $(".mare tr:eq(0) td:eq("+cellIndex+")").css("background", "#000000");
     u[locuri-cellIndex+1] = 0;
