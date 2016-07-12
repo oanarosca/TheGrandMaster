@@ -224,7 +224,7 @@
                 echo "<tr><td>".$index++."</td>";
                 for ($c = 0; $c < $col; $c++) {
                   if ($row[$c] == 19)
-		    echo "<td><i class='fa fa-star' style='color:yellow'</i></td>";
+		    echo "<td><img src='img/crown.png' class='crown'/></td>";
 		  else
 		    echo "<td>".$row[$c]."</td>";
 		}

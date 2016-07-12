@@ -33,6 +33,11 @@ select {
   color: #d4d4d4;
 }
 
+.crown {
+  width: 20px;
+  margin-top: -3px;
+}
+
 @media (min-width: 768px) {
   select {
     display: none;
