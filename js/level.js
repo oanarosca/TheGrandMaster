@@ -228,7 +228,7 @@ var cellIndex = -1, rowIndex = -1;
 
 // click facut pe un loc in tabel
 $(document).on("click", function(event) {
-  if ($(event.target).closest(".mare tr td").length) {
+  if ($(event.target).closest(".mare tr td").length && !$(event.target).closest(".mic tr td").length) {
     var cell = $(event.target).closest(".mare tr td");
     cellIndex = $(cell).index();
     var row = $(cell).closest("tr");
