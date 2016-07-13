@@ -259,7 +259,7 @@ function clicked (id) {
     else {
       // se cauta prima casuta goala de pe linie
       colIndex = 0;
-      while ($(".mare tr:eq(0) td:eq("+colIndex+")").html())
+      while ($(".mare tr:eq(0) td:eq("+colIndex+")").html() && colIndex <= locuri-1)
         colIndex++;
       $(".mare tr:eq(0) td:eq("+colIndex+")").append("<div class='tabel' id='"+id+"'></div>");
       $(".mare tr:eq(0) td:eq("+colIndex+")").css("background", "#000000");
@@ -286,7 +286,7 @@ function undoMove () {
   }
   else {
     colIndex = locuri-1;
-    while (!$(".mare tr:eq(0) td:eq("+colIndex+")").html())
+    while (!$(".mare tr:eq(0) td:eq("+colIndex+")").html() && colIndex >= -1)
       colIndex--;
     $(".mare tr:eq(0) td:eq("+colIndex+")").empty();
     $(".mare tr:eq(0) td:eq("+colIndex+")").css("background", "#000000");
