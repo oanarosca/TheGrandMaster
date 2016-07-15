@@ -80,6 +80,31 @@
             }
           ?>
           </div>
+          <div class="levels">
+            <?php
+              require_once("getStats.php");
+              require_once("getLevel.php");
+              $lock = "<img src='img/lock.png'/ class='lock'>";
+              $currentLevel = getLevel(); $index = 0;
+              for ($j = 1; $j <= 3; $j++) {
+                echo "<div class='row'>";
+                for ($i = 1; $i <= 6; $i++) {
+                  if ($currentLevel >= ++$index) {
+                    $stats = getStats($index);
+                    //echo $stats;
+                    echo "<div class='col-md-2 col-sm-4 col-xs-6'><div class='level' id='$index' onclick='start(this.id)'>"
+                    .$index."<div class='hover'><img src='img/hover.png'/>".$stats.
+                    "</div></div></div>";
+                  }
+                  else
+                    echo "<div class='col-md-2 col-sm-4 col-xs-6'><div class='level'>".
+                    $lock."<div class='locked'><img src='img/hover.png'/>".
+                    "</div></div></div>";
+                }
+                echo "</div>";
+              }
+            ?>
+          </div>
         </div> <!-- container -->
         <div class="footer">
           <p>Made with <i class="fa fa-heart"></i> by Oana</p>
