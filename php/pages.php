@@ -60,12 +60,12 @@
             require_once("getStats.php");
             require_once("getLevel.php");
             $lock = "<img src='img/lock.png'/ class='lock'>";
-            $currentLevel = getLevel(); $index = 0;
+            $currentLevel = getLevel(1); $index = 0;
             for ($j = 1; $j <= 3; $j++) {
               echo "<div class='row'>";
               for ($i = 1; $i <= 6; $i++) {
                 if ($currentLevel >= ++$index) {
-                  $stats = getStats($index);
+                  $stats = getStats($index, 1);
                   //echo $stats;
                   echo "<div class='col-md-2 col-sm-4 col-xs-6'><div class='level' id='$index' onclick='start(this.id)'>"
                   .$index."<div class='hover'><img src='img/hover.png'/>".$stats.
@@ -85,12 +85,12 @@
               require_once("getStats.php");
               require_once("getLevel.php");
               $lock = "<img src='img/lock.png'/ class='lock'>";
-              $currentLevel = getLevel(); $index = 0;
+              $currentLevel = getLevel(2); $index = 0;
               for ($j = 1; $j <= 3; $j++) {
                 echo "<div class='row'>";
                 for ($i = 1; $i <= 6; $i++) {
                   if ($currentLevel >= ++$index) {
-                    $stats = getStats($index);
+                    $stats = getStats($index, 2);
                     //echo $stats;
                     echo "<div class='col-md-2 col-sm-4 col-xs-6'><div class='level' id='$index' onclick='start(this.id)'>"
                     .$index."<div class='hover'><img src='img/hover.png'/>".$stats.
