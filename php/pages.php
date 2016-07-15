@@ -47,6 +47,14 @@
               </ul>
             </div> <!-- collapse -->
           </nav>
+          <div class="stages">
+            <div class="one stage-active">
+              <h1>STAGE ONE</h1>
+            </div>
+            <div class="two">
+              <h1>STAGE TWO</h1>
+            </div>
+          </div>
           <div class="levels">
           <?php
             require_once("getStats.php");

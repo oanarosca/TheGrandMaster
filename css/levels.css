@@ -76,3 +76,40 @@
   height: 100%;
   z-index: 2;
 }
+
+.stages {
+  border-bottom: 1px solid white;
+  width: 97%;
+  height: 75px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.one, .two {
+  display: inline;
+  width: 50%;
+  height: 100%;
+  /*border-bottom: 1px solid #d4d0d0;*/
+  cursor: pointer;
+  -webkit-transition: background-color 0.4s;
+  -moz-transition: background-color 0.4s;
+  -ms-transition: background-color 0.4s;
+  -o-transition: background-color 0.4s;
+  transition: background-color 0.4s;
+}
+
+.one:hover, .two:hover {
+  background-color: #252525;
+}
+
+.one {
+  float: left;
+}
+
+.two {
+  float: right;
+}
+
+.stage-active {
+  border-bottom: 4px solid #d4d4d4;
+}
