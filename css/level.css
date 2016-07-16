@@ -97,7 +97,7 @@
   border: none;
 }
 
-#bilute, #incercari, #locuri, #nivel {
+#bilute, #incercari, #locuri, #nivel, #stage {
   display: none;
 }
 
@@ -179,6 +179,14 @@
 
 #points {
   margin-bottom: 25px;
+}
+
+.rosu {
+  background: #c0392b;
+}
+
+.gri {
+  background: #bdc3c7;
 }
 
 @media (max-width: 768px) {

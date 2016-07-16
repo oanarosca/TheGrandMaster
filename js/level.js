@@ -2,7 +2,7 @@
 
 var copieIncercari, colIndex, bilute, incercari, started, locuri, sol, str, col, time;
 var sec, m, h;
-var ramase;
+var ramase, stage;
 var s = [0, 0, 0, 0, 0, 0, 0]; // cifrele solutiei
 var u = [0, 0, 0, 0, 0, 0, 0]; // cifrele utilizatorului
 // incercarile utilizatorului perfect pentru stabilirea punctajului
@@ -28,6 +28,7 @@ $(document).ready(function() {
   bilute = document.getElementById("bilute").innerHTML;
   incercari = document.getElementById("incercari").innerHTML;
   locuri = document.getElementById("locuri").innerHTML;
+  stage = document.getElementById("stage").innerHTML;
   copieIncercari = incercari;
   $(".won #popup").append(won);
   $(".lost #popup").append(lost);
@@ -40,7 +41,7 @@ function next () {
   if (next == 19)
     document.location.href = "levels.php";
   else
-    document.location.href = "level.php?id="+next;
+    document.location.href = "level.php?id="+next+"&stage="+stage;
 }
 
 function timer () {
@@ -76,7 +77,6 @@ function reset () {
   // se ascund popup-urile si se reseteaza continutul tabelului
   $(".won").fadeOut(500);
   $(".lost").fadeOut(500);
-  $("table").html("");
   // se construieste tabelul cu ajutorul numarului de locuri
   str = "<tr>";
   for (var c = 1; c <= locuri; c++)
@@ -89,7 +89,10 @@ function reset () {
       str += "<td></td>";
   }
   str += "</tr></table></td></tr>";
-  $(".mare").append(str);
+  if (stage == 1) {
+    $("table").html("");
+    $(".mare").append(str);
+  }
   // se pune cursor specific pentru bilute
   var x = document.getElementsByClassName("b");
   for (var i = 0; i <= bilute-1; i++)
@@ -105,6 +108,11 @@ function reset () {
   $("h4").html("You have "+incercari+" more tries");
   $("#time").html("00:00:00");
   sec = m = h = 0;
+  if (stage == 2) {
+    started = true; timer();
+    incercari = 1; $("h4").html("You have 1 more try");
+    $(str).insertBefore(".mare tr:eq(0)");
+  }
 }
 
 function show () {

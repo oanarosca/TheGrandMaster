@@ -4,6 +4,7 @@
   require_once("php/connect.php");
   $conn = conectare();
   $id = $_GET['id'];
+  $stage = $_GET['stage'];
   $query = "SELECT * FROM niveluri WHERE nivel = '$id'";
   $iduser = $_SESSION['ok'];
   // daca este setata variabila de sesiune, se incarca pagina, in caz contrar se
@@ -21,7 +22,7 @@
     }
     // altfel, se incarca pagina nivelului
     else {
-      level($id);
+      level($id, $stage);
     }
   }
   else {

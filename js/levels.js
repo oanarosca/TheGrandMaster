@@ -15,5 +15,8 @@ $(".stages div").on("click", function () {
 
 // duce utilizatorul la pagina cu nivelul pe care a facut click
 function start (id) {
-  document.location.href = "level.php?id="+id;
+  if ($(".stages div:eq(0)").hasClass("stage-active"))
+    document.location.href = "level.php?id="+id+"&stage=1";
+  else
+    document.location.href = "level.php?id="+id+"&stage=2";
 }
