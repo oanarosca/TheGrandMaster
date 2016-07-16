@@ -89,9 +89,19 @@ function reset () {
       str += "<td></td>";
   }
   str += "</tr></table></td></tr>";
-  if (stage == 1) {
-    $("table").html("");
+  $("table").html("");
+  if (stage == 1)
     $(".mare").append(str);
+  else {
+    $.ajax ({
+      url: "php/buildTable.php",
+      success:
+        function (response) {$(".mare").append(response); $(str).insertBefore(".mare tr:eq(0)");},
+      error:
+        function () {
+          alert("Something wrong");
+        }
+    });
   }
   // se pune cursor specific pentru bilute
   var x = document.getElementsByClassName("b");
@@ -111,7 +121,19 @@ function reset () {
   if (stage == 2) {
     started = true; timer();
     incercari = 1; $("h4").html("You have 1 more try");
-    $(str).insertBefore(".mare tr:eq(0)");
+    $.ajax ({
+      url: "php/solution.php",
+      success:
+        function (response) {
+          for (var i = 0; i < locuri; i++)
+            s[locuri-i] = response[i];
+          alert(s);
+        },
+      error:
+        function () {
+          alert("Something wrong");
+        }
+    });
   }
 }
 
