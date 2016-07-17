@@ -364,9 +364,7 @@
             }
           ?>
           <h4 id="tries"></h4>
-          <?php
-            echo "<table class='mare'></table>";
-          ?>
+          <table class="mare"></table>
         </div>
         <div class="footer">
           <p>Made with <i class="fa fa-heart"></i> by Oana</p>
