@@ -15,10 +15,14 @@ function play () {
   reset(); show(); generare();
 };
 
-var won = "<h1>YOU WON!</h1><div class='levels'><a href='levels.php'>Levels</a></div>"+
+function levels () {
+  document.location.href = "levels.php";
+};
+
+var won = "<h1>YOU WON!</h1><div class='levels' onclick='levels()'><p>Levels</p></div>"+
 "<h3 class='time'></h3><h3 id='points'></h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i>"+
 "<i class='fa fa-arrow-right' onclick='next()'></i>";
-var lost = "<h1>YOU LOST!</h1><div class='levels'><a href='levels.php'>Levels</a></div>"+
+var lost = "<h1>YOU LOST!</h1><div class='levels' onclick='levels()'><p>Levels</p></div>"+
 "<h3 class='time'></h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i>";
 
 str = $("h1").html();
