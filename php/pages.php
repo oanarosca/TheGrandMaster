@@ -354,15 +354,6 @@
               ?>
             </ul>
           </div>
-          <?php
-            $query = "SELECT * FROM niveluri WHERE nivel = '$level'";
-            $result = mysqli_query($conn, $query);
-            while ($row = mysqli_fetch_array($result)) {
-              $bilute = $row['bilute'];
-              $incercari =  $row['incercari'];
-              $locuri = $row['locuri'];
-            }
-          ?>
           <h4 id="tries"></h4>
           <table class="mare"></table>
         </div>
@@ -377,13 +368,6 @@
           <div id="popup">
           </div>
         </div>
-        <?php
-          echo "<p id='bilute'>" . $bilute . "</p>";
-          echo "<p id='locuri'>" . $locuri . "</p>";
-          echo "<p id='incercari'>" . $incercari . "</p>";
-          echo "<p id='nivel'>" . $level . "</p>";
-          echo "<p id='stage'>" . $stage . "</p>";
-        ?>
         <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="js/common.js"></script>

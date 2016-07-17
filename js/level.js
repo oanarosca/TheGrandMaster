@@ -21,14 +21,23 @@ var won = "<h1>YOU WON!</h1><div class='levels'><a href='levels.php'>Levels</a><
 var lost = "<h1>YOU LOST!</h1><div class='levels'><a href='levels.php'>Levels</a></div>"+
 "<h3 class='time'></h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i>";
 
-var current = document.getElementById("nivel").innerHTML;
+str = $("h1").html();
+var current = Number(str.substr(6));
+str = document.location.href;
+stage = Number(str[str.length-1]);
 
 // se preiau numarul de bilute, incercari, locuri, se ataseaza html-ul pentru castig si pierdere
 $(document).ready(function() {
-  bilute = document.getElementById("bilute").innerHTML;
-  incercari = document.getElementById("incercari").innerHTML;
-  locuri = document.getElementById("locuri").innerHTML;
-  stage = document.getElementById("stage").innerHTML;
+  $.ajax({
+    url: "php/getLevelInfo.php?id="+current,
+    async: false,
+    success: function (response) {
+      bilute = Number(response.substr(0, 1));
+      locuri = Number(response.substr(1, 1));
+      incercari = Number(response.substr(2));
+    },
+    error: function () {alert("Something wrong");}
+  });
   copieIncercari = incercari;
   $(".won #popup").append(won);
   $(".lost #popup").append(lost);
@@ -66,9 +75,7 @@ function reset () {
   $.ajax ({
     url: "php/attempts.php?level="+current,
     success:
-      function (response) {
-        //alert(response);
-      },
+      function () {},
     error:
       function () {
         alert("Something wrong");
@@ -127,7 +134,7 @@ function reset () {
         function (response) {
           for (var i = 0; i < locuri; i++)
             s[locuri-i] = response[i];
-          alert(s);
+          //alert(s);
         },
       error:
         function () {
