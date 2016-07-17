@@ -10,7 +10,10 @@
   // daca este setata variabila de sesiune, se incarca pagina, in caz contrar se
   // inchide sesiunea si se afiseaza pagina de eroare
   if (isset ($_SESSION['ok']) && mysqli_num_rows(mysqli_query($conn, $query))) {
-    $query = "SELECT MAX(level) FROM activitate WHERE id_user = '$iduser'";
+    if ($stage == '2')
+      $query = "SELECT MAX(level) FROM activitate2 WHERE id_user = '$iduser'";
+    else
+      $query = "SELECT MAX(level) FROM activitate WHERE id_user = '$iduser'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_array($result); $level = $row['0'];
     // daca nivelul din baza de date este mai mic decat nivelul pe care utilizatorul vrea
@@ -21,9 +24,8 @@
       error();
     }
     // altfel, se incarca pagina nivelului
-    else {
+    else
       level($id, $stage);
-    }
   }
   else {
     session_unset();

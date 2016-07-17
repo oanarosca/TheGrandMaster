@@ -73,7 +73,7 @@ function timer () {
 function reset () {
   // se actualizeaza numarul de incercari pentru nivelul curent in baza de date
   $.ajax ({
-    url: "php/attempts.php?level="+current,
+    url: "php/attempts.php?level="+current+"&stage="+stage,
     success:
       function () {},
     error:
@@ -134,7 +134,7 @@ function reset () {
         function (response) {
           for (var i = 0; i < locuri; i++)
             s[locuri-i] = response[i];
-          //alert(s);
+          alert(s);
         },
       error:
         function () {
@@ -240,11 +240,9 @@ function evaluare () {
     $(".won").fadeIn(500); stop();
     // se trimit numarul de puncte si timpul, pentru a se face actualizari in baza de date, daca este cazul
     $.ajax ({
-      url: "php/won.php?level="+current+"&points="+Math.floor(points)+"&time="+secunde,
+      url: "php/won.php?level="+current+"&points="+Math.floor(points)+"&time="+secunde+"&stage="+stage,
       success:
-        function (response) {
-          //alert(response);
-        },
+        function (response) {},
       error:
         function () {
           alert("Something wrong");

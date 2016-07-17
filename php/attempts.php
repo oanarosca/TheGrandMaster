@@ -4,14 +4,18 @@
   $conn = conectare();
   session_start();
   if (isset($_SESSION['ok'])) {
+    $activitate = "activitate";
     $id = $_GET['level'];
+    $stage = $_GET['stage'];
+    if ($stage == '2')
+      $activitate = $activitate . '2';
     $iduser = $_SESSION['ok'];
-    $query = "SELECT attempts FROM activitate WHERE id_user = '$iduser' AND level = '$id'";
+    $query = "SELECT attempts FROM ".$activitate." WHERE id_user = '$iduser' AND level = '$id'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_array($result);
     $attempts = $row['0'];
     $attempts++;
-    $query = "UPDATE activitate SET attempts = '$attempts' WHERE id_user = '$iduser' AND level = '$id'";
+    $query = "UPDATE ".$activitate." SET attempts = '$attempts' WHERE id_user = '$iduser' AND level = '$id'";
     mysqli_query($conn, $query);
   }
   else {
