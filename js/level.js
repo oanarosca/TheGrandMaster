@@ -106,6 +106,7 @@ function reset () {
   else {
     $.ajax ({
       url: "php/buildTable.php",
+      async: false,
       success:
         function (response) {$(".mare").append(response); $(str).insertBefore(".mare tr:eq(0)");},
       error:
