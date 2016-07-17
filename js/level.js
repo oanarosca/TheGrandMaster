@@ -130,6 +130,7 @@ function reset () {
     incercari = 1; $("h4").html("You have 1 more try");
     $.ajax ({
       url: "php/solution.php",
+      async: false,
       success:
         function (response) {
           for (var i = 0; i < locuri; i++)
@@ -142,6 +143,7 @@ function reset () {
         }
     });
   }
+  alert(s);
 }
 
 function show () {
@@ -174,20 +176,22 @@ function altul (val) {
 
 // generare si frecventa pentru solutie
 function generare () {
-  var p = 1;
-  // gasim un numar potrivit
-  for (var i = 1; i <= locuri-1; i++) p *= 10;
-  do {
-    sol = Math.floor((Math.random() * p * (bilute-1)) + p);
-  } while (altul(sol));
-  // ii punem cifrele in vectorul de solutie
-  var i = 0;
-  while (sol > 9) {
+  if (stage == 1) {
+    var p = 1;
+    // gasim un numar potrivit
+    for (var i = 1; i <= locuri-1; i++) p *= 10;
+    do {
+      sol = Math.floor((Math.random() * p * (bilute-1)) + p);
+    } while (altul(sol));
+    // ii punem cifrele in vectorul de solutie
+    var i = 0;
+    while (sol > 9) {
+      s[++i] = Math.floor(sol % 10);
+      sol /= 10;
+    }
     s[++i] = Math.floor(sol % 10);
-    sol /= 10;
+    alert(s);
   }
-  s[++i] = Math.floor(sol % 10);
-  //alert(s);
 }
 
 // coloreaza patratelele de feedback din partea dreapta
