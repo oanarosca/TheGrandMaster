@@ -140,7 +140,7 @@ function reset () {
         function (response) {
           for (var i = 0; i < locuri; i++)
             s[locuri-i] = response[i];
-          alert(s);
+          //alert(s);
         },
       error:
         function () {
@@ -148,7 +148,7 @@ function reset () {
         }
     });
   }
-  alert(s);
+  //alert(s);
 }
 
 function show () {
@@ -195,7 +195,7 @@ function generare () {
       sol /= 10;
     }
     s[++i] = Math.floor(sol % 10);
-    alert(s);
+    //alert(s);
   }
 }
 
@@ -272,7 +272,7 @@ var cellIndex = -1, rowIndex = -1;
 
 // click facut pe un loc in tabel
 $(document).on("click", function(event) {
-  if ($(event.target).closest(".mare tr td").length && !$(event.target).closest(".mic tr td").length) {
+  if ($(event.target).closest(".mare tr td").length && !$(event.target).closest(".mic tr td").length && cellIndex == -1) {
     var cell = $(event.target).closest(".mare tr td");
     cellIndex = $(cell).index();
     var row = $(cell).closest("tr");
