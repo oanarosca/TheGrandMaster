@@ -296,19 +296,19 @@ function clicked (id) {
     if (cellIndex != -1 && rowIndex == 0 && !$(".mare tr:eq(0) td:eq("+cellIndex+")").html()) {
       $(".mare tr:eq(0) td:eq("+cellIndex+")").append("<div class='tabel' id='"+id+"'></div>");
       $(".mare tr:eq(0) td:eq("+cellIndex+")").css("background", "#000000");
-      u[locuri-cellIndex+1] = Number(id[id.length-1]);
+      u[locuri-cellIndex] = Number(id[id.length-1]);
       cellIndex = rowIndex = -1;
     }
     // se adauga biluta respectiva in tabel si creste indexul de coloana
     else {
       // se cauta prima casuta goala de pe linie
       colIndex = 0;
-      while ($(".mare tr:eq(0) td:eq("+colIndex+")").html() && colIndex <= locuri-1)
+      while ($(".mare tr:eq(0) td:eq("+colIndex+")").html() && colIndex < locuri-1)
         colIndex++;
       $(".mare tr:eq(0) td:eq("+colIndex+")").append("<div class='tabel' id='"+id+"'></div>");
       $(".mare tr:eq(0) td:eq("+colIndex+")").css("background", "#000000");
-      colIndex++;
-      u[locuri-colIndex+1] = Number(id[id.length-1]);
+      //colIndex++;
+      u[locuri-colIndex] = Number(id[id.length-1]);
     }
     ramase--;
     // daca s-a completat o linie, scade numarul de incercari ramase si se face evaluarea
@@ -325,16 +325,16 @@ function undoMove () {
   if (cellIndex != -1 && rowIndex == 0) {
     $(".mare tr:eq(0) td:eq("+cellIndex+")").empty();
     $(".mare tr:eq(0) td:eq("+cellIndex+")").css("background", "#000000");
-    u[locuri-cellIndex+1] = 0;
+    u[locuri-cellIndex] = 0;
     cellIndex = rowIndex = -1;
   }
   else {
     colIndex = locuri-1;
-    while (!$(".mare tr:eq(0) td:eq("+colIndex+")").html() && colIndex >= -1)
+    while (!$(".mare tr:eq(0) td:eq("+colIndex+")").html() && colIndex > 0)
       colIndex--;
     $(".mare tr:eq(0) td:eq("+colIndex+")").empty();
     $(".mare tr:eq(0) td:eq("+colIndex+")").css("background", "#000000");
-    u[locuri-colIndex+1] = 0; // se sterge si din vectorul cu cifrele utilizatorului
+    u[locuri-colIndex] = 0; // se sterge si din vectorul cu cifrele utilizatorului
   }
   ramase++;
 };

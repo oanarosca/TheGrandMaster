@@ -28,11 +28,12 @@
     for ($c = 0; $c < $locuri; $c++)
       echo "<td><div class='tabel' id='" . $idbile[$incercare[$c]] . "'></div></td>";
     $locuri % 2 == 0 ? $col = $locuri/2 : $col = $locuri/2+1;
+    $col = (int)$col;
     echo "<td><table class='mic'>";
     $fi = 0;
     for ($i = 1; $i <= 2; $i++) {
       echo "<tr>";
-      for ($c = 0; $c < $col; $c++)
+      for ($c = 0; $c < $col && $fi < strlen($feedback); $c++)
         if ($feedback[$fi] == '2') {
           echo "<td class='rosu'></td>";
           $fi++;
