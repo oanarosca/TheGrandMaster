@@ -235,35 +235,40 @@
           </nav>
           <div class="leaderboard">
             <h1>Champions</h1>
-            <select onchange="changeCategory()">
-              <option value="0">Points</option>
-              <option value="1">Time played</option>
-              <option value="2">Level</option>
-            </select>
             <table>
-              <tr>
+              <thead>
                 <th>#</th>
                 <th>Username</th>
                 <th>Level</th>
-              </tr>
+                <th>PPA</th>
+              </thead>
+              <tbody>
               <?php
               require_once("connect.php");
               $conn = conectare();
-              $query = "SELECT username, MAX(level) AS nm FROM activitate, utilizatori WHERE ".
-                        "activitate.id_user = utilizatori.id_user GROUP BY username ORDER BY nm DESC";
+              $query = "SELECT activitate.id_user, username, level, total/attempts
+                        FROM activitate, utilizatori, (
+                            SELECT id_user, MAX(level)-1 AS ml
+                            FROM activitate
+                            GROUP BY id_user
+                            ) AS t_im
+                        WHERE (activitate.id_user = t_im.id_user) AND (level = ml) AND (activitate.id_user = utilizatori.id_user)
+                        ORDER BY ml DESC, total/attempts DESC";
               $result = mysqli_query($conn, $query);
               $col = mysqli_num_fields($result); $index = 1;
               while ($row = mysqli_fetch_row($result)) {
                 echo "<tr><td>".$index++."</td>";
-                for ($c = 0; $c < $col; $c++) {
+                for ($c = 1; $c < $col; $c++) {
+                  if ($c == 2) $row[$c]++;
                   if ($row[$c] == 19)
-		    echo "<td><img src='img/crown.png' class='crown'/></td>";
-		  else
-		    echo "<td>".$row[$c]."</td>";
-		}
+		                echo "<td><img src='img/crown.png' class='crown'/></td>";
+		              else
+		                echo "<td>".$row[$c]."</td>";
+		            }
                 echo "</tr>";
               }
               ?>
+              </tbody>
             </table>
           </div>
         </div> <!-- container -->
