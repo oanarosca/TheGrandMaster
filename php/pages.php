@@ -260,10 +260,13 @@
                 echo "<tr><td>".$index++."</td>";
                 for ($c = 1; $c < $col; $c++) {
                   if ($c == 2) $row[$c]++;
-                  if ($row[$c] == 19)
+                  if ($row[$c] == 19 && $c == 2)
 		                echo "<td><img src='img/crown.png' class='crown'/></td>";
-		              else
+		              else {
+                    if ($c == 3)
+                      $row[$c] = number_format($row[$c], 2, ".", "");
 		                echo "<td>".$row[$c]."</td>";
+                  }
 		            }
                 echo "</tr>";
               }
