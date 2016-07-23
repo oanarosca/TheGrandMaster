@@ -240,7 +240,7 @@
                 <th>#</th>
                 <th>Username</th>
                 <th>Level</th>
-                <th>PPA</th>
+                <th title="Points per attempt">PPA</th>
               </thead>
               <tbody>
               <?php
