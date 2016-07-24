@@ -65,24 +65,44 @@ $("form").on("keyup keypress", function(e) {
   }
 });
 
-// functia valideaza numele de utilizator introdus
-function phpValidate (dir, data) {
-  $.post (dir, 'val=' + data, function (response) {
-   if (response == 1)
-     change();
-   else {
-     document.getElementById("rMessage").innerHTML = "Username is already taken.";
-     $(id+".button").removeClass("enabled");
-   }
- });
-};
+$("form").submit(function () {
+  $.ajax ({
+    url: $(this).attr("action"),
+    type: "post",
+    data: $(this).serialize(),
+    success:
+      function (response) {
+        if (response == 1) {
+          change();
+          $(id+"form").slideUp();
+        }
+        else if (id === "#login ") {
+          document.getElementById("lMessage").innerHTML = "Incorrect username and/or password. Click here to log in again.";
+          $(id+".button").removeClass("enabled");
+        }
+      },
+    error:
+      function () {
+        alert("Something wrong");
+      }
+  });
+  return false;
+});
 
 function next () {
   var input = id+"input:eq("+index+")"; var str = $(input).val();
   if ($(input).attr("name") === "username") {
     if (username(str)) // daca s-a dat un username valid
-      if (id === "#register ")
-        phpValidate("php/validateR.php", str);
+      if (id === "#register ") {
+        $.post ("php/validateR.php", 'val=' + str, function (response) {
+          if (response == 1)
+            change();
+          else {
+            document.getElementById("rMessage").innerHTML = "Username is already taken.";
+            $(id+".button").removeClass("enabled");
+          }
+        });
+      }
       else change();
     else
       $("header p").html("Username must be between 4 and 20 characters long.");
