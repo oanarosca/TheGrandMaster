@@ -174,4 +174,7 @@ a, a:hover, a:active, a:focus {
   .front #popup img {
     width: 100%;
   }
+  .front #popup #last {
+    width: 200px;
+  }
 }

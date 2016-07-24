@@ -11,8 +11,8 @@ $(document).ready(function () {
   "<img src='img/3.png' alt='3'/><img src='img/4.png' alt='4'/>"+
   "<p>Each time you complete a row, you will be given feedback as it follows: a white square indicates the existence of a correct ball placed in "+
   "the wrong position, and a red square is placed for a ball in the guess which is correct in both colour and position.</p>"+
-  "<p>In the example given below, </p>"+
-  "<img src='img/5.png' alt='5'/>"+
+  "<p>In the example given below, one of the balls</p>"+
+  "<img src='img/5.png' alt='5' id='last'/>"+
   "<p>If there are duplicate colours in the guess, they will not get a coloured square unless they correspond to"+
   " the same number of duplicate colours in the hidden combination.</p>"+
   "<p>In Stage 2, your goal is to find the solution from the first try while being given some attempts already made by the computer. The solution is"+
@@ -31,7 +31,6 @@ $(".fa-times").on("click", function () {
 
 // inchide sesiunea cand se da click pe "Log out"
 $("ul .red").on("click", function () {
-  alert("vghyhvu");
   $.ajax ({
     url: "php/dsession.php",
     success:
