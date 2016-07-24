@@ -11,7 +11,9 @@ $(document).ready(function () {
   "<img src='img/3.png' alt='3'/><img src='img/4.png' alt='4'/>"+
   "<p>Each time you complete a row, you will be given feedback as it follows: a white square indicates the existence of a correct ball placed in "+
   "the wrong position, and a red square is placed for a ball in the guess which is correct in both colour and position.</p>"+
-  "<p>In the example given below, one of the balls</p>"+
+  "<p>In the example given below, three of the balls are part of the solution. However, only one is in the correct position (one red square), while two of them "+
+  "are only correct in colour. Pay attention: if the first little feedback square is red, it does not mean that the first ball is correct in both colour and "+
+  "position. One of the balls is, but it is not guaranteed that it is the first one.</p>"+
   "<img src='img/5.png' alt='5' id='last'/>"+
   "<p>If there are duplicate colours in the guess, they will not get a coloured square unless they correspond to"+
   " the same number of duplicate colours in the hidden combination.</p>"+

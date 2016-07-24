@@ -87,6 +87,10 @@ a, a:hover, a:active, a:focus {
   position: absolute;
 }
 
+.front {
+  background: #000;
+}
+
 #popup {
   /*background: url("../img/background.png");*/
   z-index: 1000;
