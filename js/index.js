@@ -8,7 +8,7 @@ $(document).ready(function () {
 });
 
 $(".login").on("click", function () {
-  $(".front").fadeIn(500);
+  $(".ontop").fadeIn(500);
   $("#register").hide();
   $("#login input").focus();
 });
