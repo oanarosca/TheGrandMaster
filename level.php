@@ -3,13 +3,16 @@
   require_once("php/pages.php");
   require_once("php/connect.php");
   $conn = conectare();
-  $id = $_GET['id'];
-  $stage = $_GET['stage'];
+  $id = 0;
+  if (isset($_GET['id']) && isset($_GET['stage'])) {
+    $id = $_GET['id'];
+    $stage = $_GET['stage'];
+  }
   $query = "SELECT * FROM niveluri WHERE nivel = '$id'";
-  $iduser = $_SESSION['ok'];
   // daca este setata variabila de sesiune, se incarca pagina, in caz contrar se
   // inchide sesiunea si se afiseaza pagina de eroare
   if (isset ($_SESSION['ok']) && mysqli_num_rows(mysqli_query($conn, $query))) {
+    $iduser = $_SESSION['ok'];
     if ($stage == '2')
       $query = "SELECT MAX(level) FROM activitate2 WHERE id_user = '$iduser'";
     else
