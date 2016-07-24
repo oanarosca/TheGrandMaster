@@ -30,7 +30,8 @@ $(".fa-times").on("click", function () {
 });
 
 // inchide sesiunea cand se da click pe "Log out"
-function dsession () {
+$("ul .red").on("click", function () {
+  alert("vghyhvu");
   $.ajax ({
     url: "php/dsession.php",
     success:
@@ -42,9 +43,9 @@ function dsession () {
         alert("Something wrong");
       }
   });
-}
+});
 
 // deschide pagina de profil a utilizatorului
 function profile (id) {
   document.location.href = "profile.php?id="+id;
-}
+};
