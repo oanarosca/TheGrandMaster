@@ -72,7 +72,7 @@ $("form").submit(function () {
     data: $(this).serialize(),
     success:
       function (response) {
-        if (response == 1) {
+        if (response[0] == 1) {
           change();
           $(id+"form").slideUp();
         }
