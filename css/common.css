@@ -104,6 +104,14 @@ a, a:hover, a:active, a:focus {
   margin-top: 0;
 }
 
+.front #popup img {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #popup i {
   float: right;
   font-size: 30px;
@@ -159,5 +167,11 @@ a, a:hover, a:active, a:focus {
 @media (min-width: 768px) {
   .nav.navbar-nav li {
     margin-top: 6vw;
+  }
+}
+
+@media (max-width: 512px) {
+  .front #popup img {
+    width: 100%;
   }
 }
