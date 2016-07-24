@@ -1,7 +1,7 @@
 // valideaza parola
 $("form").submit(function () {
   $.ajax ({
-    url: "php/validateLp.php",
+    url: "php/validateL.php",
     type: "post",
     data: $(this).serialize(),
     success:

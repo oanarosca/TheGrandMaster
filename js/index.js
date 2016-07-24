@@ -71,10 +71,7 @@ function phpValidate (dir, data) {
    if (response == 1)
      change();
    else {
-     if (id === "#register ") // se completeaza formularul de inregistrare
-       document.getElementById("rMessage").innerHTML = "Username is already taken.";
-     else // se completeaza formularul de intrare in cont
-       document.getElementById("lMessage").innerHTML = "Incorrect username";
+     document.getElementById("rMessage").innerHTML = "Username is already taken.";
      $(id+".button").removeClass("enabled");
    }
  });
@@ -86,7 +83,7 @@ function next () {
     if (username(str)) // daca s-a dat un username valid
       if (id === "#register ")
         phpValidate("php/validateR.php", str);
-      else phpValidate("php/validateLu.php", str);
+      else change();
     else
       $("header p").html("Username must be between 4 and 20 characters long.");
   }
