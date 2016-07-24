@@ -88,16 +88,16 @@ a, a:hover, a:active, a:focus {
 }
 
 #popup {
-  background: url("../img/background.png");
+  /*background: url("../img/background.png");*/
   z-index: 1000;
-  width: 600px;
-  height: 375px;
+  width: 80%;
+  height: auto;
   margin: 0 auto;
-  margin-top: 10%;
-  color: #000000;
-  background-color: #ffffff;
+  margin-top: 0;
+  color: #d4d0d0;
+  background-color: #000000;
   padding: 20px;
-  border-radius: 15px;
+  /*border-radius: 15px;*/
 }
 
 #popup i {
@@ -107,8 +107,19 @@ a, a:hover, a:active, a:focus {
 
 #popup div {
   margin: 25px 10px;
-  font-size: 22px;
+  font-size: 21px;
   text-align: justify;
+}
+
+#popup h1 {
+  text-align: center;
+  font-size: 50px;
+  margin-top: -20px;
+  margin-bottom: 35px;
+}
+
+#popup h2 {
+  text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -132,6 +143,12 @@ a, a:hover, a:active, a:focus {
     border-radius: 0;
     margin-top: 0;
     top: 0;
+  }
+  #popup p {
+    font-size: 16px;
+  }
+  #popup h1 {
+    font-size: 30px;
   }
 }
 
