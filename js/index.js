@@ -21,6 +21,15 @@ $("#login header p").click(function () {
     $("#register").fadeIn();
     $("#register input").focus();
   }
+  else
+    if ($(this).html() == "Incorrect username and/or password. Click here to log in again.") {
+      $("#login input:eq(0), #login input:eq(1)").val("");
+      $("#login input:eq(1)").slideDown();
+      $("#login .button:eq(1)").slideDown();
+      $("#login input:eq(1)").focus();
+      index++;
+      $(this).html("Don't have an account yet? Click here.");
+    }
 });
 
 // face butonul de next verde cand inputul nu este gol
