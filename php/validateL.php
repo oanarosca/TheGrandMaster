@@ -10,8 +10,8 @@
            "WHERE username = '$username' AND parola = '$pcr'";
   $result = mysqli_query ($conn, $query);
   if (mysqli_num_rows ($result)) {
-    echo 1;
     session_start();
+    echo 1;
     $row = mysqli_fetch_array($result);
     $id = $row['id_user'];
     $_SESSION['ok'] = $id;
