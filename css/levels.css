@@ -91,9 +91,9 @@
   }
 }
 
-.one, .two {
+.one, .two, .multip {
   display: inline;
-  width: 50%;
+  width: 33%;
   height: 100%;
   /*border-bottom: 1px solid #d4d0d0;*/
   cursor: pointer;
@@ -104,15 +104,15 @@
   transition: background-color 0.4s;
 }
 
-.one:hover, .two:hover {
+.one:hover, .two:hover, .multip:hover {
   background-color: #252525;
 }
 
-.one {
+.one, .two {
   float: left;
 }
 
-.two {
+.multip {
   float: right;
 }
 

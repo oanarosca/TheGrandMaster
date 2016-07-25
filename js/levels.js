@@ -2,13 +2,17 @@
 
 $(document).ready(function () {
   $(".levels:eq(1)").hide();
+  if (window.innerWidth < 768)
+    $(".stages h1:eq(2)").html("MP");
 });
 
 $(".stages div").on("click", function () {
-  var index = 1-$(this).index();
-  $(".stages div:eq("+index+")").removeClass("stage-active");
-  $(".levels:eq("+index+")").fadeOut();
-  index = 1-index;
+  for (var i = 0; i < 3; i++)
+    if ($(".stages div:eq("+i+")").hasClass("stage-active")) {
+      $(".stages div:eq("+i+")").removeClass("stage-active");
+      $(".levels:eq("+i+")").fadeOut();
+    }
+  var index = $(this).index();
   $(".levels:eq("+index+")").delay(300).fadeIn();
   $(this).addClass("stage-active");
 });

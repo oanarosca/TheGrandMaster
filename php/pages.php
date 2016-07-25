@@ -54,6 +54,9 @@
             <div class="two">
               <h1>STAGE TWO</h1>
             </div>
+            <div class="multip">
+              <h1>MULTIPLAYER</h1>
+            </div>
           </div>
           <div class="levels">
           <?php
@@ -105,6 +108,7 @@
               }
             ?>
           </div>
+          <div class="levels"></div>
         </div> <!-- container -->
         <div class="footer">
           <p>Made with <i class="fa fa-heart"></i> by Oana</p>
