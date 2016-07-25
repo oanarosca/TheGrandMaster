@@ -1,12 +1,13 @@
 "use strict";
 
-var copieIncercari, colIndex, bilute, incercari, started, locuri, sol, str, col, time;
+var copieIncercari, colIndex, bilute, incercari, started, locuri, str, col, time;
 var sec, m, h;
 var ramase, stage;
 var s = [0, 0, 0, 0, 0, 0, 0]; // cifrele solutiei
 var u = [0, 0, 0, 0, 0, 0, 0]; // cifrele utilizatorului
 // incercarile utilizatorului perfect pentru stabilirea punctajului
 var up = [0, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 5, 7, 6, 6 , 7, 6, 6, 7];
+var idbile = ["red0", "blue1", "yellow2", "purple3", "green4", "pink5", "turqoise6", "silver7"];
 function show () {};
 function reset () {};
 function generare () {};
@@ -21,9 +22,9 @@ function levels () {
 
 var won = "<h1>YOU WON!</h1><div class='levels' onclick='levels()'><p>Levels</p></div>"+
 "<h3 class='time'></h3><h3 id='points'></h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i>"+
-"<i class='fa fa-arrow-right' onclick='next()'></i>";
+"<i class='fa fa-arrow-right' onclick='next()'></i></div>";
 var lost = "<h1>YOU LOST!</h1><div class='levels' onclick='levels()'><p>Levels</p></div>"+
-"<h3 class='time'></h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i>";
+"<h3>The correct combination was:</h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i></div>";
 
 str = $("h1").html();
 var current = Number(str.substr(6));
@@ -188,7 +189,7 @@ function altul (val) {
 // generare si frecventa pentru solutie
 function generare () {
   if (stage == 1) {
-    var p = 1;
+    var p = 1, sol;
     // gasim un numar potrivit
     for (var i = 1; i <= locuri-1; i++) p *= 10;
     do {
@@ -205,7 +206,7 @@ function generare () {
   }
 }
 
-var corecte = 0, aproapeCorecte = 0;
+//var corecte = 0, aproapeCorecte = 0;
 
 // coloreaza patratelele de feedback din partea dreapta
 // rosu - una dintre bilute face parte din solutie si este pe pozitia corecta
@@ -229,7 +230,7 @@ function feedback (corecte, aproapeCorecte) {
 // evalueaza o incercare a utilizatorului
 function evaluare () {
   var i, j;
-  corecte = 0, aproapeCorecte = 0;
+  var corecte = 0, aproapeCorecte = 0;
   var ms = [0, 0, 0, 0, 0, 0, 0], mu = [0, 0, 0, 0, 0, 0, 0]; // vector de cifre marcate
   // daca valorile coincid, inseamna ca utilizatorul a ghicit una dintre bilute si pozitia ei
   for (i = 1; i <= locuri; i++)
@@ -246,7 +247,11 @@ function evaluare () {
   feedback(corecte, aproapeCorecte);
   // daca nu au mai ramas incercari si nu s-a ghicit din ultima incercare, utilizatorul a pierdut
   if (!incercari && corecte != locuri) {
-    $("#popup .time").html("Time: "+$("#time").html());
+    var sol = "<ul>";
+    for (i = locuri; i >= 1; i--)
+      sol += "<li><div id='"+idbile[s[i]]+"'></div></li>";
+    sol += "</ul>";
+    $(sol).insertAfter("#popup h3");
     $(".lost").fadeIn(500); stop();
   }
   else if (corecte == locuri) {
