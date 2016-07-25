@@ -70,6 +70,7 @@ $("form").submit(function () {
     url: $(this).attr("action"),
     type: "post",
     data: $(this).serialize(),
+    async: false,
     success:
       function (response) {
         if (response == 1) {

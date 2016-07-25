@@ -35,6 +35,7 @@ $(".fa-times").on("click", function () {
 $("ul .red").on("click", function () {
   $.ajax ({
     url: "php/dsession.php",
+    async: false,
     success:
       function () {
         //alert(response);

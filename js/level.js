@@ -78,6 +78,7 @@ function reset () {
   // se actualizeaza numarul de incercari pentru nivelul curent in baza de date
   $.ajax ({
     url: "php/attempts.php?level="+current+"&stage="+stage,
+    async: false,
     success:
       function () {},
     error:
@@ -258,6 +259,7 @@ function evaluare () {
     // se trimit numarul de puncte si timpul, pentru a se face actualizari in baza de date, daca este cazul
     $.ajax ({
       url: "php/won.php?level="+current+"&points="+Math.floor(points)+"&time="+secunde+"&stage="+stage,
+      async: false,
       success:
         function (response) {},
       error:
