@@ -332,7 +332,7 @@ function clicked (id) {
 
 // elimina ultima biluta adaugata, mai putin daca aceasta este ultima de pe linie
 function undoMove () {
-  if (cellIndex != -1 && rowIndex == 0) {
+  if (cellIndex != -1 && rowIndex == 0 && $(".mare tr:eq(0) td:eq("+cellIndex+")").html()) {
     $(".mare tr:eq(0) td:eq("+cellIndex+")").empty();
     $(".mare tr:eq(0) td:eq("+cellIndex+")").css("background", "#000000");
     u[locuri-cellIndex] = 0;
