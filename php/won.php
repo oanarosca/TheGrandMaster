@@ -15,6 +15,13 @@
     if ($stage == '2')
       $activitate = $activitate . '2';
     echo $activitate;
+    $query = "SELECT total FROM ".$activitate." WHERE id_user = '$id' AND level = '$level'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_array($result);
+    $total = $row['0'];
+    $total += $points;
+    $query = "UPDATE ".$activitate." SET total = '$total' WHERE id_user = '$id' AND level = '$level'";
+    mysqli_query($conn, $query);
     $query = "SELECT MAX(level) FROM ".$activitate." WHERE id_user = '$id'";
     $result = mysqli_query($conn, $query);
     while ($row = mysqli_fetch_array($result))

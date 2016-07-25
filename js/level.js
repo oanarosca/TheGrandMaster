@@ -43,8 +43,8 @@ $(document).ready(function() {
     error: function () {alert("Something wrong");}
   });
   copieIncercari = incercari;
-  $(".won #popup").append(won);
-  $(".lost #popup").append(lost);
+  $(".won #popup").html(won);
+  $(".lost #popup").html(lost);
   play();
 });
 
@@ -89,7 +89,7 @@ function reset () {
   $(".won").fadeOut(500);
   $(".lost").fadeOut(500);
   // se construieste tabelul cu ajutorul numarului de locuri
-  str = "<tr>";
+  str = "<tr id='first'>";
   for (var c = 1; c <= locuri; c++)
     str += "<td></td>";
   locuri % 2 == 0 ? col = locuri/2 : col = locuri/2+1;
@@ -98,17 +98,22 @@ function reset () {
     str += "<tr>";
     for (var c = 1; c <= col; c++)
       str += "<td></td>";
+    str += "</tr>";
   }
-  str += "</tr></table></td></tr>";
+  str += "</table></td></tr>";
   $("table").html("");
-  if (stage == 1)
-    $(".mare").append(str);
+  if (stage == 1) {
+    $(".mare").html(str);
+    str = str.replace(" id='first'", "");
+    $(str).insertBefore(".mare tr:eq(0)");
+    $("#first").hide();
+  }
   else {
     $.ajax ({
       url: "php/buildTable.php",
       async: false,
       success:
-        function (response) {$(".mare").append(response); $(str).insertBefore(".mare tr:eq(0)");},
+        function (response) {str = str.replace(" id='first'", ""); $(".mare").html(response); $(str).insertBefore(".mare tr:eq(0)");},
       error:
         function () {
           alert("Something wrong");
@@ -199,6 +204,8 @@ function generare () {
   }
 }
 
+var corecte = 0, aproapeCorecte = 0;
+
 // coloreaza patratelele de feedback din partea dreapta
 // rosu - una dintre bilute face parte din solutie si este pe pozitia corecta
 // gri - una dintre bilute face parte din solutie, dar nu este pe pozitia corecta
@@ -220,7 +227,8 @@ function feedback (corecte, aproapeCorecte) {
 
 // evalueaza o incercare a utilizatorului
 function evaluare () {
-  var i, j, corecte = 0, aproapeCorecte = 0;
+  var i, j;
+  corecte = 0, aproapeCorecte = 0;
   var ms = [0, 0, 0, 0, 0, 0, 0], mu = [0, 0, 0, 0, 0, 0, 0]; // vector de cifre marcate
   // daca valorile coincid, inseamna ca utilizatorul a ghicit una dintre bilute si pozitia ei
   for (i = 1; i <= locuri; i++)
@@ -294,7 +302,7 @@ function clicked (id) {
     if (!started) timer(), started = true;
     // daca este selectata o casuta din tabel si este goala, se pune biluta pe locul respectiv
     if (cellIndex != -1 && rowIndex == 0 && !$(".mare tr:eq(0) td:eq("+cellIndex+")").html()) {
-      $(".mare tr:eq(0) td:eq("+cellIndex+")").append("<div class='tabel' id='"+id+"'></div>");
+      $(".mare tr:eq(0) td:eq("+cellIndex+")").html("<div class='tabel' id='"+id+"'></div>");
       $(".mare tr:eq(0) td:eq("+cellIndex+")").css("background", "#000000");
       u[locuri-cellIndex] = Number(id[id.length-1]);
       cellIndex = rowIndex = -1;
@@ -305,7 +313,7 @@ function clicked (id) {
       colIndex = 0;
       while ($(".mare tr:eq(0) td:eq("+colIndex+")").html() && colIndex < locuri-1)
         colIndex++;
-      $(".mare tr:eq(0) td:eq("+colIndex+")").append("<div class='tabel' id='"+id+"'></div>");
+      $(".mare tr:eq(0) td:eq("+colIndex+")").html("<div class='tabel' id='"+id+"'></div>");
       $(".mare tr:eq(0) td:eq("+colIndex+")").css("background", "#000000");
       //colIndex++;
       u[locuri-colIndex] = Number(id[id.length-1]);
