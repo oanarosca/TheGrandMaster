@@ -1,11 +1,11 @@
 h3 {
   margin-top: 10vh;
-  font-size: 4.1vw;
+  font-size: 44px;
   font-family: 'Source Sans Pro', 'Roboto', Helvetica, Arial, sans-serif;
 }
 
 h5 {
-  font-size: 2.5vw;
+  font-size: 25px;
   font-family: 'Ubuntu Mono', monospace;
 }
 
@@ -50,9 +50,17 @@ form input, form select {
 }
 
 select {
+  margin: 0 auto;
   margin: 10px;
   margin-bottom: 35px;
   border-radius: 10px;
   padding: 5px;
   background: #fff;
+}
+
+@media (max-width: 767px) {
+  form {
+    max-width: 100%;
+    border: none;
+  }
 }
