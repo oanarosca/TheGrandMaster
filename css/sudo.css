@@ -34,7 +34,7 @@ input {
   padding: 10px;
 }
 
-button {
+button, .button {
   background: none;
   border: 2px solid #d0d4d4;
   border-radius: 5px;
@@ -56,6 +56,12 @@ select {
   border-radius: 10px;
   padding: 5px;
   background: #fff;
+}
+
+.button {
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 100px;
 }
 
 @media (max-width: 767px) {

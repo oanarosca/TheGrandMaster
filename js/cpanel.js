@@ -1,5 +1,20 @@
 "use strict";
 
+$(".button").on("click", function () {
+  $.ajax ({
+    url: "php/dsession.php",
+    async: false,
+    success:
+      function () {
+        //alert(response);
+      },
+    error:
+      function () {
+        alert("Something wrong");
+      }
+  });
+});
+
 $("form").submit(function () {
   var l = [0, 0, 0, 0, 0];
   for (var i = 0; i < 5; i++)
