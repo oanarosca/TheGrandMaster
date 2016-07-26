@@ -10,7 +10,7 @@
   if (mysqli_num_rows($result)) {
     session_start();
     echo 1;
-    $_SESSION['ok'] = 0;
+    $_SESSION['sudo'] = 0;
   }
   else
     echo 0;

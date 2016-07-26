@@ -388,4 +388,50 @@
     </html>
     <?php
   }
+  function cpanel () {
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#000000">
+        <link rel="icon" sizes="192x192" href="img/favicon.png">
+        <title>Control Panel | TheGrandMaster</title>
+        <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+        <script src="https://use.fontawesome.com/bdf85ecedd.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" href="css/common.css">
+        <link type="text/css" rel="stylesheet" href="css/sudo.css">
+      </head>
+      <body>
+        <div class="container">
+          <h3>Add round</h3>
+          <h5>sudo</h5>
+          <form action="php/addRound.php" method="post" id="addRound">
+            <input type="text" name="date" placeholder=""/>
+            <?php
+              for ($i = 1; $i <= 5; $i++) {
+                echo "<select name='levels' form='addRound'>";
+                for ($j = 1; $j <= 18; $j++)
+                  echo "<option value='$j'>".$j."</option>";
+                echo "</select>";
+              }
+            ?>
+            <button type="submit">Go</button>
+          </form>
+        </div>
+        <div class="footer">
+          <p>Made with <i class="fa fa-heart"></i> by Oana</p>
+        </div>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script src="js/common.js"></script>
+        <script src="js/cpanel.js"></script>
+      </body>
+    </html>
+  <?php
+  }
 ?>
