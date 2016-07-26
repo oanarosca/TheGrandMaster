@@ -411,10 +411,11 @@
           <h3>Add round</h3>
           <h5>sudo</h5>
           <form action="php/addRound.php" method="post" id="addRound">
-            <input type="text" name="date" placeholder=""/>
+            <input type="text" name="date" placeholder="YYYY-MM-DD"/>
+            <input type="text" name="time" placeholder="HH:MM:SS"/>
             <?php
               for ($i = 1; $i <= 5; $i++) {
-                echo "<select name='levels' form='addRound'>";
+                echo "<select name='levels'>";
                 for ($j = 1; $j <= 18; $j++)
                   echo "<option value='$j'>".$j."</option>";
                 echo "</select>";
