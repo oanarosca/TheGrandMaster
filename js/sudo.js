@@ -9,7 +9,7 @@ $("form").submit(function () {
     success:
       function (response) {
         if (response == 1) {
-          document.location.href = "";
+          document.location.href = "cpanel.php";
         }
         else
           alert("Wrong username and/or password");
