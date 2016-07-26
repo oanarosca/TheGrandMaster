@@ -119,3 +119,31 @@
 .stage-active {
   border-bottom: 4px solid #d4d4d4;
 }
+
+h2 {
+  margin: 30px;
+}
+
+.round {
+  margin: 0 auto;
+  margin-top: 20px;
+  padding-left: 10px;
+  width: 300px;
+  border: 2px solid #d0d4d4;
+  text-align: left;
+  cursor: pointer;
+}
+
+.round h4 {
+  font-weight: bold;
+  display: inline;
+  margin-top: -20px;
+}
+
+.round i {
+  content: url("../img/favicon.png");
+  width: 17px;
+  margin-top: 12px;
+  margin-bottom: -1px;
+  margin-right: 5px;
+}
