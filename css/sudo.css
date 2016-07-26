@@ -19,17 +19,19 @@ form {
 }
 
 input, button {
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 16px;
   display: block;
   margin: 0 auto;
 }
 
 input {
   margin-bottom: 30px;
-  height: 30px;
+  height: 35px;
   outline: none;
   border: none;
   border-radius: 5px;
-  padding: 7px;
+  padding: 10px;
 }
 
 button {
