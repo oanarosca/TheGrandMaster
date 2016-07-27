@@ -111,7 +111,7 @@
           <div class="levels">
             <h2>Current or upcoming rounds</h2>
             <?php
-              $query = "SELECT * FROM runde WHERE terminata = 0 ORDER BY id_runda DESC";
+              $query = "SELECT * FROM runde WHERE terminata = 0 ORDER BY id_runda";
               $result = mysqli_query($conn, $query);
               $n = mysqli_num_rows($result);
               for ($i = 1; $i <= $n; $i++) {
@@ -120,7 +120,10 @@
                 echo "<i></i>";
                 echo "<h4>Round #" . $row['0'] . "</h4>";
                 echo "<h5>On ".substr($row['1'], 8, 2).".".substr($row['1'], 5, 2).".".substr($row['1'], 0, 4);
-                echo " @ ".substr($row['1'], -8)."</h5>";
+                echo " @ ".substr($row['1'], -8);
+                if ($i == 1)
+                  echo "<span id='time'></span></h5>";
+                else echo "</h5>";
                 echo "</div>";
               }
             ?>

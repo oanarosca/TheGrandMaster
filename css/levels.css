@@ -127,7 +127,7 @@ h2 {
 .round {
   margin: 0 auto;
   margin-top: 20px;
-  padding-left: 10px;
+  padding: 0 10px;
   width: 300px;
   border: 2px solid #d0d4d4;
   text-align: left;
@@ -138,6 +138,7 @@ h2 {
   font-weight: bold;
   display: inline;
   margin-top: -20px;
+  margin-bottom: 30px;
 }
 
 .round i {
@@ -146,4 +147,8 @@ h2 {
   margin-top: 12px;
   margin-bottom: -1px;
   margin-right: 5px;
+}
+
+#time {
+  float: right;
 }
