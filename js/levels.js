@@ -2,10 +2,18 @@
 
 function timer () {};
 
+var time, d2;
+
 $(document).ready(function () {
-  $(".levels:eq(1)").hide();
+  var data;
+  $(".levels:eq(1), .levels:eq(2)").hide();
   if (window.innerWidth < 768)
     $(".stages h1:eq(2)").html("MP");
+  var str = $(".round:eq(0) h5").html();
+  data = str.substr(9, 4) + '-' + str.substr(6, 2) + '-' + str.substr(3, 2) + 'T';
+  data += $(".round:eq(0) a").html().substr(0, 8);
+  //var d = new Date("2016-07-27T12:07:00");
+  d2 = new Date(data);
   timer();
 });
 
@@ -30,13 +38,18 @@ function start (id) {
 
 function timer () {
   var d1 = new Date();
-  var d2 = new Date("2016-07-27T12:07:00");
-  var dif = d2 - d1;
-  var h = Math.floor(dif / 1000 / 60 / 60);
-  dif -= h * 1000 * 60 * 60;
-  var m = Math.floor(dif / 1000 / 60);
-  dif -= m * 1000 * 60;
-  var s = Math.floor(dif / 1000);
-  $("#time").html((h ? (h > 9 ? h : "0" + h) : "00") + ":" + (m ? (m > 9 ? m : "0" + m) : "00") + ":" + (s > 9 ? s : "0" + s));
-  var time = setTimeout(timer, 1000);
+  var dif = d2-d1-3600*1000*3;
+  if (dif <= 0) {
+    clearInterval(time);
+    $("#time").html("<a href='level.php?id=1&stage=3'>Enter</a>");
+  }
+  else {
+    var h = Math.floor(dif / 1000 / 60 / 60);
+    dif -= h * 1000 * 60 * 60;
+    var m = Math.floor(dif / 1000 / 60);
+    dif -= m * 1000 * 60;
+    var s = Math.floor(dif / 1000);
+    $("#time").html((h ? (h > 9 ? h : "0" + h) : "00") + ":" + (m ? (m > 9 ? m : "0" + m) : "00") + ":" + (s > 9 ? s : "0" + s));
+    time = setTimeout(timer, 1000);
+  }
 };
