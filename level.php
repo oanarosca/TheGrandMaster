@@ -25,7 +25,7 @@
       // daca nivelul din baza de date este mai mic decat nivelul pe care utilizatorul vrea
       // sa il acceseze, se va inchide sesiunea si se va afisa pagina de eroare
       if ($level < $id) {
-        session_unset(); session_destroy(); error();
+        /*session_unset(); session_destroy();*/ error();
       }
       // altfel, se incarca pagina nivelului
       else
@@ -41,7 +41,6 @@
         $row = mysqli_fetch_row($result);
         // daca utilizatorul nu are activitate la runda, se seteaza si se incarca primul nivel
         if ($row['0'] == 0) {
-          echo "<script>alert('finally');</script>";
           $query = "SELECT id_comb FROM combRunda WHERE id_runda = '$round'";
           $result = mysqli_query($conn, $query);
           $row = mysqli_fetch_row($result); $id_comb = $row['0'];
@@ -52,11 +51,11 @@
         level($row['0'], $stage);
       }
       else {
-        session_unset(); session_destroy(); error();
+        error();
       }
     }
   }
   else {
-    session_unset(); session_destroy(); error();
+    error();
   }
 ?>

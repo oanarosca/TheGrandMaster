@@ -26,15 +26,16 @@ var won = "<h1>YOU WON!</h1><div class='levels' onclick='levels()'><p>Levels</p>
 var lost = "<h1>YOU LOST!</h1><div class='levels' onclick='levels()'><p>Levels</p></div>"+
 "<h3>The correct combination was:</h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i></div>";
 
-str = $("h1").html();
-var current = Number(str.substr(6));
-str = document.location.href;
-stage = Number(str[str.length-1]);
+var current;
 
 // se preiau numarul de bilute, incercari, locuri, se ataseaza html-ul pentru castig si pierdere
 $(document).ready(function() {
+  str = $("h1").html();
+  current = Number(str.substr(6));
+  str = document.location.href;
+  stage = Number(str[str.length-1]);
   $.ajax({
-    url: "php/getLevelInfo.php?id="+current,
+    url: "php/getLevelInfo.php?id="+current+"&stage="+stage,
     async: false,
     success: function (response) {
       bilute = Number(response.substr(0, 1));
@@ -115,7 +116,10 @@ function reset () {
       url: "php/buildTable.php",
       async: false,
       success:
-        function (response) {str = str.replace(" id='first'", ""); $(".mare").html(response); $(str).insertBefore(".mare tr:eq(0)");},
+        function (response) {
+          str = str.replace(" id='first'", "");
+          $(".mare").html(response); $(str).insertBefore(".mare tr:eq(0)");
+        },
       error:
         function () {
           alert("Something wrong");
@@ -137,7 +141,7 @@ function reset () {
   $("h4").html("You have "+incercari+" more tries");
   $("#time").html("00:00:00");
   sec = m = h = 0;
-  if (stage == 2) {
+  if (stage == 2 || stage == 3) {
     started = true; timer();
     incercari = 1; $("h4").html("You have 1 more try");
     $.ajax ({

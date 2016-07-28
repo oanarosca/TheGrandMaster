@@ -3,7 +3,7 @@
   require_once("connect.php");
   $conn = conectare();
   session_start();
-  if (isset($_SESSION['ok'])) {
+  if (isset($_SESSION['ok']) && $_GET['stage'] != 3) {
     $activitate = "activitate";
     $id = $_GET['level'];
     $stage = $_GET['stage'];
@@ -18,7 +18,7 @@
     $query = "UPDATE ".$activitate." SET attempts = '$attempts' WHERE id_user = '$iduser' AND level = '$id'";
     mysqli_query($conn, $query);
   }
-  else {
+  else if ($_GET['stage'] != 3) {
     session_start();
     session_unset();
     session_destroy();

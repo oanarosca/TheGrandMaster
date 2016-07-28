@@ -7,18 +7,26 @@
   $stage = $_SESSION['stage'];
   $query = "SELECT * FROM niveluri WHERE nivel = '$level'";
   $result = mysqli_query($conn, $query);
-  while ($row = mysqli_fetch_array($result)) {
-    $bilute = $row['bilute'];
-    $incercari =  $row['incercari'];
-    $locuri = $row['locuri'];
+  $row = mysqli_fetch_array($result);
+  $bilute = $row['bilute'];
+  $incercari =  $row['incercari'];
+  $locuri = $row['locuri'];
+  if ($stage != 3) {
+    $var = mt_rand(1, 4);
+    $query = "SELECT * FROM combinatii WHERE nivel = '$level' ORDER BY id_comb";
+    $result = mysqli_query($conn, $query);
+    for ($i = 1; $i <= $var; $i++)
+      $row = mysqli_fetch_array($result);
+    $id_comb = $row['id_comb'];
+    $_SESSION['solution'] = $row['solutie'];
   }
-  $var = mt_rand(1, 4);
-  $query = "SELECT * FROM combinatii WHERE nivel = '$level' ORDER BY id_comb ASC";
-  $result = mysqli_query($conn, $query);
-  for ($i = 1; $i <= $var; $i++)
-    $row = mysqli_fetch_array($result);
-  $id_comb = $row['id_comb'];
-  $_SESSION['solution'] = $row['solutie'];
+  else {
+    $query = "SELECT * FROM combinatii WHERE id_comb = '$level'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_row($result);
+    $id_comb = $level;
+    $_SESSION['solution'] = $row['0'];
+  }
   $query = "SELECT * FROM linii WHERE id_comb = '$id_comb' ORDER BY nl DESC";
   $result = mysqli_query($conn, $query);
   while ($row = mysqli_fetch_array($result)) {
