@@ -20,13 +20,7 @@ function levels () {
   document.location.href = "levels.php";
 };
 
-var won = "<h1>YOU WON!</h1><div class='levels' onclick='levels()'><p>Levels</p></div>"+
-"<h3 class='time'></h3><h3 id='points'></h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i>"+
-"<i class='fa fa-arrow-right' onclick='next()'></i></div>";
-var lost = "<h1>YOU LOST!</h1><div class='levels' onclick='levels()'><p>Levels</p></div>"+
-"<h3>The correct combination was:</h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i></div>";
-
-var current;
+var current, round, won, lost;
 
 // se preiau numarul de bilute, incercari, locuri, se ataseaza html-ul pentru castig si pierdere
 $(document).ready(function() {
@@ -34,6 +28,7 @@ $(document).ready(function() {
   current = Number(str.substr(6));
   str = document.location.href;
   stage = Number(str[str.length-1]);
+  if (stage == 3) current = str.substr(str.length-9, 1);
   $.ajax({
     url: "php/getLevelInfo.php?id="+current+"&stage="+stage,
     async: false,
@@ -45,18 +40,24 @@ $(document).ready(function() {
     error: function () {alert("Something wrong");}
   });
   copieIncercari = incercari;
-  $(".won #popup").html(won);
-  $(".lost #popup").html(lost);
   play();
 });
 
 // se trece la urmatorul nivel, sau se revine la pagina cu niveluri daca jocul s-a completat
 function next () {
   var next = Number(current)+1;
-  if (next == 19)
-    document.location.href = "levels.php";
-  else
-    document.location.href = "level.php?id="+next+"&stage="+stage;
+  if (next == 19 || (stage == 3 && next == 6))
+    levels();
+  else {
+    if (stage == 3) {
+      var str = document.location.href;
+      var elim = str.substr(str.length-13);
+      str = str.replace(elim, "");
+      document.location.href = str+"&id="+next+"&stage="+stage;
+    }
+    else
+      document.location.href = "level.php?id="+next+"&stage="+stage;
+  }
 }
 
 function timer () {
@@ -91,6 +92,13 @@ function reset () {
   // se ascund popup-urile si se reseteaza continutul tabelului
   $(".won").fadeOut(500);
   $(".lost").fadeOut(500);
+  won = "<h1>YOU WON!</h1><div class='levels' onclick='levels()'><p>Levels</p></div>"+
+  "<h3 class='time'></h3><h3 id='points'></h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i>"+
+  "<i class='fa fa-arrow-right' onclick='next()'></i></div>";
+  lost = "<h1>YOU LOST!</h1><div class='levels' onclick='levels()'><p>Levels</p></div>"+
+  "<h3>The correct combination was:</h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i></div>";
+  $(".won #popup").html(won);
+  $(".lost #popup").html(lost);
   // se construieste tabelul cu ajutorul numarului de locuri
   str = "<tr id='first'>";
   for (var c = 1; c <= locuri; c++)
@@ -267,7 +275,7 @@ function evaluare () {
     $(".won").fadeIn(500); stop();
     // se trimit numarul de puncte si timpul, pentru a se face actualizari in baza de date, daca este cazul
     $.ajax ({
-      url: "php/won.php?level="+current+"&points="+Math.floor(points)+"&time="+secunde+"&stage="+stage,
+      url: "php/won.php?level="+current+"&points="+Math.floor(points)+"&time="+secunde+"&stage="+stage+"&runda="+1,
       async: false,
       success:
         function (response) {},

@@ -5,6 +5,12 @@
   $idbile = ["red0", "blue1", "yellow2", "purple3", "green4", "pink5", "turqoise6", "silver7"];
   $level = $_SESSION['level'];
   $stage = $_SESSION['stage'];
+  if ($stage == 3) {
+    $id_comb = $level;
+    $query = "SELECT nivel FROM combinatii WHERE id_comb = '$id_comb'";
+    $result = mysqli_query($conn, $query); $row = mysqli_fetch_row($result);
+    $level = $row['0'];
+  }
   $query = "SELECT * FROM niveluri WHERE nivel = '$level'";
   $result = mysqli_query($conn, $query);
   $row = mysqli_fetch_array($result);
@@ -21,10 +27,9 @@
     $_SESSION['solution'] = $row['solutie'];
   }
   else {
-    $query = "SELECT * FROM combinatii WHERE id_comb = '$level'";
+    $query = "SELECT solutie FROM combinatii WHERE id_comb = '$id_comb'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_row($result);
-    $id_comb = $level;
     $_SESSION['solution'] = $row['0'];
   }
   $query = "SELECT * FROM linii WHERE id_comb = '$id_comb' ORDER BY nl DESC";

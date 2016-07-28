@@ -44,8 +44,8 @@
           $query = "SELECT id_comb FROM combRunda WHERE id_runda = '$round'";
           $result = mysqli_query($conn, $query);
           $row = mysqli_fetch_row($result); $id_comb = $row['0'];
-          $query = "INSERT INTO activitate3 (id_user, id_runda, id_comb) VALUES ".
-                   "('$iduser', '$round', '$id_comb')";
+          $query = "INSERT INTO activitate3 (id_user, id_runda, id_comb, ind) VALUES ".
+                   "('$iduser', '$round', '$id_comb', '1')";
           mysqli_query($conn, $query);
         }
         level($row['0'], $stage);
