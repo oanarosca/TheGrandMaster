@@ -111,7 +111,7 @@
           <div class="levels">
             <h2>Current or upcoming rounds</h2>
             <?php
-              $query = "SELECT * FROM runde WHERE terminata = 0 ORDER BY id_runda";
+              $query = "SELECT * FROM runde WHERE (terminata = 0) OR (terminata = 1) ORDER BY id_runda";
               $result = mysqli_query($conn, $query);
               $n = mysqli_num_rows($result);
               for ($i = 1; $i <= $n; $i++) {
@@ -289,6 +289,12 @@
     $conn = conectare();
     $_SESSION['level'] = $level;
     $_SESSION['stage'] = $stage;
+    if ($stage == 3) {
+      $query = "SELECT nivel FROM combinatii WHERE id_comb = '$level'";
+      $result = mysqli_query($conn, $query);
+      $row = mysqli_fetch_row($result);
+      $level = $row['0'];
+    }
     ?>
     <!DOCTYPE html>
     <html>
@@ -298,7 +304,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#000000">
         <link rel="icon" sizes="192x192" href="img/favicon.png">
-        <title>Level <?php echo $level; ?> | TheGrandMaster</title>
+        <title><?php if ($stage == 3) echo "Multiplayer"; else echo "Level " . $level; ?> | TheGrandMaster</title>
         <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
         <script src="https://use.fontawesome.com/bdf85ecedd.js"></script>
@@ -308,7 +314,7 @@
       </head>
       <body>
         <div class="container">
-          <h1>Level <?php echo $level; ?></h1>
+          <h1><?php if ($stage == 3) echo "Multiplayer"; else echo "Level " . $level; ?></h1>
           <h3 id="time"></h3>
           <div class="bilute">
             <ul>
@@ -317,8 +323,8 @@
               <?php
                 $query = "SELECT * FROM niveluri WHERE nivel = '$level'";
                 $result = mysqli_query($conn, $query);
-                while ($row = mysqli_fetch_array($result))
-                  $bile = $row['bilute'];
+                $row = mysqli_fetch_array($result);
+                $bile = $row['bilute'];
                 for ($i = 0; $i <= $bile-1; $i++)
                   echo "<li><div id='$idbile[$i]' onclick='clicked(this.id)' class='b'></div></li>";
               ?>

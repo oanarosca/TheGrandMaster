@@ -41,7 +41,8 @@ function timer () {
   var dif = d2-d1-3600*1000*3;
   if (dif <= 0) {
     clearInterval(time);
-    $("#time").html("<a href='level.php?id=1&stage=3'>Enter</a>");
+    var runda = $("#time").parent().parent().children("h4").html().substr(7);
+    $("#time").html("<a href='level.php?round="+runda+"&id=1&stage=3'>Enter</a>");
   }
   else {
     var h = Math.floor(dif / 1000 / 60 / 60);
