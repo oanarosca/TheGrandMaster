@@ -18,9 +18,6 @@
     $query = "UPDATE ".$activitate." SET attempts = '$attempts' WHERE id_user = '$iduser' AND level = '$id'";
     mysqli_query($conn, $query);
   }
-  else if ($_GET['stage'] != 3) {
-    session_start();
-    session_unset();
-    session_destroy();
-  }
+  else if ($_GET['stage'] != 3)
+    error();
 ?>

@@ -81,9 +81,6 @@
       }
     }
   }
-  else {
-    session_unset();
-    session_destroy();
+  else
     error();
-  }
 ?>

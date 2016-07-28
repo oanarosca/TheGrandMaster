@@ -5,9 +5,6 @@
   // inchide sesiunea si se afiseaza pagina de eroare
   if (isset ($_SESSION['ok']))
     leaderboard();
-  else {
-    session_unset();
-    session_destroy();
+  else
     error();
-  }
 ?>

@@ -23,10 +23,9 @@
       $result = mysqli_query($conn, $query);
       $row = mysqli_fetch_array($result); $level = $row['0'];
       // daca nivelul din baza de date este mai mic decat nivelul pe care utilizatorul vrea
-      // sa il acceseze, se va inchide sesiunea si se va afisa pagina de eroare
-      if ($level < $id) {
-        /*session_unset(); session_destroy();*/ error();
-      }
+      // sa il acceseze se va afisa pagina de eroare
+      if ($level < $id)
+        error();
       // altfel, se incarca pagina nivelului
       else
         level($id, $stage);
@@ -50,12 +49,10 @@
         }
         level($row['0'], $stage);
       }
-      else {
+      else
         error();
-      }
     }
   }
-  else {
+  else
     error();
-  }
 ?>
