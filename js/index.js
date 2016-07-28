@@ -87,6 +87,7 @@ $("form").submit(function () {
         alert(textStatus + "\n" + errorThrown);
       }
   });
+  $(".input a").focus();
   return false;
 });
 
