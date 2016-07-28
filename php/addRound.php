@@ -13,12 +13,13 @@
   for ($j = 0; $j < 5; $j++) {
     $level = $_GET['l'.$j];
     $var = mt_rand(1, 4);
-    $query = "SELECT * FROM combinatii WHERE nivel = '$level' ORDER BY id_comb ASC";
+    $query = "SELECT * FROM combinatii WHERE nivel = '$level' ORDER BY id_comb";
     $result = mysqli_query($conn, $query);
     for ($i = 1; $i <= $var; $i++)
       $row = mysqli_fetch_array($result);
     $id_comb = $row['id_comb'];
-    $query = "INSERT INTO combRunda (id_runda, id_comb) VALUES ('$id_runda', '$id_comb')";
+    $index = $j+1;
+    $query = "INSERT INTO combRunda (id_runda, id_comb, ind) VALUES ('$id_runda', '$id_comb', '$index')";
     mysqli_query($conn, $query);
   }
 ?>
