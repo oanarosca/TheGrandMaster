@@ -111,31 +111,16 @@
           <div class="levels">
             <h2>Current or upcoming rounds</h2>
             <?php
+              require_once("displayRound.php");
               $query = "SELECT * FROM runde WHERE (terminata = 0) OR (terminata = 1) ORDER BY id_runda";
-              $result = mysqli_query($conn, $query);
-              $n = mysqli_num_rows($result);
-              for ($i = 1; $i <= $n; $i++) {
-                $row = mysqli_fetch_row($result);
-                $zi = substr($row['1'], 8, 2);
-                $luna = substr($row['1'], 5, 2);
-                $an = substr($row['1'], 0, 4);
-                $ora = substr($row['1'], 11, 2);
-                $min = substr($row['1'], 14, 2);
-                $sec = substr($row['1'], 17, 2);
-                echo "<div class='round'>";
-                echo "<i></i>";
-                echo "<h4>Round #" . $row['0'] . "</h4>";
-                echo "<h5>On ".$zi.".".$luna.".".$an;
-                echo " @ <a href='http://www.timeanddate.com/worldclock/fixedtime.html?day=".$zi."&month=".$luna."&year=".$an;
-                echo "&hour=".$ora."&min=".$min."&sec=".$sec."&p1=49' target='blank'>";
-                echo substr($row['1'], -8)." EET</a>";
-                if ($i == 1)
-                  echo "<span id='time'></span></h5>";
-                else echo "</h5>";
-                echo "</div>";
-              }
+              displayRound($query);
             ?>
             <h2>Past rounds</h2>
+            <?php
+              require_once("displayRound.php");
+              $query = "SELECT * FROM runde WHERE terminata = 2 ORDER BY id_runda";
+              displayRound($query);
+            ?>
           </div>
         </div> <!-- container -->
         <div class="footer">
