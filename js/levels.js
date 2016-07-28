@@ -42,7 +42,20 @@ function timer () {
   if (dif <= 0) {
     clearInterval(time);
     var runda = $("#time").parent().parent().children("h4").html().substr(7);
-    $("#time").html("<a href='level.php?round="+runda+"&id=1&stage=3'>Enter</a>");
+    $.ajax({
+      url: "php/getRoundInfo.php?runda="+runda,
+      async: false,
+      success:
+        function (response) {
+          if (response < 6)
+            $("#time").html("<a href='level.php?round="+runda+"&id="+response+"&stage=3'>"+(response-1)+"/5</a>");
+          else $("#time").html("<span>Completed</span>");
+        },
+      error:
+        function () {
+          alert("Something wrong");
+        }
+    });
   }
   else {
     var h = Math.floor(dif / 1000 / 60 / 60);

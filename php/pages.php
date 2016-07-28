@@ -268,7 +268,7 @@
     </html>
     <?php
   }
-  function level ($level, $stage) {
+  function level ($level, $stage, $round) {
     $idbile = ["red0", "blue1", "yellow2", "purple3", "green4", "pink5", "turqoise6", "silver7"];
     require_once("connect.php");
     $conn = conectare();
@@ -289,7 +289,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#000000">
         <link rel="icon" sizes="192x192" href="img/favicon.png">
-        <title><?php if ($stage == 3) echo "Multiplayer"; else echo "Level " . $level; ?> | TheGrandMaster</title>
+        <title><?php if ($stage == 3) echo "Multiplayer Round #".$round; else echo "Level " . $level; ?> | TheGrandMaster</title>
         <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
         <script src="https://use.fontawesome.com/bdf85ecedd.js"></script>
@@ -299,7 +299,7 @@
       </head>
       <body>
         <div class="container">
-          <h1><?php if ($stage == 3) echo "Multiplayer"; else echo "Level " . $level; ?></h1>
+          <h1><?php if ($stage == 3) echo "Multiplayer Round #".$round; else echo "Level " . $level; ?></h1>
           <h3 id="time"></h3>
           <div class="bilute">
             <ul>

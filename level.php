@@ -3,7 +3,7 @@
   require_once("php/pages.php");
   require_once("php/connect.php");
   $conn = conectare();
-  $id = 0;
+  $id = $round = 0;
   if (isset($_GET['id']) && isset($_GET['stage'])) {
     $id = $_GET['id'];
     $stage = $_GET['stage'];
@@ -28,7 +28,7 @@
         error();
       // altfel, se incarca pagina nivelului
       else
-        level($id, $stage);
+        level($id, $stage, $round);
     }
     else { // ne aflam in modul multiplayer
       // verificam daca runda este terminata sau in desfasurare
@@ -47,7 +47,7 @@
                    "('$iduser', '$round', '$id_comb', '1')";
           mysqli_query($conn, $query);
         }
-        level($row['0'], $stage);
+        level($row['0'], $stage, $round);
       }
       else
         error();

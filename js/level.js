@@ -26,6 +26,7 @@ var current, round, won, lost;
 $(document).ready(function() {
   str = $("h1").html();
   current = Number(str.substr(6));
+  round = str.substr(19);
   str = document.location.href;
   stage = Number(str[str.length-1]);
   if (stage == 3) current = str.substr(str.length-9, 1);
@@ -50,10 +51,7 @@ function next () {
     levels();
   else {
     if (stage == 3) {
-      var str = document.location.href;
-      var elim = str.substr(str.length-13);
-      str = str.replace(elim, "");
-      document.location.href = str+"&id="+next+"&stage="+stage;
+      document.location.href = "level.php?round="+round+"&id="+next+"&stage="+stage;
     }
     else
       document.location.href = "level.php?id="+next+"&stage="+stage;
@@ -275,7 +273,7 @@ function evaluare () {
     $(".won").fadeIn(500); stop();
     // se trimit numarul de puncte si timpul, pentru a se face actualizari in baza de date, daca este cazul
     $.ajax ({
-      url: "php/won.php?level="+current+"&points="+Math.floor(points)+"&time="+secunde+"&stage="+stage+"&runda="+1,
+      url: "php/won.php?level="+current+"&points="+Math.floor(points)+"&time="+secunde+"&stage="+stage+"&runda="+round,
       async: false,
       success:
         function (response) {},
