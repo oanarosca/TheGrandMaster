@@ -20,7 +20,7 @@ function levels () {
   document.location.href = "levels.php";
 };
 
-var current, round, won, lost;
+var current, round, won, lost, d0, d2;
 
 // se preiau numarul de bilute, incercari, locuri, se ataseaza html-ul pentru castig si pierdere
 $(document).ready(function() {
@@ -59,17 +59,15 @@ function next () {
 }
 
 function timer () {
-  // creste numarul de secunde, minute, ore, dupa cum este cazul
-  sec++;
-  if (sec >= 60) {
-    sec = 0;
-    m++;
-    if (m >= 60) {
-      m = 0;
-      h++;
-    }
-  }
-  // se afiseaza cu zerouri cand valoarea este mai mica decat 10
+  var dif, h, m, s;
+  var d1 = new Date();
+  dif = d1-d0;
+  h = Math.floor(dif / 1000 / 60 / 60);
+  dif -= h * 1000 * 60 * 60;
+  m = Math.floor(dif / 1000 / 60);
+  dif -= m * 1000 * 60;
+  sec = Math.floor(dif / 1000);
+  // se afiseaza cu zerouri cand valoarea este mai mica decat 10*/
   $("#time").html((h ? (h > 9 ? h : "0" + h) : "00") + ":" + (m ? (m > 9 ? m : "0" + m) : "00") + ":" + (sec > 9 ? sec : "0" + sec));
   time = setTimeout(timer, 1000);
 };
@@ -316,7 +314,7 @@ function clicked (id) {
   // daca se poate adauga biluta (nu este gata jocul)
   if ($("#"+id).css("cursor") != "default") {
     // daca este primul click, se porneste cronometrul
-    if (!started) timer(), started = true;
+    if (!started) d0 = new Date(), timer(), started = true;
     // daca este selectata o casuta din tabel si este goala, se pune biluta pe locul respectiv
     if (cellIndex != -1 && rowIndex == 0 && !$(".mare tr:eq(0) td:eq("+cellIndex+")").html()) {
       $(".mare tr:eq(0) td:eq("+cellIndex+")").html("<div class='tabel' id='"+id+"'></div>");
