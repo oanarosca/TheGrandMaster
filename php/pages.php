@@ -113,13 +113,13 @@
             <?php
               require_once("displayRound.php");
               $query = "SELECT * FROM runde WHERE (terminata = 0) OR (terminata = 1) ORDER BY id_runda";
-              displayRound($query);
+              displayRound($query, 1);
             ?>
             <h2>Past rounds</h2>
             <?php
               require_once("displayRound.php");
               $query = "SELECT * FROM runde WHERE terminata = 2 ORDER BY id_runda";
-              displayRound($query);
+              displayRound($query, 2);
             ?>
           </div>
         </div> <!-- container -->

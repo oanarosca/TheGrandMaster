@@ -8,4 +8,6 @@
   $result = mysqli_query($conn, $query);
   $row = mysqli_fetch_row($result);
   echo $row['0'];
+  $query = "UPDATE runde SET terminata = 1 WHERE id_runda = '$runda'";
+  mysqli_query($conn, $query);
 ?>
