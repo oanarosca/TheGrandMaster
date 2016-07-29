@@ -35,19 +35,30 @@
       $query = "SELECT * FROM runde WHERE id_runda = '$round' AND (terminata = 2 OR terminata = 1)";
       $result = mysqli_query($conn, $query);
       if (mysqli_num_rows($result)) {
-        $query = "SELECT IFNULL(MAX(id_comb), 0) FROM activitate3 WHERE id_user = '$iduser' AND id_runda = '$round'";
+        $query = "SELECT IFNULL(MAX(id_comb), 0), IFNULL(activitate3.ind, 1)
+                  FROM activitate3, (
+                  SELECT id_user, IFNULL(MAX(id_comb), 0) AS mi
+                  FROM activitate3
+                  GROUP BY id_user) AS t_mi
+                  WHERE (activitate3.id_user = t_mi.id_user) AND (id_comb = mi)";
+        //"SELECT IFNULL(MAX(id_comb), 0),  FROM activitate3 WHERE id_user = '$iduser' AND id_runda = '$round'";
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_row($result);
-        // daca utilizatorul nu are activitate la runda, se seteaza si se incarca primul nivel
-        if ($row['0'] == 0) {
-          $query = "SELECT id_comb FROM combRunda WHERE id_runda = '$round'";
-          $result = mysqli_query($conn, $query);
-          $row = mysqli_fetch_row($result); $id_comb = $row['0'];
-          $query = "INSERT INTO activitate3 (id_user, id_runda, id_comb, ind) VALUES ".
-                   "('$iduser', '$round', '$id_comb', '1')";
-          mysqli_query($conn, $query);
+        // daca utilizatorul schimba id-ul in link
+        if ($row['1'] != $id)
+          error();
+        else {
+          // daca utilizatorul nu are activitate la runda, se seteaza si se incarca primul nivel
+          if ($row['0'] == 0) {
+            $query = "SELECT id_comb FROM combRunda WHERE id_runda = '$round'";
+            $result = mysqli_query($conn, $query);
+            $row = mysqli_fetch_row($result); $id_comb = $row['0'];
+            $query = "INSERT INTO activitate3 (id_user, id_runda, id_comb, ind) VALUES ".
+                     "('$iduser', '$round', '$id_comb', '1')";
+            mysqli_query($conn, $query);
+          }
+          level($row['0'], $stage, $round);
         }
-        level($row['0'], $stage, $round);
       }
       else
         error();

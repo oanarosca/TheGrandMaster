@@ -47,8 +47,10 @@ function timer () {
       async: false,
       success:
         function (response) {
-          if (response < 6)
-            $("#time").html("<a href='level.php?round="+runda+"&id="+response+"&stage=3'>"+(response-1)+"/5</a>");
+          if (response < 6) {
+            if(response == 0) response = 1;
+            $("#time").html("<a href='level.php?round="+runda+"&id="+response+"&stage=3'>Enter</a>");
+          }
           else $("#time").html("<span>Completed</span>");
         },
       error:
