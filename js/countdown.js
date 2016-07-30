@@ -26,7 +26,7 @@ function countDown () {
       });
     }
     else {
-      prim = 2; clearInterval(time);
+      prim = 2; clearTimeout(cdown);
       runda = $("#time").parent().parent().children("h4").html().substr(7);
       $.ajax({
         url: "php/stopRound.php?round="+runda,
@@ -37,8 +37,12 @@ function countDown () {
     }
   }
   if (prim != 2) {
-    if (dif < 0)
+    if (dif < 0) {
+      clearTimeout(cdown);
       $(id).html("00:00:00");
+      if (context == 1)
+        stop();
+    }
     else {
       var h = Math.floor(dif / 1000 / 60 / 60);
       dif -= h * 1000 * 60 * 60;
@@ -46,7 +50,7 @@ function countDown () {
       dif -= m * 1000 * 60;
       var s = Math.floor(dif / 1000);
       $(id).html((h ? (h > 9 ? h : "0" + h) : "00") + ":" + (m ? (m > 9 ? m : "0" + m) : "00") + ":" + (s > 9 ? s : "0" + s));
+      cdown = setTimeout(countDown, 1000);
     }
-    time = setTimeout(countDown, 1000);
   }
 };

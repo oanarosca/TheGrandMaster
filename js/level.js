@@ -192,6 +192,17 @@ function show () {
 
 function stop () {
   // se opreste cronometrul iar bilutele primesc cursorul default
+  var sol = "<h3>The correct combination was:</h3><ul>";
+  for (i = locuri; i >= 1; i--)
+    sol += "<li><div id='"+idbile[s[i]]+"'></div></li>";
+  sol += "</ul>";
+  if (stage != 3)
+    $(sol).insertAfter("#popup .levels");
+  else {
+    var timp = "<h3>Time: "+$("#time").html()+"</h3>";
+    $(timp).insertAfter("#popup .levels");
+  }
+  $(".lost").fadeIn(500);
   clearTimeout(time);
   var x = document.getElementsByClassName("b");
   for (var i = 0; i <= bilute-1; i++)
@@ -269,19 +280,8 @@ function evaluare () {
   // se coloreaza patratelele de feedback
   feedback(corecte, aproapeCorecte);
   // daca nu au mai ramas incercari si nu s-a ghicit din ultima incercare, utilizatorul a pierdut
-  if (!incercari && corecte != locuri) {
-    var sol = "<h3>The correct combination was:</h3><ul>";
-    for (i = locuri; i >= 1; i--)
-      sol += "<li><div id='"+idbile[s[i]]+"'></div></li>";
-    sol += "</ul>";
-    if (stage != 3)
-      $(sol).insertAfter("#popup .levels");
-    else {
-      var time = "<h3>Time: "+$("#time").html()+"</h3>";
-      $(time).insertAfter("#popup .levels");
-    }
-    $(".lost").fadeIn(500); stop();
-  }
+  if (!incercari && corecte != locuri)
+    stop();
   else if (corecte == locuri) {
     // daca a castigat, se calculeaza numarul de puncte si se afiseaza
     $("#popup .time").html("Time: "+$("#time").html());
