@@ -20,16 +20,29 @@ function levels () {
   document.location.href = "levels.php";
 };
 
-var current, round, won, lost, d0, d2;
+var current, round, won, lost, d0, d2, context = 1, id = "#left span", prim = 0;
 
 // se preiau numarul de bilute, incercari, locuri, se ataseaza html-ul pentru castig si pierdere
 $(document).ready(function() {
+  $("#left").hide();
   str = $("h1").html();
   current = Number(str.substr(6));
   round = str.substr(19);
   str = document.location.href;
   stage = Number(str[str.length-1]);
-  if (stage == 3) current = str.substr(str.length-9, 1);
+  if (stage == 3) {
+    current = str.substr(str.length-9, 1);
+    $.ajax({
+      url: "php/getRoundTime.php?round="+round,
+      async: false,
+      success: function (response) { d2 = response; },
+      error: function () { alert("Something wrong"); }
+    });
+    $("#left").fadeIn();
+    d2 = new Date(d2);
+    d2 = new Date(d2.getTime()+1000*2460);
+    countDown();
+  }
   $.ajax({
     url: "php/getLevelInfo.php?id="+current+"&stage="+stage,
     async: false,
@@ -146,7 +159,9 @@ function reset () {
   $("#time").html("00:00:00");
   sec = m = h = 0;
   if (stage == 2 || stage == 3) {
-    started = true; timer();
+    started = true;
+    d0 = new Date();
+    timer();
     incercari = 1; $("h4").html("You have 1 more try");
     $.ajax ({
       url: "php/solution.php",

@@ -133,6 +133,7 @@
         </div>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script src="js/countdown.js"></script>
         <script src="js/levels.js"></script>
         <script src="js/common.js"></script>
       </body>
@@ -300,6 +301,7 @@
       <body>
         <div class="container">
           <h1><?php if ($stage == 3) echo "Multiplayer Round #".$round; else echo "Level " . $level; ?></h1>
+          <h3 id="left"><span></span> until end of round</h3>
           <h3 id="time"></h3>
           <div class="bilute">
             <ul>
@@ -333,6 +335,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="js/common.js"></script>
         <script src="js/level.js"></script>
+        <script src="js/countdown.js"></script>
       </body>
     </html>
     <?php
