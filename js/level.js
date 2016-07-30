@@ -105,7 +105,7 @@ function reset () {
   "<h3 class='time'></h3><h3 id='points'></h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i>"+
   "<i class='fa fa-arrow-right' onclick='next()'></i></div>";
   lost = "<h1>YOU LOST!</h1><div class='levels' onclick='levels()'><p>Levels</p></div>"+
-  "<h3>The correct combination was:</h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i></div>";
+  "<div class='bottom'><i class='fa fa-undo' onclick='play()'></i></div>";
   $(".won #popup").html(won);
   $(".lost #popup").html(lost);
   // se construieste tabelul cu ajutorul numarului de locuri
@@ -270,11 +270,16 @@ function evaluare () {
   feedback(corecte, aproapeCorecte);
   // daca nu au mai ramas incercari si nu s-a ghicit din ultima incercare, utilizatorul a pierdut
   if (!incercari && corecte != locuri) {
-    var sol = "<ul>";
+    var sol = "<h3>The correct combination was:</h3><ul>";
     for (i = locuri; i >= 1; i--)
       sol += "<li><div id='"+idbile[s[i]]+"'></div></li>";
     sol += "</ul>";
-    $(sol).insertAfter("#popup h3");
+    if (stage != 3)
+      $(sol).insertAfter("#popup .levels");
+    else {
+      var time = "<h3>Time: "+$("#time").html()+"</h3>";
+      $(time).insertAfter("#popup .levels");
+    }
     $(".lost").fadeIn(500); stop();
   }
   else if (corecte == locuri) {

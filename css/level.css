@@ -116,7 +116,7 @@
 
 .won #popup, .lost #popup {
   width: 100%;
-  height: auto/*365px;*/
+  height: auto;/*365px;*/
   border-radius: 0;
   background: rgba(31, 31, 31, 0.90);
   color: #d4d4d4;
