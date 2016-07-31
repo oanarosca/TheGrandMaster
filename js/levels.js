@@ -1,7 +1,7 @@
 "use strict";
 
 var time, d2;
-var prim = 0, str = "#time", context = 0;
+var prim = 0, id = "#time", context = 0;
 
 $(document).ready(function () {
   var data;

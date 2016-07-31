@@ -41,7 +41,7 @@ function countDown () {
       clearTimeout(cdown);
       $(id).html("00:00:00");
       if (context == 1)
-        stop();
+        stop(0);
     }
     else {
       var h = Math.floor(dif / 1000 / 60 / 60);

@@ -41,12 +41,11 @@
                   FROM activitate3
                   GROUP BY id_user) AS t_mi
                   WHERE (activitate3.id_user = t_mi.id_user) AND (id_comb = mi) AND id_runda = '$round'";
-        //"SELECT IFNULL(MAX(id_comb), 0),  FROM activitate3 WHERE id_user = '$iduser' AND id_runda = '$round'";
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_row($result);
         // daca utilizatorul schimba id-ul in link
         if ($row['1'] != $id) {
-          echo "<script>alert(".$row['1'].");</script>";
+          //echo "<script>alert(".$row['1'].");</script>";
           error();
         }
         else {

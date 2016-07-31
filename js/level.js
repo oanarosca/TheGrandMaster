@@ -1,5 +1,9 @@
 "use strict";
 
+const score1 = 5000;
+const ldif = 5000;
+const pps = 2;
+
 var copieIncercari, colIndex, bilute, incercari, started, locuri, str, col, time;
 var sec, m, h;
 var ramase, stage;
@@ -20,7 +24,7 @@ function levels () {
   document.location.href = "levels.php";
 };
 
-var current, round, won, lost, d0, d2, context = 1, id = "#left span", prim = 0;
+var current, round, won, lost, d0, d2, context = 1, id = "#left span", prim = 0, startDate;
 
 // se preiau numarul de bilute, incercari, locuri, se ataseaza html-ul pentru castig si pierdere
 $(document).ready(function() {
@@ -35,12 +39,14 @@ $(document).ready(function() {
     $.ajax({
       url: "php/getRoundTime.php?round="+round,
       async: false,
-      success: function (response) { d2 = response; },
+      success: function (response) { d2 = startDate = response; },
       error: function () { alert("Something wrong"); }
     });
     $("#left").fadeIn();
     d2 = new Date(d2);
     d2 = new Date(d2.getTime()+1000*2460);
+    startDate = new Date(startDate);
+    startDate = new Date(startDate.getTime()-1000*3*3600);
     countDown();
   }
   $.ajax({
@@ -190,19 +196,21 @@ function show () {
   $("table").delay(950).fadeIn();
 };
 
-function stop () {
+function stop (won) {
   // se opreste cronometrul iar bilutele primesc cursorul default
-  var sol = "<h3>The correct combination was:</h3><ul>";
-  for (i = locuri; i >= 1; i--)
-    sol += "<li><div id='"+idbile[s[i]]+"'></div></li>";
-  sol += "</ul>";
-  if (stage != 3)
-    $(sol).insertAfter("#popup .levels");
-  else {
-    var timp = "<h3>Time: "+$("#time").html()+"</h3>";
-    $(timp).insertAfter("#popup .levels");
+  if (!won) {
+    var sol = "<h3>The correct combination was:</h3><ul>";
+    for (i = locuri; i >= 1; i--)
+      sol += "<li><div id='"+idbile[s[i]]+"'></div></li>";
+    sol += "</ul>";
+    if (stage != 3)
+      $(sol).insertAfter("#popup .levels");
+    else {
+      var timp = "<h3>Time: "+$("#time").html()+"</h3>";
+      $(timp).insertAfter("#popup .levels");
+    }
+    $(".lost").fadeIn(500);
   }
-  $(".lost").fadeIn(500);
   clearTimeout(time);
   var x = document.getElementsByClassName("b");
   for (var i = 0; i <= bilute-1; i++)
@@ -281,14 +289,22 @@ function evaluare () {
   feedback(corecte, aproapeCorecte);
   // daca nu au mai ramas incercari si nu s-a ghicit din ultima incercare, utilizatorul a pierdut
   if (!incercari && corecte != locuri)
-    stop();
+    stop(0);
   else if (corecte == locuri) {
     // daca a castigat, se calculeaza numarul de puncte si se afiseaza
     $("#popup .time").html("Time: "+$("#time").html());
     var secunde = sec+m*60+h*3600;
-    var points = (up[current] / (copieIncercari-incercari) * 100000) / secunde;
+    if (stage != 3)
+      var points = (up[current] / (copieIncercari-incercari) * 100000) / secunde;
+    else {
+      var factor = Number(current)-1;
+      alert(new Date()); alert(startDate);
+      var intS = (new Date()-startDate)/1000;
+      var points = score1+ldif*factor-intS*pps*(factor+1);
+      alert(intS);
+    }
     $("#points").html("Points: "+Math.floor(points));
-    $(".won").fadeIn(500); stop();
+    $(".won").fadeIn(500); stop(1);
     // se trimit numarul de puncte si timpul, pentru a se face actualizari in baza de date, daca este cazul
     $.ajax ({
       url: "php/won.php?level="+current+"&points="+Math.floor(points)+"&time="+secunde+"&stage="+stage+"&runda="+round,
