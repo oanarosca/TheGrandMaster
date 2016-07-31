@@ -5,7 +5,8 @@
   $conn = conectare();
   $username = filter_input(INPUT_POST, "username");
   $password = filter_input(INPUT_POST, "retype");
-  $pcr = md5($password);
+  //$pcr = md5($password);
+  $pcr = password_hash($password, PASSWORD_BCRYPT);
   $stmt = $conn->prepare("INSERT INTO utilizatori (username, parola) VALUES (?, '$pcr')");
   $stmt->bind_param("s", $username);
   $stmt->execute();

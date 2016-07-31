@@ -7,22 +7,25 @@
   $pcr = md5($parola);
   $stmt = $conn->prepare("SELECT * ".
            "FROM utilizatori ".
-           "WHERE username = ? AND parola = '$pcr'");
+           "WHERE username = ?");
   $stmt->bind_param("s", $username);
   $stmt->execute();
   $result = $stmt->get_result();
   $stmt->close();
   if (mysqli_num_rows ($result)) {
-    session_start();
-    echo 1;
-    $row = mysqli_fetch_array($result);
-    $id = $row['id_user'];
-    $_SESSION['ok'] = $id;
-    $query = "SELECT * FROM activitate2 WHERE id_user = '$id'";
-    $result = mysqli_query($conn, $query);
-    if (!mysqli_num_rows($result)) {
-      $query = "INSERT INTO activitate2 (id_user, level) VALUES ('$id', '1')";
-      mysqli_query($conn, $query);
+    $row = mysqli_fetch_row($result);
+    $pcr = $row['2'];
+    if (password_verify($parola, $pcr)) {
+      session_start();
+      echo 1;
+      $id = $row['0'];
+      $_SESSION['ok'] = $id;
+      $query = "SELECT * FROM activitate2 WHERE id_user = '$id'";
+      $result = mysqli_query($conn, $query);
+      if (!mysqli_num_rows($result)) {
+        $query = "INSERT INTO activitate2 (id_user, level) VALUES ('$id', '1')";
+        mysqli_query($conn, $query);
+      }
     }
   }
   else

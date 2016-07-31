@@ -3,7 +3,7 @@
   $username = filter_input(INPUT_POST, 'val');
   require_once("connect.php");
   $conn = conectare();
-  $stmt->prepare("SELECT * ".
+  $stmt = $conn->prepare("SELECT * ".
           "FROM utilizatori ".
           "WHERE username = ?");
   $stmt->bind_param("s", $username);
