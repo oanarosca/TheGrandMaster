@@ -170,6 +170,11 @@
   float: right;
 }
 
+.centered {
+  margin-right: 55px;
+  margin-top: -5px;
+}
+
 #popup .time {
   margin-top: 30px;
 }

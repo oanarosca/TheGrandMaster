@@ -108,8 +108,7 @@ function reset () {
   $(".won").fadeOut(500);
   $(".lost").fadeOut(500);
   won = "<h1>YOU WON!</h1><div class='levels' onclick='levels()'><p>Levels</p></div>"+
-  "<h3 class='time'></h3><h3 id='points'></h3><div class='bottom'><i class='fa fa-undo' onclick='play()'></i>"+
-  "<i class='fa fa-arrow-right' onclick='next()'></i></div>";
+  "<h3 class='time'></h3><h3 id='points'></h3><div class='bottom'></div>";
   lost = "<h1>YOU LOST!</h1><div class='levels' onclick='levels()'><p>Levels</p></div>"+
   "<div class='bottom'><i class='fa fa-undo' onclick='play()'></i></div>";
   $(".won #popup").html(won);
@@ -198,7 +197,7 @@ function show () {
 
 function stop (won) {
   // se opreste cronometrul iar bilutele primesc cursorul default
-  if (!won) {
+  if (!won && !$(".lost").visible()) {
     var sol = "<h3>The correct combination was:</h3><ul>";
     for (i = locuri; i >= 1; i--)
       sol += "<li><div id='"+idbile[s[i]]+"'></div></li>";
@@ -294,12 +293,15 @@ function evaluare () {
     // daca a castigat, se calculeaza numarul de puncte si se afiseaza
     $("#popup .time").html("Time: "+$("#time").html());
     var secunde = sec+m*60+h*3600;
-    if (stage != 3)
+    if (stage != 3) {
       var points = (up[current] / (copieIncercari-incercari) * 100000) / secunde;
+      $(".won .bottom").html("<i class='fa fa-undo' onclick='play()'></i><i class='fa fa-arrow-right' onclick='next()'></i>");
+    }
     else {
       var factor = Number(current)-1;
       var intS = (new Date()-startDate)/1000;
       var points = score1+ldif*factor-intS*pps*(factor+1);
+      $(".won .bottom").html("<i class='fa fa-arrow-right centered' onclick='next()'></i>");
     }
     $("#points").html("Points: "+Math.floor(points));
     $(".won").fadeIn(500); stop(1);
