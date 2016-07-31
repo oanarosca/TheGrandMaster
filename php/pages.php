@@ -112,13 +112,17 @@
             <h2>Current or upcoming rounds</h2>
             <?php
               require_once("displayRound.php");
-              $query = "SELECT * FROM runde WHERE (terminata = 0) OR (terminata = 1) ORDER BY id_runda";
+              $query = "SELECT * FROM runde WHERE ".
+                       "TIMEDIFF(DATE_ADD(STR_TO_DATE(data, '%Y-%m-%dT%k:%i:%s'), INTERVAL 2500 SECOND), NOW()) > 0 ".
+                       "ORDER BY data";
               displayRound($query, 1);
             ?>
             <h2>Past rounds</h2>
             <?php
               require_once("displayRound.php");
-              $query = "SELECT * FROM runde WHERE terminata = 2 ORDER BY id_runda";
+              $query = "SELECT * FROM runde WHERE ".
+                       "TIMEDIFF(DATE_ADD(STR_TO_DATE(data, '%Y-%m-%dT%k:%i:%s'), INTERVAL 2500 SECOND), NOW()) < 0 ".
+                       "ORDER BY data DESC";
               displayRound($query, 2);
             ?>
           </div>

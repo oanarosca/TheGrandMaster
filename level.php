@@ -32,7 +32,8 @@
     }
     else { // ne aflam in modul multiplayer
       // verificam daca runda este terminata sau in desfasurare
-      $query = "SELECT * FROM runde WHERE id_runda = '$round' AND (terminata = 2 OR terminata = 1)";
+      $query = "SELECT * FROM runde WHERE id_runda = '$round' AND ".
+               "TIMEDIFF(DATE_ADD(STR_TO_DATE(data, '%Y-%m-%dT%k:%i:%s'), INTERVAL 2500 SECOND), NOW()) > 0";
       $result = mysqli_query($conn, $query);
       if (mysqli_num_rows($result)) {
         $query = "SELECT IFNULL(MAX(id_comb), 0), IFNULL(activitate3.ind, 1)
@@ -44,10 +45,8 @@
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_row($result);
         // daca utilizatorul schimba id-ul in link
-        if ($row['1'] != $id) {
-          //echo "<script>alert(".$row['1'].");</script>";
+        if ($row['1'] != $id)
           error();
-        }
         else {
           // daca utilizatorul nu are activitate la runda, se seteaza si se incarca primul nivel
           if ($row['0'] == 0) {

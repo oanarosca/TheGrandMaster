@@ -298,10 +298,8 @@ function evaluare () {
       var points = (up[current] / (copieIncercari-incercari) * 100000) / secunde;
     else {
       var factor = Number(current)-1;
-      alert(new Date()); alert(startDate);
       var intS = (new Date()-startDate)/1000;
       var points = score1+ldif*factor-intS*pps*(factor+1);
-      alert(intS);
     }
     $("#points").html("Points: "+Math.floor(points));
     $(".won").fadeIn(500); stop(1);

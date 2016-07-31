@@ -5,7 +5,7 @@ function countDown () {
     if (prim == 0) {
       prim = 1; id = "#left span";
       $("#left").fadeIn();
-      d2 = new Date(d2.getTime()+1000*2460);
+      d2 = new Date(d2.getTime()+1000*2500);
       dif = d2-d1-3600*1000*3;
       runda = $("#time").parent().parent().children("h4").html().substr(7);
       $.ajax({
@@ -27,13 +27,6 @@ function countDown () {
     }
     else {
       prim = 2; clearTimeout(cdown);
-      runda = $("#time").parent().parent().children("h4").html().substr(7);
-      $.ajax({
-        url: "php/stopRound.php?round="+runda,
-        async: false,
-        success: function (response) {},
-        error : function () {alert("Something wrong");}
-      });
     }
   }
   if (prim != 2) {
