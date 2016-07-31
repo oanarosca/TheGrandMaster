@@ -6,20 +6,20 @@
   $username = filter_input(INPUT_POST, "username");
   $password = filter_input(INPUT_POST, "retype");
   $pcr = md5($password);
-  $query = "INSERT INTO utilizatori (username, parola) " .
-           "VALUES ('$username', '$pcr')";
-  mysqli_query($conn, $query);
+  $stmt = $conn->prepare("INSERT INTO utilizatori (username, parola) VALUES (?, '$pcr')");
+  $stmt->bind_param("s", $username);
+  $stmt->execute();
+  $stmt->close();
   echo 1;
-  $query = "SELECT * FROM utilizatori WHERE username = '$username'";
-  $result = mysqli_query($conn, $query);
+  $stmt = $conn->prepare("SELECT * FROM utilizatori WHERE username = ?");
+  $stmt->bind_param("s", $username);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  $stmt->close();
   while ($row = mysqli_fetch_array($result))
     $id = $row['id_user'];
   $query = "INSERT INTO activitate (id_user, level) VALUES ('$id', '1')";
   mysqli_query($conn, $query);
   session_start();
-  $query = "SELECT * FROM utilizatori WHERE username = '$username'";
-  $result = mysqli_query($conn, $query);
-  while ($row = mysqli_fetch_array($result))
-    $id = $row['id_user'];
   $_SESSION['ok'] = $id;
 ?>

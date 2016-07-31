@@ -5,8 +5,11 @@
   $username = filter_input(INPUT_POST, "username");
   $parola = filter_input(INPUT_POST, "password");
   $pcr = md5($parola);
-  $query = "SELECT * FROM utilizatori WHERE id_user = 0 AND parola = '$pcr'";
-  $result = mysqli_query($conn, $query);
+  $stmt = $conn->prepare("SELECT * FROM utilizatori WHERE username = ? AND parola = '$pcr'");
+  $stmt->bind_param("s", $username);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  $stmt->close();
   if (mysqli_num_rows($result)) {
     session_start();
     echo 1;
