@@ -276,7 +276,11 @@
       </head>
       <body>
         <div class="container">
-          <h3><a href="index.html">Uh oh! Something went wrong. Click here to return to the login page.</a></h3>
+          <h1>Congrats!</h1>
+          <h2>You just broke the Internet.</h2>
+          <h4>Or I did something terribly wrong. Or you tried to change the URL to a nonexistent page.
+            If you were already logged in, click <a href="levels.php">here</a> to return to the levels page.
+            If not, click <a href="index.html">here</a> to return to the login page.</h4>
         </div> <!-- container -->
         <div class="footer">
           <p>Made with <i class="fa fa-heart"></i> by Oana</p>
