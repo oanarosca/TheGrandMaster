@@ -4,7 +4,6 @@
   $conn = conectare();
   $username = filter_input(INPUT_POST, "username");
   $parola = filter_input(INPUT_POST, "password");
-  //$pcr = md5($parola);
   $stmt = $conn->prepare("SELECT * ".
            "FROM utilizatori ".
            "WHERE username = ?");
@@ -16,8 +15,8 @@
     $row = mysqli_fetch_row($result);
     $pcr = $row['2'];
     if (password_verify($parola, $pcr) or $pcr == md5($parola)) {
-      echo 1;
       session_start();
+      echo 1;
       $id = $row['0'];
       $_SESSION['ok'] = $id;
       $query = "SELECT * FROM activitate2 WHERE id_user = '$id'";
