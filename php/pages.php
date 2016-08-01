@@ -195,7 +195,7 @@
                 <th>Username</th>
                 <?php
                   if ($round == 0)
-                    echo "<th>Level</th><th title='Points per attempt'>PPA</th>";
+                    echo "<th>Level</th><th title='Points per attempt'>PPA*</th>";
                   else
                     echo "<th>Points</th>"
                 ?>
@@ -239,6 +239,7 @@
               ?>
               </tbody>
             </table>
+            <p>* Points per attempt</p>
           </div>
         </div> <!-- container -->
         <div class="footer">
