@@ -299,8 +299,8 @@ function evaluare () {
     }
     else {
       var factor = Number(current)-1;
-      var intS = (new Date()-startDate)/1000;
-      var points = score1+ldif*factor-intS*pps*(factor+1);
+      var secunde = (new Date()-startDate)/1000;
+      var points = score1+ldif*factor-secunde*pps*(factor+1);
       $(".won .bottom").html("<i class='fa fa-arrow-right centered' onclick='next()'></i>");
     }
     $("#points").html("Points: "+Math.floor(points));

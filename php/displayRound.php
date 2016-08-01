@@ -22,7 +22,7 @@
         echo "<span id='time'></span></h5>";
         echo "<h5 id='left'>Time left: <span></span></h5>";
       }
-      else echo "</h5>";
+      else echo "<a href='leaderboard.php?round=".$row['0']."' class='left'>Leaderboard</a></h5>";
       echo "</div>";
     }
   }

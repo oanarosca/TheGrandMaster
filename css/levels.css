@@ -162,3 +162,9 @@ h2 {
   font-size: 16px;
   font-weight: bold;
 }
+
+.left {
+  display: block;
+  text-align: left;
+  margin-top: 7px;
+}

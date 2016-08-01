@@ -43,7 +43,7 @@
                 <li><a href="levels.php">Levels</a></li>
                 <li><a href="javascript:void(0)" id="instructions">Instructions</a></li>
                 <!--<li class="img" title="Profile"><a href="javascript:void(0)"><img src="img/profile.png" alt="Profile"/></a></li>-->
-                <li class="img" title="Leaderboard"><a href="leaderboard.php"><img src="img/trophy.png" alt="Leaderboard"/></a></li>
+                <li class="img" title="Leaderboard"><a href="leaderboard.php?round=0"><img src="img/trophy.png" alt="Leaderboard"/></a></li>
               </ul>
             </div> <!-- collapse -->
           </nav>
@@ -144,7 +144,10 @@
     </html>
     <?php
   }
-  function leaderboard () {
+  function leaderboard ($round) {
+    $score1 = 5000;
+    $ldif = 5000;
+    $pps = 2;
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -180,8 +183,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="levels.php">Levels</a></li>
                 <li><a href="javascript:void(0)" id="instructions">Instructions</a></li>
-                <!--<li class="img" title="Profile"><a href="javascript:void(0)" onclick="profile()"><img src="img/profile.png" alt="Profile"/></a></li>-->
-                <li class="img" title="Leaderboard"><a href="leaderboard.php"><img src="img/trophy.png" alt="Leaderboard"/></a></li>
+                <li class="img" title="Leaderboard"><a href="leaderboard.php?round=0"><img src="img/trophy.png" alt="Leaderboard"/></a></li>
               </ul>
             </div> <!-- collapse -->
           </nav>
@@ -191,28 +193,40 @@
               <thead>
                 <th>#</th>
                 <th>Username</th>
-                <th>Level</th>
-                <th title="Points per attempt">PPA</th>
+                <?php
+                  if ($round == 0)
+                    echo "<th>Level</th><th title='Points per attempt'>PPA</th>";
+                  else
+                    echo "<th>Points</th>"
+                ?>
               </thead>
               <tbody>
               <?php
               require_once("connect.php");
               $conn = conectare();
-              $query = "SELECT activitate.id_user, username, level, total/attempts
-                        FROM activitate, utilizatori, (
-                            SELECT id_user, MAX(level)-1 AS ml
-                            FROM activitate
-                            GROUP BY id_user
-                            ) AS t_im
-                        WHERE (activitate.id_user = t_im.id_user) AND (level = ml) AND (activitate.id_user = utilizatori.id_user)
-                        ORDER BY ml DESC, total/attempts DESC";
+              if ($round == 0) {
+                $query = "SELECT activitate.id_user, username, level, total/attempts
+                          FROM activitate, utilizatori, (
+                              SELECT id_user, MAX(level)-1 AS ml
+                              FROM activitate
+                              GROUP BY id_user
+                              ) AS t_im
+                          WHERE (activitate.id_user = t_im.id_user) AND (level = ml) AND (activitate.id_user = utilizatori.id_user)
+                          ORDER BY ml DESC, total/attempts DESC";
+                $start = 1;
+              }
+              else {
+                $query = "SELECT username, SUM($score1+$ldif*(ind-1)-timp*$pps*ind) FROM activitate3, utilizatori ".
+                         "WHERE id_runda = '$round' AND timp > 0 AND activitate3.id_user = utilizatori.id_user";
+                $start = 0;
+              }
               $result = mysqli_query($conn, $query);
               $col = mysqli_num_fields($result); $index = 1;
               while ($row = mysqli_fetch_row($result)) {
                 echo "<tr><td>".$index++."</td>";
-                for ($c = 1; $c < $col; $c++) {
+                for ($c = $start; $c < $col; $c++) {
                   if ($c == 2) $row[$c]++;
-                  if ($row[$c] == 19 && $c == 2)
+                  if ($round == 0 && $row[$c] == 19 && $c == 2)
 		                echo "<td><img src='img/crown.png' class='crown'/></td>";
 		              else {
                     if ($c == 3)
