@@ -1,3 +1,4 @@
+var cdown;
 function countDown () {
   var runda, d1 = new Date();
   var dif = d2-d1-3600*1000*3;
