@@ -21,6 +21,8 @@
     $id = $row['id_user'];
   $query = "INSERT INTO activitate (id_user, level) VALUES ('$id', '1')";
   mysqli_query($conn, $query);
+  $query = "INSERT INTO activitate2 (id_user, level) VALUES ('$id', '1')";
+  mysqli_query($conn, $query);
   session_start();
   $_SESSION['ok'] = $id;
 ?>
