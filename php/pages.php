@@ -239,7 +239,10 @@
               ?>
               </tbody>
             </table>
-            <p>* Points per attempt</p>
+            <?php
+              if ($round == 0)
+                echo "<p>* Points per attempt</p>";
+            ?>
           </div>
         </div> <!-- container -->
         <div class="footer">
