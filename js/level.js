@@ -197,7 +197,7 @@ function show () {
 
 function stop (won) {
   // se opreste cronometrul iar bilutele primesc cursorul default
-  if (!won && !$(".lost").visible()) {
+  if (!won && !$(".lost").is(":visible")) {
     var sol = "<h3>The correct combination was:</h3><ul>";
     for (i = locuri; i >= 1; i--)
       sol += "<li><div id='"+idbile[s[i]]+"'></div></li>";
