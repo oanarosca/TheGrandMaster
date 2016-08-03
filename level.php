@@ -41,7 +41,7 @@
                   SELECT id_user, IFNULL(MAX(id_comb), 0) AS mi
                   FROM activitate3
                   GROUP BY id_user) AS t_mi
-                  WHERE (activitate3.id_user = t_mi.id_user) AND (id_comb = mi) AND id_runda = '$round'";
+                  WHERE (activitate3.id_user = t_mi.id_user) AND (id_comb = mi) AND id_runda = '$round' AND (activitate3.id_user = '$iduser')";
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_row($result);
         // daca utilizatorul schimba id-ul in link
