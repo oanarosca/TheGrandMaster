@@ -7,7 +7,7 @@ function username (str) {
 
 // valideaza parola
 function password (str) {
-  if (str.length < 6 || str.length > 50)
+  if (str.length < 6 || str.length > 20)
     return 0;
   return 1;
 }
