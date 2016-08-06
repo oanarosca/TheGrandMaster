@@ -13,7 +13,8 @@ $(document).ready(function () {
   data += $(".round:eq(0) a").html().substr(0, 8);
   $("#left").hide();
   d2 = new Date(data);
-  countDown(d2, "#time");
+  if (document.getElementById("#time") != null)
+    countDown(d2, "#time");
 });
 
 $(".stages div").on("click", function () {

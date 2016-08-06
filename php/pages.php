@@ -204,13 +204,13 @@
               require_once("connect.php");
               $conn = conectare();
               if ($round == 0) {
-                $query = "SELECT activitate.id_user, username, level, total/attempts
-                          FROM activitate, utilizatori, (
+                $query = "SELECT activitate1.id_user, username, level, total/attempts
+                          FROM activitate1, utilizatori, (
                               SELECT id_user, MAX(level)-1 AS ml
-                              FROM activitate
+                              FROM activitate1
                               GROUP BY id_user
                               ) AS t_im
-                          WHERE (activitate.id_user = t_im.id_user) AND (level = ml) AND (activitate.id_user = utilizatori.id_user)
+                          WHERE (activitate1.id_user = t_im.id_user) AND (level = ml) AND (activitate1.id_user = utilizatori.id_user)
                           ORDER BY ml DESC, total/attempts DESC";
                 $start = 1;
               }
