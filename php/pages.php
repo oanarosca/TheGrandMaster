@@ -5,8 +5,7 @@
     $conn = conectare(); $id = $_SESSION['ok'];
     $query = "SELECT * FROM utilizatori WHERE id_user = '$id'";
     $result = mysqli_query($conn, $query);
-    while ($row = mysqli_fetch_array($result))
-      $user = $row['username'];
+    $row = mysqli_fetch_array($result); $user = $row['username'];
     ?>
     <!DOCTYPE html>
     <html lang="en">

@@ -2,7 +2,6 @@
 
 // adauga instructiunile
 $(document).ready(function () {
-
   var instructions =
   "<div><h1>Instructions</h1><p>Your goal is to guess the correct combination of balls chosen by the computer. "+
   "Colours may repeat. Click on a ball to add it to the current guess, or click on a certain spot in the current guess to place a ball there.</p>"+
@@ -37,17 +36,10 @@ $("ul .red").on("click", function () {
     url: "php/dsession.php",
     async: false,
     success:
-      function () {
-        //alert(response);
-      },
+      function () {},
     error:
       function () {
         alert("Something wrong");
       }
   });
 });
-
-// deschide pagina de profil a utilizatorului
-function profile (id) {
-  document.location.href = "profile.php?id="+id;
-};

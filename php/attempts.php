@@ -4,11 +4,9 @@
   $conn = conectare();
   session_start();
   if (isset($_SESSION['ok']) && $_GET['stage'] != 3) {
-    $activitate = "activitate";
     $id = $_GET['level'];
     $stage = $_GET['stage'];
-    if ($stage == '2')
-      $activitate = $activitate . '2';
+    $activitate = "activitate".$stage;
     $iduser = $_SESSION['ok'];
     $query = "SELECT attempts FROM ".$activitate." WHERE id_user = '$iduser' AND level = '$id'";
     $result = mysqli_query($conn, $query);
