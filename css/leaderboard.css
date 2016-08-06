@@ -36,6 +36,19 @@ td:last-child {
   padding-right: 5px;
 }
 
+select {
+  background: none;
+  border: 1px solid #d0d4d4;
+  border-radius: 15px;
+  padding: 12px;
+  margin-top: 20px;
+}
+
+option {
+  padding: 15px;
+  background: black;
+}
+
 @media (max-width: 767px) {
   table {
     font-size: 15px;

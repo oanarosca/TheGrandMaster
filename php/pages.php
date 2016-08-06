@@ -188,59 +188,26 @@
           </nav>
           <div class="leaderboard">
             <h1>Champions</h1>
-            <table>
-              <thead>
-                <th>#</th>
-                <th>Username</th>
-                <?php
-                  if ($round == 0)
-                    echo "<th>Level</th><th title='Points per attempt'>PPA*</th>";
-                  else
-                    echo "<th>Points</th>"
-                ?>
-              </thead>
-              <tbody>
-              <?php
-              require_once("connect.php");
-              $conn = conectare();
-              if ($round == 0) {
-                $query = "SELECT activitate1.id_user, username, level, total/attempts
-                          FROM activitate1, utilizatori, (
-                              SELECT id_user, MAX(level)-1 AS ml
-                              FROM activitate1
-                              GROUP BY id_user
-                              ) AS t_im
-                          WHERE (activitate1.id_user = t_im.id_user) AND (level = ml) AND (activitate1.id_user = utilizatori.id_user)
-                          ORDER BY ml DESC, total/attempts DESC";
-                $start = 1;
-              }
-              else {
-                $query = "SELECT username, SUM($score1+$ldif*(ind-1)-timp*$pps*ind) FROM activitate3, utilizatori ".
-                         "WHERE id_runda = '$round' AND timp > 0 AND activitate3.id_user = utilizatori.id_user";
-                $start = 0;
-              }
-              $result = mysqli_query($conn, $query);
-              $col = mysqli_num_fields($result); $index = 1;
-              while ($row = mysqli_fetch_row($result)) {
-                echo "<tr><td>".$index++."</td>";
-                for ($c = $start; $c < $col; $c++) {
-                  if ($c == 2) $row[$c]++;
-                  if ($round == 0 && $row[$c] == 19 && $c == 2)
-		                echo "<td><img src='img/crown.png' class='crown'/></td>";
-		              else {
-                    if ($c == 3)
-                      $row[$c] = number_format($row[$c], 2, ".", "");
-		                echo "<td>".$row[$c]."</td>";
-                  }
-		            }
-                echo "</tr>";
-              }
-              ?>
-              </tbody>
-            </table>
+            <select>
+              <option value="0">Stage 1</option>
+              <option value="1">Stage 2</option>
+            </select>
             <?php
-              if ($round == 0)
+              require_once("table.php");
+              if ($round == 0) {
+                for ($i = 1; $i <= 2; $i++) {
+                  $query = "SELECT activitate".$i.".id_user, username, level, total/attempts
+                            FROM activitate".$i.", utilizatori, (
+                                SELECT id_user, MAX(level)-1 AS ml
+                                FROM activitate".$i."
+                                GROUP BY id_user
+                                ) AS t_im
+                            WHERE (activitate".$i.".id_user = t_im.id_user) AND (level = ml) AND (activitate".$i.".id_user = utilizatori.id_user)
+                            ORDER BY ml DESC, total/attempts DESC";
+                  table($round, $query);
+                }
                 echo "<p>* Points per attempt</p>";
+              }
             ?>
           </div>
         </div> <!-- container -->

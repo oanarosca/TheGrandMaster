@@ -20,6 +20,7 @@ $(document).ready(function () {
   " unique at all times (which means that every time there is only one correct combination).</p>"+
   "<h2>Good luck!</h2></div>";
   $(".front #popup").append(instructions);
+  $("table:eq(1)").hide();
 });
 
 $("#instructions").on("click", function () {
@@ -42,4 +43,11 @@ $("ul .red").on("click", function () {
         alert("Something wrong");
       }
   });
+});
+
+$("select").change(function () {
+  var stage = $("option:selected").val();
+  //alert(stage);
+  $("table:eq("+(1-stage)+")").hide();
+  $("table:eq("+stage+")").show();
 });
