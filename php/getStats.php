@@ -4,10 +4,8 @@
     require_once ("connect.php");
     $conn = conectare();
     $user = $_SESSION['ok'];
-    if ($stage == 1)
-      $query = "SELECT attempts, wins, points, time FROM activitate WHERE id_user = '$user' and level = '$level'";
-    else
-      $query = "SELECT attempts, wins, points, time FROM activitate2 WHERE id_user = '$user' and level = '$level'";
+    $activitate = "activitate" . $stage;
+    $query = "SELECT attempts, wins, points, time FROM `$activitate` WHERE id_user = '$user' and level = '$level'";
     $result = mysqli_query($conn, $query);
     while ($row = mysqli_fetch_array($result)) {
       $attempts = $row['0'];

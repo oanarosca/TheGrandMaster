@@ -6,7 +6,6 @@
     // cand utilizatorul castiga un nivel, in baza de date se actualizeaza, daca este cazul,
     // punctajul maxim si timpul in care s-a rezolvat un nivel. Se creste numarul de castiguri
     // ale nivelului respectiv si se deblocheaza unul nou, daca mai exista.
-    $activitate = "activitate";
     $level = $_GET['level'];
     $points = $_GET['points'];
     $id = $_SESSION['ok'];
@@ -14,8 +13,7 @@
     $stage = $_GET['stage'];
     $runda = $_GET['runda'];
     if ($stage == 1 || $stage == 2) {
-      if ($stage == '2')
-        $activitate = $activitate . '2';
+      $activitate = "activitate" . $runda;
       $query = "SELECT total FROM ".$activitate." WHERE id_user = '$id' AND level = '$level'";
       $result = mysqli_query($conn, $query);
       $row = mysqli_fetch_array($result);

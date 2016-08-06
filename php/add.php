@@ -19,7 +19,7 @@
   $stmt->close();
   while ($row = mysqli_fetch_array($result))
     $id = $row['id_user'];
-  $query = "INSERT INTO activitate (id_user, level) VALUES ('$id', '1')";
+  $query = "INSERT INTO activitate1 (id_user, level) VALUES ('$id', '1')";
   mysqli_query($conn, $query);
   $query = "INSERT INTO activitate2 (id_user, level) VALUES ('$id', '1')";
   mysqli_query($conn, $query);
